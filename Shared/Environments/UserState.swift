@@ -7,14 +7,24 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
-class UserState: ObservableObject {
+final class UserState: ObservableObject {
     @AppStorage("deviceID") private(set) var deviceID: String = ""
     @AppStorage("userName") var userName: String = ""
     @Published var validToken = false
     
+    private var loginTokenCancellable: AnyCancellable?
+    
     init() {
+        loginTokenCancellable = NetworkClient.shared.$token
+            .receive(on: RunLoop.main)
+            .sink { [weak self] (token) in
+                self?.validToken = token != nil
+            }
+        
         if let savedToken = KeychainService.getSavedToken(userName: userName) {
+            validToken = true
             set(token: savedToken)
         }
         
@@ -31,6 +41,5 @@ class UserState: ObservableObject {
     
     func set(token: String) {
         NetworkClient.shared.token = token
-        validToken = true
     }
 }

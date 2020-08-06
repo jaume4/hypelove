@@ -91,11 +91,11 @@ final class NetworkClient {
     private let baseURL = URL(string: "https://api.hypem.com")!
     private let version = "v2"
     
+    fileprivate let decoder = JSONDecoder()
     private let encoder = JSONDecoder()
-    internal let decoder = JSONDecoder()
     private let session: URLSession
     
-    var token: String?
+    @Published var token: String?
     
     private init() {
         let configuration = URLSessionConfiguration.default
