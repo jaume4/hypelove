@@ -7,48 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F1D87DD24DBF53700BB265D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D87DC24DBF53700BB265D /* AppDelegate.swift */; };
-		1F1D87DF24DBF53700BB265D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D87DE24DBF53700BB265D /* SceneDelegate.swift */; };
-		1F1D87E124DBF53700BB265D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D87E024DBF53700BB265D /* ContentView.swift */; };
-		1F1D87E324DBF53900BB265D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F1D87E224DBF53900BB265D /* Assets.xcassets */; };
-		1F1D87E624DBF53900BB265D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F1D87E524DBF53900BB265D /* Preview Assets.xcassets */; };
-		1F1D87E924DBF53900BB265D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F1D87E724DBF53900BB265D /* LaunchScreen.storyboard */; };
-		1F1D87F424DBF53900BB265D /* HypeLoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D87F324DBF53900BB265D /* HypeLoveTests.swift */; };
+		1F49745F24DC1EC10085F599 /* HypeLoveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */; };
+		1F49746024DC1EC10085F599 /* HypeLoveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */; };
+		1F49746324DC1EC10085F599 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F49744E24DC1EC10085F599 /* Assets.xcassets */; };
+		1F49746424DC1EC10085F599 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F49744E24DC1EC10085F599 /* Assets.xcassets */; };
+		1F49747124DC1F1F0085F599 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49746F24DC1F1F0085F599 /* Keychain.swift */; };
+		1F49747224DC1F1F0085F599 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49747024DC1F1F0085F599 /* KeychainService.swift */; };
+		1F49747324DC1F230085F599 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49746F24DC1F1F0085F599 /* Keychain.swift */; };
+		1F49747424DC1F260085F599 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49747024DC1F1F0085F599 /* KeychainService.swift */; };
+		1F49747924DC1F350085F599 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49747624DC1F350085F599 /* NetworkClient.swift */; };
+		1F49747A24DC1F350085F599 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49747624DC1F350085F599 /* NetworkClient.swift */; };
+		1F49747B24DC1F350085F599 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49747824DC1F350085F599 /* LoginRequest.swift */; };
+		1F49747C24DC1F350085F599 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49747824DC1F350085F599 /* LoginRequest.swift */; };
+		1F49748724DC1F540085F599 /* PopularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49748224DC1F540085F599 /* PopularView.swift */; };
+		1F49748824DC1F540085F599 /* PopularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49748224DC1F540085F599 /* PopularView.swift */; };
+		1F49748924DC1F540085F599 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49748424DC1F540085F599 /* LoginView.swift */; };
+		1F49748A24DC1F540085F599 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49748424DC1F540085F599 /* LoginView.swift */; };
+		1F83325424DC246E0054DD8D /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325324DC246E0054DD8D /* UserState.swift */; };
+		1F83325524DC246E0054DD8D /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325324DC246E0054DD8D /* UserState.swift */; };
+		1F83325724DC50F00054DD8D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325624DC50F00054DD8D /* LoginViewModel.swift */; };
+		1F83325824DC50F00054DD8D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325624DC50F00054DD8D /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		1F1D87F024DBF53900BB265D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1F1D87D124DBF53700BB265D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1F1D87D824DBF53700BB265D;
-			remoteInfo = HypeLove;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		1F1D87D924DBF53700BB265D /* HypeLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HypeLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F1D87DC24DBF53700BB265D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F1D87DE24DBF53700BB265D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1F1D87E024DBF53700BB265D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		1F1D87E224DBF53900BB265D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1F1D87E524DBF53900BB265D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1F1D87E824DBF53900BB265D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1F1D87EA24DBF53900BB265D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1F1D87EF24DBF53900BB265D /* HypeLoveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HypeLoveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F1D87F324DBF53900BB265D /* HypeLoveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeLoveTests.swift; sourceTree = "<group>"; };
-		1F1D87F524DBF53900BB265D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeLoveApp.swift; sourceTree = "<group>"; };
+		1F49744E24DC1EC10085F599 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1F49745324DC1EC10085F599 /* HypeLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HypeLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F49745624DC1EC10085F599 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F49745B24DC1EC10085F599 /* HypeLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HypeLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F49745D24DC1EC10085F599 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F49745E24DC1EC10085F599 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		1F49746F24DC1F1F0085F599 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		1F49747024DC1F1F0085F599 /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		1F49747624DC1F350085F599 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		1F49747824DC1F350085F599 /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		1F49748224DC1F540085F599 /* PopularView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularView.swift; sourceTree = "<group>"; };
+		1F49748424DC1F540085F599 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		1F83325324DC246E0054DD8D /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
+		1F83325624DC50F00054DD8D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1F1D87D624DBF53700BB265D /* Frameworks */ = {
+		1F49745024DC1EC10085F599 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F1D87EC24DBF53900BB265D /* Frameworks */ = {
+		1F49745824DC1EC10085F599 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -58,113 +65,178 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F1D87D024DBF53700BB265D = {
+		1F49744624DC1EBF0085F599 = {
 			isa = PBXGroup;
 			children = (
-				1F1D87DB24DBF53700BB265D /* HypeLove */,
-				1F1D87F224DBF53900BB265D /* HypeLoveTests */,
-				1F1D87DA24DBF53700BB265D /* Products */,
+				1F49744B24DC1EBF0085F599 /* Shared */,
+				1F49745524DC1EC10085F599 /* iOS */,
+				1F49745C24DC1EC10085F599 /* macOS */,
+				1F49745424DC1EC10085F599 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		1F1D87DA24DBF53700BB265D /* Products */ = {
+		1F49744B24DC1EBF0085F599 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				1F1D87D924DBF53700BB265D /* HypeLove.app */,
-				1F1D87EF24DBF53900BB265D /* HypeLoveTests.xctest */,
+				1F49746E24DC1F0B0085F599 /* App */,
+				1F83325224DC245B0054DD8D /* Environments */,
+				1F49746D24DC1EFE0085F599 /* Keychain */,
+				1F49747E24DC1F540085F599 /* Feature */,
+				1F49747524DC1F350085F599 /* Network */,
+				1F49744E24DC1EC10085F599 /* Assets.xcassets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		1F49745424DC1EC10085F599 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1F49745324DC1EC10085F599 /* HypeLove.app */,
+				1F49745B24DC1EC10085F599 /* HypeLove.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1F1D87DB24DBF53700BB265D /* HypeLove */ = {
+		1F49745524DC1EC10085F599 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				1F1D87DC24DBF53700BB265D /* AppDelegate.swift */,
-				1F1D87DE24DBF53700BB265D /* SceneDelegate.swift */,
-				1F1D87E024DBF53700BB265D /* ContentView.swift */,
-				1F1D87E224DBF53900BB265D /* Assets.xcassets */,
-				1F1D87E724DBF53900BB265D /* LaunchScreen.storyboard */,
-				1F1D87EA24DBF53900BB265D /* Info.plist */,
-				1F1D87E424DBF53900BB265D /* Preview Content */,
+				1F49745624DC1EC10085F599 /* Info.plist */,
 			);
-			path = HypeLove;
+			path = iOS;
 			sourceTree = "<group>";
 		};
-		1F1D87E424DBF53900BB265D /* Preview Content */ = {
+		1F49745C24DC1EC10085F599 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				1F1D87E524DBF53900BB265D /* Preview Assets.xcassets */,
+				1F49745D24DC1EC10085F599 /* Info.plist */,
+				1F49745E24DC1EC10085F599 /* macOS.entitlements */,
 			);
-			path = "Preview Content";
+			path = macOS;
 			sourceTree = "<group>";
 		};
-		1F1D87F224DBF53900BB265D /* HypeLoveTests */ = {
+		1F49746D24DC1EFE0085F599 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
-				1F1D87F324DBF53900BB265D /* HypeLoveTests.swift */,
-				1F1D87F524DBF53900BB265D /* Info.plist */,
+				1F49746F24DC1F1F0085F599 /* Keychain.swift */,
+				1F49747024DC1F1F0085F599 /* KeychainService.swift */,
 			);
-			path = HypeLoveTests;
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		1F49746E24DC1F0B0085F599 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		1F49747524DC1F350085F599 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1F49747624DC1F350085F599 /* NetworkClient.swift */,
+				1F49747724DC1F350085F599 /* Requests */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		1F49747724DC1F350085F599 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				1F49747824DC1F350085F599 /* LoginRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		1F49747E24DC1F540085F599 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				1F49748124DC1F540085F599 /* Explorer */,
+				1F49748324DC1F540085F599 /* Login */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		1F49748124DC1F540085F599 /* Explorer */ = {
+			isa = PBXGroup;
+			children = (
+				1F49748224DC1F540085F599 /* PopularView.swift */,
+			);
+			path = Explorer;
+			sourceTree = "<group>";
+		};
+		1F49748324DC1F540085F599 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1F49748424DC1F540085F599 /* LoginView.swift */,
+				1F83325624DC50F00054DD8D /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		1F83325224DC245B0054DD8D /* Environments */ = {
+			isa = PBXGroup;
+			children = (
+				1F83325324DC246E0054DD8D /* UserState.swift */,
+			);
+			path = Environments;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1F1D87D824DBF53700BB265D /* HypeLove */ = {
+		1F49745224DC1EC10085F599 /* HypeLove (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1F1D87F824DBF53900BB265D /* Build configuration list for PBXNativeTarget "HypeLove" */;
+			buildConfigurationList = 1F49746724DC1EC10085F599 /* Build configuration list for PBXNativeTarget "HypeLove (iOS)" */;
 			buildPhases = (
-				1F1D87D524DBF53700BB265D /* Sources */,
-				1F1D87D624DBF53700BB265D /* Frameworks */,
-				1F1D87D724DBF53700BB265D /* Resources */,
+				1F49744F24DC1EC10085F599 /* Sources */,
+				1F49745024DC1EC10085F599 /* Frameworks */,
+				1F49745124DC1EC10085F599 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = HypeLove;
-			productName = HypeLove;
-			productReference = 1F1D87D924DBF53700BB265D /* HypeLove.app */;
+			name = "HypeLove (iOS)";
+			productName = "HypeLove (iOS)";
+			productReference = 1F49745324DC1EC10085F599 /* HypeLove.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1F1D87EE24DBF53900BB265D /* HypeLoveTests */ = {
+		1F49745A24DC1EC10085F599 /* HypeLove (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1F1D87FB24DBF53900BB265D /* Build configuration list for PBXNativeTarget "HypeLoveTests" */;
+			buildConfigurationList = 1F49746A24DC1EC10085F599 /* Build configuration list for PBXNativeTarget "HypeLove (macOS)" */;
 			buildPhases = (
-				1F1D87EB24DBF53900BB265D /* Sources */,
-				1F1D87EC24DBF53900BB265D /* Frameworks */,
-				1F1D87ED24DBF53900BB265D /* Resources */,
+				1F49745724DC1EC10085F599 /* Sources */,
+				1F49745824DC1EC10085F599 /* Frameworks */,
+				1F49745924DC1EC10085F599 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1F1D87F124DBF53900BB265D /* PBXTargetDependency */,
 			);
-			name = HypeLoveTests;
-			productName = HypeLoveTests;
-			productReference = 1F1D87EF24DBF53900BB265D /* HypeLoveTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = "HypeLove (macOS)";
+			productName = "HypeLove (macOS)";
+			productReference = 1F49745B24DC1EC10085F599 /* HypeLove.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1F1D87D124DBF53700BB265D /* Project object */ = {
+		1F49744724DC1EBF0085F599 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
-				ORGANIZATIONNAME = Jaume;
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
 				TargetAttributes = {
-					1F1D87D824DBF53700BB265D = {
-						CreatedOnToolsVersion = 11.6;
+					1F49745224DC1EC10085F599 = {
+						CreatedOnToolsVersion = 12.0;
 					};
-					1F1D87EE24DBF53900BB265D = {
-						CreatedOnToolsVersion = 11.6;
-						TestTargetID = 1F1D87D824DBF53700BB265D;
+					1F49745A24DC1EC10085F599 = {
+						CreatedOnToolsVersion = 12.0;
 					};
 				};
 			};
-			buildConfigurationList = 1F1D87D424DBF53700BB265D /* Build configuration list for PBXProject "HypeLove" */;
+			buildConfigurationList = 1F49744A24DC1EBF0085F599 /* Build configuration list for PBXProject "HypeLove" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -172,79 +244,73 @@
 				en,
 				Base,
 			);
-			mainGroup = 1F1D87D024DBF53700BB265D;
-			productRefGroup = 1F1D87DA24DBF53700BB265D /* Products */;
+			mainGroup = 1F49744624DC1EBF0085F599;
+			productRefGroup = 1F49745424DC1EC10085F599 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1F1D87D824DBF53700BB265D /* HypeLove */,
-				1F1D87EE24DBF53900BB265D /* HypeLoveTests */,
+				1F49745224DC1EC10085F599 /* HypeLove (iOS) */,
+				1F49745A24DC1EC10085F599 /* HypeLove (macOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1F1D87D724DBF53700BB265D /* Resources */ = {
+		1F49745124DC1EC10085F599 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F1D87E924DBF53900BB265D /* LaunchScreen.storyboard in Resources */,
-				1F1D87E624DBF53900BB265D /* Preview Assets.xcassets in Resources */,
-				1F1D87E324DBF53900BB265D /* Assets.xcassets in Resources */,
+				1F49746324DC1EC10085F599 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F1D87ED24DBF53900BB265D /* Resources */ = {
+		1F49745924DC1EC10085F599 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F49746424DC1EC10085F599 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1F1D87D524DBF53700BB265D /* Sources */ = {
+		1F49744F24DC1EC10085F599 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F1D87DD24DBF53700BB265D /* AppDelegate.swift in Sources */,
-				1F1D87DF24DBF53700BB265D /* SceneDelegate.swift in Sources */,
-				1F1D87E124DBF53700BB265D /* ContentView.swift in Sources */,
+				1F83325424DC246E0054DD8D /* UserState.swift in Sources */,
+				1F49745F24DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
+				1F49747124DC1F1F0085F599 /* Keychain.swift in Sources */,
+				1F49747224DC1F1F0085F599 /* KeychainService.swift in Sources */,
+				1F49747B24DC1F350085F599 /* LoginRequest.swift in Sources */,
+				1F49748724DC1F540085F599 /* PopularView.swift in Sources */,
+				1F49748924DC1F540085F599 /* LoginView.swift in Sources */,
+				1F49747924DC1F350085F599 /* NetworkClient.swift in Sources */,
+				1F83325724DC50F00054DD8D /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F1D87EB24DBF53900BB265D /* Sources */ = {
+		1F49745724DC1EC10085F599 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F1D87F424DBF53900BB265D /* HypeLoveTests.swift in Sources */,
+				1F83325524DC246E0054DD8D /* UserState.swift in Sources */,
+				1F49746024DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
+				1F49747324DC1F230085F599 /* Keychain.swift in Sources */,
+				1F49747424DC1F260085F599 /* KeychainService.swift in Sources */,
+				1F49747C24DC1F350085F599 /* LoginRequest.swift in Sources */,
+				1F49748824DC1F540085F599 /* PopularView.swift in Sources */,
+				1F49748A24DC1F540085F599 /* LoginView.swift in Sources */,
+				1F49747A24DC1F350085F599 /* NetworkClient.swift in Sources */,
+				1F83325824DC50F00054DD8D /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		1F1D87F124DBF53900BB265D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1F1D87D824DBF53700BB265D /* HypeLove */;
-			targetProxy = 1F1D87F024DBF53900BB265D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		1F1D87E724DBF53900BB265D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1F1D87E824DBF53900BB265D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		1F1D87F624DBF53900BB265D /* Debug */ = {
+		1F49746524DC1EC10085F599 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -270,6 +336,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -294,17 +361,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		1F1D87F724DBF53900BB265D /* Release */ = {
+		1F49746624DC1EC10085F599 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -330,6 +395,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -348,131 +414,137 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		1F49746824DC1EC10085F599 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HQV3E5C7S2;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.corbi.HypeLove;
+				PRODUCT_NAME = HypeLove;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1F49746924DC1EC10085F599 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HQV3E5C7S2;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.corbi.HypeLove;
+				PRODUCT_NAME = HypeLove;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		1F1D87F924DBF53900BB265D /* Debug */ = {
+		1F49746B24DC1EC10085F599 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"HypeLove/Preview Content\"";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HQV3E5C7S2;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = HypeLove/Info.plist;
+				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.corbi.HypeLove;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HypeLove;
+				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		1F1D87FA24DBF53900BB265D /* Release */ = {
+		1F49746C24DC1EC10085F599 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"HypeLove/Preview Content\"";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HQV3E5C7S2;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = HypeLove/Info.plist;
+				INFOPLIST_FILE = macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.corbi.HypeLove;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HypeLove;
+				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		1F1D87FC24DBF53900BB265D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HQV3E5C7S2;
-				INFOPLIST_FILE = HypeLoveTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.corbi.HypeLoveTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HypeLove.app/HypeLove";
-			};
-			name = Debug;
-		};
-		1F1D87FD24DBF53900BB265D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HQV3E5C7S2;
-				INFOPLIST_FILE = HypeLoveTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.corbi.HypeLoveTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HypeLove.app/HypeLove";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1F1D87D424DBF53700BB265D /* Build configuration list for PBXProject "HypeLove" */ = {
+		1F49744A24DC1EBF0085F599 /* Build configuration list for PBXProject "HypeLove" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1F1D87F624DBF53900BB265D /* Debug */,
-				1F1D87F724DBF53900BB265D /* Release */,
+				1F49746524DC1EC10085F599 /* Debug */,
+				1F49746624DC1EC10085F599 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1F1D87F824DBF53900BB265D /* Build configuration list for PBXNativeTarget "HypeLove" */ = {
+		1F49746724DC1EC10085F599 /* Build configuration list for PBXNativeTarget "HypeLove (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1F1D87F924DBF53900BB265D /* Debug */,
-				1F1D87FA24DBF53900BB265D /* Release */,
+				1F49746824DC1EC10085F599 /* Debug */,
+				1F49746924DC1EC10085F599 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1F1D87FB24DBF53900BB265D /* Build configuration list for PBXNativeTarget "HypeLoveTests" */ = {
+		1F49746A24DC1EC10085F599 /* Build configuration list for PBXNativeTarget "HypeLove (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1F1D87FC24DBF53900BB265D /* Debug */,
-				1F1D87FD24DBF53900BB265D /* Release */,
+				1F49746B24DC1EC10085F599 /* Debug */,
+				1F49746C24DC1EC10085F599 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 1F1D87D124DBF53700BB265D /* Project object */;
+	rootObject = 1F49744724DC1EBF0085F599 /* Project object */;
 }
