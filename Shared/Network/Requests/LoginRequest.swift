@@ -18,6 +18,7 @@ struct LoginRequest: NetworkFormRequest {
     typealias Response = LoginResponse
     typealias CustomError = LoginError
     
+    let controlledErrorCodes: Set<Int> = [401]
     let endPoint = "get_token"
     let method = HTTPMethod.post
     let params: [String : String]

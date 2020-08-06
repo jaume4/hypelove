@@ -15,6 +15,7 @@ enum HTTPMethod: String {
 }
 
 enum NoCustomError: String {
+    static let noCustomErrorCodes: Set<Int> = []
     case none
 }
 
@@ -26,11 +27,22 @@ struct ErrorFormat: Decodable {
     }
 }
 
-protocol NetworkRequest {
+protocol CustomControlledErrorCodes {
+    var controlledErrorCodes: Set<Int> { get }
+}
+
+protocol NetworkRequest: CustomControlledErrorCodes {
     associatedtype Response: Decodable
     associatedtype CustomError: RawRepresentable = NoCustomError where CustomError.RawValue == String
     var endPoint: String { get }
     var method: HTTPMethod { get }
+    var controlledErrorCodes: Set<Int> { get }
+}
+
+extension NetworkRequest {
+    var controlledErrorCodes: Set<Int> {
+        return NoCustomError.noCustomErrorCodes
+    }
 }
 
 protocol NetworkPostRequest: NetworkRequest {
@@ -52,18 +64,21 @@ enum NetworkError<CustomError: RawRepresentable>: Error where CustomError.RawVal
         }
     }
     
-    static func processResponse(data: Data, response: URLResponse) throws -> Data {
+    static func processResponse<T: CustomControlledErrorCodes>(data: Data, response: URLResponse, errorCodes: T) throws -> Data {
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.unknown
         }
         
+        //Check for custom error codes
+        if errorCodes.controlledErrorCodes.contains(httpResponse.statusCode),
+           let error = try? NetworkClient.shared.decoder.decode(ErrorFormat.self, from: data) {
+            throw processCustomError(error: error.message)
+        }
+        
+        //No custom error, check codes normally
         switch httpResponse.statusCode {
         case 200...299: return data
-        case 401:
-            let error = try NetworkClient.shared.decoder.decode(ErrorFormat.self, from: data)
-            throw processCustomError(error: error.message)
-        case 500...599:
-            throw NetworkError.serverError
+        case 500...599: throw NetworkError.serverError
         default: throw NetworkError.unknown
         }
     }
@@ -102,7 +117,7 @@ final class NetworkClient {
         urlRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         let formBody = request.params.reduce("", { $0 + $1.key + "=" + $1.value + "&" })
         urlRequest.httpBody = Data(formBody.utf8)
-        return sendRequest(for: request, request: urlRequest)
+        return sendRequest(request, urlRequest: urlRequest)
     }
     
     private func makeBaseRequest<T: NetworkRequest>(_ request: T) -> URLRequest {
@@ -111,12 +126,12 @@ final class NetworkClient {
         return urlRequest
     }
     
-    private func sendRequest<T: NetworkRequest>(for: T, request: URLRequest) -> AnyPublisher<T.Response, NetworkError<T.CustomError>> {
-        return session.dataTaskPublisher(for: request)
+    private func sendRequest<T: NetworkRequest>(_ request: T, urlRequest: URLRequest) -> AnyPublisher<T.Response, NetworkError<T.CustomError>> {
+        return session.dataTaskPublisher(for: urlRequest)
         .receive(on: DispatchQueue.global())
         .subscribe(on: DispatchQueue.global())
         .tryMap { data, response in
-            try NetworkError<T.CustomError>.processResponse(data: data, response: response)
+            try NetworkError<T.CustomError>.processResponse(data: data, response: response, errorCodes: request)
         }
         .decode(type: T.Response.self, decoder: decoder)
         .mapError{ error in
