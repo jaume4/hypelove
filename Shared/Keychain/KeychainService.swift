@@ -23,12 +23,11 @@ struct KeychainService {
         }
     }
     
-    static func getUserData() -> (userName: String, token: String)? {
+    static func getSavedToken(userName: String) -> String? {
         do {
-            let passwordItems = try KeychainPasswordItem.passwordItems(forService: serviceName, accessGroup: serviceGroup)
-            guard let userInfo = passwordItems.first else { return nil }
-            let password = try userInfo.readPassword()
-            return (userInfo.account, password)
+            let passwordItem = KeychainPasswordItem(service: serviceName, account: userName, accessGroup: serviceGroup)
+            let password = try passwordItem.readPassword()
+            return password
         } catch {
             print("Error reading user data: \(error)")
             return nil

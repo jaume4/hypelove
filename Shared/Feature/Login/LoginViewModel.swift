@@ -11,15 +11,19 @@ import SwiftUI
 
 final class LoginViewModel: ObservableObject {
     
-    @EnvironmentObject var userState: UserState
-    @Published var userName: String = ""
     @Published var password: String = ""
     @Published var loginCancellable: AnyCancellable?
     @Published var loginError: (NetworkError<LoginError>)?
     
+    let userState: UserState
+    
+    init(userState: UserState) {
+        self.userState = userState
+    }
+    
     func doLogin() {
         loginError = nil
-        let request = LoginRequest(userName: userName, password: password)
+        let request = LoginRequest(userName: userState.userName, password: password, deviceID: userState.deviceID)
 
         loginCancellable = NetworkClient.shared.sendRequest(request).sink { [weak self] (completion) in
             guard let self = self else { return }
@@ -30,7 +34,7 @@ final class LoginViewModel: ObservableObject {
             }
         } receiveValue: { [weak self] (response) in
             guard let self = self else { return }
-            KeychainService.save(userName: self.userName, token: response.hmToken)
+            KeychainService.save(userName: self.userState.userName, token: response.hmToken)
             self.userState.set(token: response.hmToken)
         }
     }

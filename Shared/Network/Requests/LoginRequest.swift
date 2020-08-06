@@ -22,17 +22,8 @@ struct LoginRequest: NetworkFormRequest {
     let endPoint = "get_token"
     let method = HTTPMethod.post
     let params: [String : String]
-    let deviceID: String = {
-        let chars = "0123456789abcdef"
-        var randomID = ""
-        for _ in 0..<32 {
-            let char = chars.randomElement()
-            randomID.append(char!)
-        }
-        return randomID
-}()
     
-    init(userName: String, password: String) {
+    init(userName: String, password: String, deviceID: String) {
         params = ["device_id": deviceID,
                 "password": password,
                 "username": userName]

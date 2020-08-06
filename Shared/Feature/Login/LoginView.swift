@@ -11,7 +11,7 @@ import Combine
 
 struct LoginViewError: View {
     
-    let error: (NetworkError<LoginError>)?
+    let error: NetworkError<LoginError>?
     
     var body: some View {
         
@@ -28,25 +28,24 @@ struct LoginViewError: View {
         .font(.callout)
         .foregroundColor(.red)
     }
-    
 }
 
 struct LoginView: View {
     
-    @StateObject var viewModel = LoginViewModel()
+    @StateObject var viewModel: LoginViewModel
     @EnvironmentObject var userState: UserState
     
     var body: some View {
         ZStack {
             Color.green.edgesIgnoringSafeArea(.all)
             VStack(spacing: 10) {
-                TextField("Username", text: $viewModel.userName)
+                TextField("Username", text: $userState.userName)
                     .textContentType(.username)
                     .autocapitalization(.none)
                 SecureField("Password", text: $viewModel.password)
                     .textContentType(.password)
                 Button("Login", action: viewModel.doLogin)
-                .disabled(viewModel.loginCancellable != nil || viewModel.password.isEmpty || viewModel.userName.isEmpty)
+                .disabled(viewModel.loginCancellable != nil || viewModel.password.isEmpty || userState.userName.isEmpty)
                 
                 LoginViewError(error: viewModel.loginError)
             }
@@ -57,6 +56,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(viewModel: LoginViewModel(userState: UserState()))
     }
 }

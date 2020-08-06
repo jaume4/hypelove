@@ -18,7 +18,7 @@ struct HypeLoveApp: App {
                     PopularView()
                         .transition(.opacity)
                 } else {
-                    LoginView()
+                    LoginView(viewModel: LoginViewModel(userState: userState))
                         .transition(.opacity)
                 }
             }.environmentObject(userState)
