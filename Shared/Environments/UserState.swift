@@ -11,21 +11,32 @@ import Combine
 
 final class UserState: ObservableObject {
     @AppStorage("deviceID") private(set) var deviceID: String = ""
-    @AppStorage("userName") var userName: String = ""
+    @AppStorage("userName") private var savedUserName: String = ""
     @Published var validToken = false
+    @Published var userName: String = ""
     
     private var loginTokenCancellable: AnyCancellable?
+    private var userNameCancellable: AnyCancellable?
     
     init() {
+        
+        userName = savedUserName
+        
         loginTokenCancellable = NetworkClient.shared.$token
             .receive(on: RunLoop.main)
             .sink { [weak self] (token) in
                 self?.validToken = token != nil
             }
         
-        if let savedToken = KeychainService.getSavedToken(userName: userName) {
+        if let savedToken = KeychainService.getSavedToken(userName: savedUserName) {
             validToken = true
             set(token: savedToken)
+        }
+        
+        userNameCancellable = $userName
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in
+            self?.savedUserName = $0
         }
         
         if deviceID.isEmpty {

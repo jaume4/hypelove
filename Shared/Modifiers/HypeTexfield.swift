@@ -11,11 +11,11 @@ import SwiftUI
 struct HypeTextfield: ViewModifier {
     
     func body(content: Content) -> some View {
-        return content
+        content
             .padding(8)
             .background(
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .fill(Color.white))
+                    .fill(Color.fillClear))
             .overlay(
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
                     .stroke()

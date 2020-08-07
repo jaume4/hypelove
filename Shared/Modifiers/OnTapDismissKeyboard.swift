@@ -12,11 +12,7 @@ struct OnTapDismissKeyboard: ViewModifier {
     func body(content: Content) -> some View {
         content
             .onTapGesture {
-                let keyWindow = UIApplication.shared.connectedScenes
-                    .filter({$0.activationState == .foregroundActive})
-                    .compactMap({$0 as? UIWindowScene}).first?
-                    .windows.first(where: {$0.isKeyWindow})
-                keyWindow?.endEditing(true)
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
 }

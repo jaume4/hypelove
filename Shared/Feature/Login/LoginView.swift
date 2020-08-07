@@ -26,7 +26,49 @@ struct LoginViewError: View {
             }
         }
         .font(.callout)
-        .foregroundColor(.red)
+        .foregroundColor(.contrast)
+    }
+}
+
+struct HypeButton: ButtonStyle {
+    var enabled: Bool = true
+    
+    func fillColor(isPressed: Bool, enabled: Bool) -> Color {
+        switch (enabled, isPressed) {
+        case (false, _): return Color.buttonDisabled
+        case (true, true): return Color.buttonFill.opacity(0.7)
+        case (true, false): return Color.buttonFill
+        }
+    }
+    
+    func makeBody(configuration: ButtonStyleConfiguration) -> some View {
+        configuration.label
+            .frame(maxWidth: .infinity)
+            .foregroundColor(configuration.isPressed ? Color.fillClear.opacity(0.7) : Color.fillClear)
+            .padding(8)
+            .background(
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(fillColor(isPressed: configuration.isPressed, enabled: enabled))
+        )
+    }
+}
+
+struct HypeSecondaryButton: ButtonStyle {
+    var enabled: Bool = true
+    
+    func fillColor(isPressed: Bool, enabled: Bool) -> Color {
+        switch (enabled, isPressed) {
+        case (false, _): return Color.buttonDisabled
+        case (true, true): return Color.buttonFill.opacity(0.7)
+        case (true, false): return Color.buttonFill
+        }
+    }
+    
+    func makeBody(configuration: ButtonStyleConfiguration) -> some View {
+        configuration.label
+            .frame(maxWidth: .infinity)
+            .foregroundColor(fillColor(isPressed: configuration.isPressed, enabled: enabled))
+            .padding(8)
     }
 }
 
@@ -35,12 +77,16 @@ struct LoginView: View {
     @StateObject var viewModel: LoginViewModel
     @EnvironmentObject var userState: UserState
     @Namespace var loginNameSpace
+    let loginButtonID = "loginButton"
+    var loginDisabled: Bool {
+        viewModel.loginCancellable != nil || viewModel.password.isEmpty || userState.userName.isEmpty
+    }
     
     var body: some View {
         ZStack {
-            Color.green.edgesIgnoringSafeArea(.all)
+            Color.background.edgesIgnoringSafeArea(.all)
                 .modifier(OnTapDismissKeyboard())
-            VStack(spacing: 10) {
+            VStack(spacing: 20) {
                 TextField("Username", text: $userState.userName)
                     .textContentType(.username)
                     .autocapitalization(.none)
@@ -48,17 +94,26 @@ struct LoginView: View {
                 SecureField("Password", text: $viewModel.password)
                     .textContentType(.password)
                     .modifier(HypeTextfield())
-                Spacer()
-                    .frame(height: 5)
-                Button("Login", action: viewModel.doLogin)
-                    .disabled(viewModel.loginCancellable != nil || viewModel.password.isEmpty || userState.userName.isEmpty)
-                    .matchedGeometryEffect(id: "loginButton", in: loginNameSpace, properties: [.position], anchor: .bottom)
+                Button(action: viewModel.doLogin) {
+                    Text("Login")
+                        .fontWeight(.heavy)
+                }.disabled(loginDisabled)
+                .buttonStyle(HypeButton(enabled: !loginDisabled))
+                    
+                Button(action: {
+                    print("skip")
+                }, label: {
+                    Text("Skip")
+                        .fontWeight(.heavy)
+                })
+                .buttonStyle(HypeSecondaryButton())
             }
             .padding()
+            .matchedGeometryEffect(id: loginButtonID, in: loginNameSpace, properties: [.position], anchor: .bottom)
             LoginViewError(error: viewModel.loginError)
-                .offset(x: 0, y: 20)
-                .matchedGeometryEffect(id: "loginButton", in: loginNameSpace, properties: [.position], anchor: .top, isSource: false)
-                
+//                .offset(x: 0, y: 15)
+                .matchedGeometryEffect(id: loginButtonID, in: loginNameSpace, properties: [.position], anchor: .top, isSource: false)
+            
         }
     }
 }
@@ -68,10 +123,12 @@ struct LoginView_Previews: PreviewProvider {
     static let viewModel = LoginViewModel(userState: userState)
     
     static var previews: some View {
-        LoginView(viewModel: viewModel)
-            .environmentObject(userState)
-            .onAppear {
-                viewModel.loginError = NetworkError<LoginError>.custom(.wrongPassword)
-            }
+        NavigationView {
+            LoginView(viewModel: viewModel)
+                .environmentObject(userState)
+                .onAppear {
+                    viewModel.loginError = NetworkError<LoginError>.custom(.wrongUsername)
+                }
+        }
     }
 }
