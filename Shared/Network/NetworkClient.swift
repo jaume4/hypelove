@@ -12,6 +12,8 @@ import Combine
 enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
+    case put = "PUT"
+    case delete = "DELETE"
 }
 
 enum NoCustomError: String {
@@ -27,11 +29,7 @@ struct ErrorFormat: Decodable {
     }
 }
 
-protocol CustomControlledErrorCodes {
-    var controlledErrorCodes: Set<Int> { get }
-}
-
-protocol NetworkRequest: CustomControlledErrorCodes {
+protocol NetworkRequest {
     associatedtype Response: Decodable
     associatedtype CustomError: RawRepresentable = NoCustomError where CustomError.RawValue == String
     var endPoint: String { get }
@@ -53,8 +51,9 @@ protocol NetworkFormRequest: NetworkRequest {
     var params: [String: String] { get }
 }
 
-enum NetworkError<CustomError: RawRepresentable>: Error where CustomError.RawValue == String {
-    case noConnection, serverError, noAuthorized, notFound, decoding(Error), unknown, custom(CustomError)
+enum NetworkError<CustomError: RawRepresentable>: Error, Equatable where CustomError.RawValue == String {
+    
+    case noConnection, serverError, notAuthorized, notFound, decoding(DecodingError), unknown, custom(CustomError)
     
     static func processCustomError(error: String) -> NetworkError {
         if let customError = CustomError(rawValue: error) {
@@ -64,7 +63,20 @@ enum NetworkError<CustomError: RawRepresentable>: Error where CustomError.RawVal
         }
     }
     
-    static func processResponse<T: CustomControlledErrorCodes>(data: Data, response: URLResponse, errorCodes: T) throws -> Data {
+    static func == (lhs: NetworkError<CustomError>, rhs: NetworkError<CustomError>) -> Bool {
+        switch (lhs, rhs) {
+        case (.noConnection, .noConnection): return true
+        case (.serverError, .serverError): return true
+        case (.notAuthorized, .notAuthorized): return true
+        case (.notFound, .notFound): return true
+        case (.unknown, .unknown): return true
+        case (.decoding(_), .decoding(_)): return true
+        case (.custom(let lhsRawValue), .custom(let rhsRawValue)): return lhsRawValue == rhsRawValue
+        default: return false
+                    }
+    }
+    
+    static func processResponse<T: NetworkRequest>(data: Data, response: URLResponse, decoder: JSONDecoder, errorCodes: T) throws -> T.Response {
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.unknown
         }
@@ -75,9 +87,10 @@ enum NetworkError<CustomError: RawRepresentable>: Error where CustomError.RawVal
             throw processCustomError(error: error.message)
         }
         
-        //No custom error, check codes normally
+        //No custom error, check codes normally and try decode if 2XX
         switch httpResponse.statusCode {
-        case 200...299: return data
+        case 200...299: return try decoder.decode(T.Response.self, from: data)
+        case 401: throw NetworkError.notAuthorized
         case 500...599: throw NetworkError.serverError
         default: throw NetworkError.unknown
         }
@@ -94,6 +107,9 @@ final class NetworkClient {
     fileprivate let decoder = JSONDecoder()
     private let encoder = JSONDecoder()
     private let session: URLSession
+    
+    private var loginPublisher: AnyPublisher<LoginRequest.Response, NetworkError<LoginRequest.CustomError>>?
+    private var currentCancellables: Set<AnyCancellable> = []
     
     @Published var token: String?
     
@@ -126,20 +142,73 @@ final class NetworkClient {
         return urlRequest
     }
     
-    private func sendRequest<T: NetworkRequest>(_ request: T, urlRequest: URLRequest) -> AnyPublisher<T.Response, NetworkError<T.CustomError>> {
-        return session.dataTaskPublisher(for: urlRequest)
-        .receive(on: DispatchQueue.global())
-        .subscribe(on: DispatchQueue.global())
-        .tryMap { data, response in
-            try NetworkError<T.CustomError>.processResponse(data: data, response: response, errorCodes: request)
-        }
-        .decode(type: T.Response.self, decoder: decoder)
-        .mapError{ error in
-            if let error = error as? NetworkError<T.CustomError> {
-                return error
+    private func resendRequest<T: NetworkRequest>(_ request: T) -> AnyPublisher<T.Response, NetworkError<T.CustomError>> {
+        
+        let promise = Future<T.Response, NetworkError<T.CustomError>>  { promise in
+            
+            let loginPublisher: AnyPublisher<LoginRequest.Response, NetworkError<LoginRequest.CustomError>>
+            
+            if let currentPublisher = self.loginPublisher {
+                loginPublisher = currentPublisher
             } else {
-                return NetworkError<T.CustomError>.decoding(error)
+                let loginRequest = LoginRequest(userName: "", password: "", deviceID: "")
+                let urlRequest = self.makeBaseRequest(loginRequest)
+                loginPublisher = self.sendRequest(loginRequest, urlRequest: urlRequest).share().eraseToAnyPublisher()
+                self.loginPublisher = loginPublisher.eraseToAnyPublisher()
             }
+
+            loginPublisher
+                .sink { (error) in
+                    promise(.failure(NetworkError<T.CustomError>.notAuthorized))
+                } receiveValue: { (response) in
+                    self.token = response.hmToken
+                    self.sendRequest(request, urlRequest: self.makeBaseRequest(request))
+                        .sink { completion in
+                            switch completion {
+                            
+                            case .finished: return
+                            case .failure(let error): promise(.failure(error))
+                            }
+                        } receiveValue: { response in
+                            promise(.success(response))
+                        }.store(in: &self.currentCancellables)
+
+                }.store(in: &self.currentCancellables)
+        }
+        
+        return promise.eraseToAnyPublisher()
+    }
+    
+    private func sendRequest<T: NetworkRequest>(_ request: T, urlRequest: URLRequest) -> AnyPublisher<T.Response, NetworkError<T.CustomError>> {
+        
+        var retrying = false
+        let requestPublisher = session.dataTaskPublisher(for: urlRequest)
+        
+        return requestPublisher
+            .receive(on: DispatchQueue.global())
+            .subscribe(on: DispatchQueue.global())
+            .tryMap { data, response in
+                try NetworkError<T.CustomError>.processResponse(data: data, response: response, decoder: self.decoder, errorCodes: request)
+            }
+            .mapError { error -> NetworkError<T.CustomError> in
+                if let error = error as? NetworkError<T.CustomError> {
+                    return error
+                } else {
+                    return NetworkError<T.CustomError>.unknown
+                }
+            }
+            .tryCatch{ (error) throws -> AnyPublisher<T.Response, NetworkError<T.CustomError>> in
+                guard !retrying && !(request is LoginRequest) else { throw error }
+                retrying = true
+                guard error == NetworkError<T.CustomError>.notAuthorized else { throw error }
+                return self.resendRequest(request)
+            }
+            .mapError{ error in
+                if let error = error as? NetworkError<T.CustomError> {
+                    return error
+                } else {
+                    return NetworkError<T.CustomError>.unknown
+                }
         }
         .receive(on: RunLoop.main)
         .eraseToAnyPublisher()
