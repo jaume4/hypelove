@@ -68,7 +68,6 @@ struct HypeSecondaryButton: ButtonStyle {
         configuration.label
             .frame(maxWidth: .infinity)
             .foregroundColor(fillColor(isPressed: configuration.isPressed, enabled: enabled))
-            .padding(8)
     }
 }
 
@@ -111,10 +110,9 @@ struct LoginView: View {
             .padding()
             .matchedGeometryEffect(id: loginButtonID, in: loginNameSpace, properties: [.position], anchor: .bottom)
             LoginViewError(error: viewModel.loginError)
-//                .offset(x: 0, y: 15)
                 .matchedGeometryEffect(id: loginButtonID, in: loginNameSpace, properties: [.position], anchor: .top, isSource: false)
             
-        }
+        }.navigationTitle("Welcome")
     }
 }
 
