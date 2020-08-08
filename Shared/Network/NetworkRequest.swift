@@ -62,6 +62,7 @@ extension NetworkRequest {
 //MARK: - Request types
 protocol NetworkEncodableRequest: NetworkRequest {
     associatedtype Body: Encodable
+    var body: Body { get }
 }
 
 protocol NetworkFormRequest: NetworkRequest {

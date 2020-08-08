@@ -9,7 +9,7 @@ import Foundation
 
 enum NetworkError<CustomError: RawRepresentable>: Error, Equatable where CustomError.RawValue == String {
     
-    case noConnection, serverError, notAuthorized, notFound, decoding(DecodingError), unknown, custom(CustomError)
+    case noConnection, serverError, notAuthorized, notFound, encoding(Error), decoding(Error), unknown, custom(CustomError)
     
     static func processCustomError(error: String) -> NetworkError {
         if let customError = CustomError(rawValue: error) {
@@ -27,6 +27,7 @@ enum NetworkError<CustomError: RawRepresentable>: Error, Equatable where CustomE
         case (.notFound, .notFound): return true
         case (.unknown, .unknown): return true
         case (.decoding(_), .decoding(_)): return true
+        case (.encoding(_), .encoding(_)): return true
         case (.custom(let lhsRawValue), .custom(let rhsRawValue)): return lhsRawValue == rhsRawValue
         default: return false
         }
