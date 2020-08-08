@@ -9,104 +9,16 @@
 import Foundation
 import Combine
 
-enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-    case delete = "DELETE"
-}
-
-enum NoCustomError: String {
-    static let noCustomErrorCodes: Set<Int> = []
-    case none
-}
-
-struct ErrorFormat: Decodable {
-    let message: String
-    
-    enum CodingKeys: String, CodingKey {
-        case message = "error_msg"
-    }
-}
-
-protocol NetworkRequest {
-    associatedtype Response: Decodable
-    associatedtype CustomError: RawRepresentable = NoCustomError where CustomError.RawValue == String
-    var endPoint: String { get }
-    var method: HTTPMethod { get }
-    var controlledErrorCodes: Set<Int> { get }
-}
-
-extension NetworkRequest {
-    var controlledErrorCodes: Set<Int> {
-        return NoCustomError.noCustomErrorCodes
-    }
-}
-
-protocol NetworkPostRequest: NetworkRequest {
-    associatedtype Body: Encodable
-}
-
-protocol NetworkFormRequest: NetworkRequest {
-    var params: [String: String] { get }
-}
-
-enum NetworkError<CustomError: RawRepresentable>: Error, Equatable where CustomError.RawValue == String {
-    
-    case noConnection, serverError, notAuthorized, notFound, decoding(DecodingError), unknown, custom(CustomError)
-    
-    static func processCustomError(error: String) -> NetworkError {
-        if let customError = CustomError(rawValue: error) {
-            return NetworkError.custom(customError)
-        } else {
-            return NetworkError.unknown
-        }
-    }
-    
-    static func == (lhs: NetworkError<CustomError>, rhs: NetworkError<CustomError>) -> Bool {
-        switch (lhs, rhs) {
-        case (.noConnection, .noConnection): return true
-        case (.serverError, .serverError): return true
-        case (.notAuthorized, .notAuthorized): return true
-        case (.notFound, .notFound): return true
-        case (.unknown, .unknown): return true
-        case (.decoding(_), .decoding(_)): return true
-        case (.custom(let lhsRawValue), .custom(let rhsRawValue)): return lhsRawValue == rhsRawValue
-        default: return false
-                    }
-    }
-    
-    static func processResponse<T: NetworkRequest>(data: Data, response: URLResponse, decoder: JSONDecoder, errorCodes: T) throws -> T.Response {
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw NetworkError.unknown
-        }
-        
-        //Check for custom error codes
-        if errorCodes.controlledErrorCodes.contains(httpResponse.statusCode),
-           let error = try? NetworkClient.shared.decoder.decode(ErrorFormat.self, from: data) {
-            throw processCustomError(error: error.message)
-        }
-        
-        //No custom error, check codes normally and try decode if 2XX
-        switch httpResponse.statusCode {
-        case 200...299: return try decoder.decode(T.Response.self, from: data)
-        case 401: throw NetworkError.notAuthorized
-        case 500...599: throw NetworkError.serverError
-        default: throw NetworkError.unknown
-        }
-    }
-}
-
 final class NetworkClient {
     
     static let shared = NetworkClient()
     
     private let baseURL = URL(string: "https://api.hypem.com")!
     private let version = "v2"
-    
-    fileprivate let decoder = JSONDecoder()
-    private let encoder = JSONDecoder()
     private let session: URLSession
+    
+    let decoder = JSONDecoder()
+    let encoder = JSONDecoder()
     
     private var loginPublisher: AnyPublisher<LoginRequest.Response, NetworkError<LoginRequest.CustomError>>?
     private var currentCancellables: Set<AnyCancellable> = []
@@ -188,14 +100,10 @@ final class NetworkClient {
             .receive(on: DispatchQueue.global())
             .subscribe(on: DispatchQueue.global())
             .tryMap { data, response in
-                try NetworkError<T.CustomError>.processResponse(data: data, response: response, decoder: self.decoder, errorCodes: request)
+                try request.transformResponse(data: data, response: response)
             }
             .mapError { error -> NetworkError<T.CustomError> in
-                if let error = error as? NetworkError<T.CustomError> {
-                    return error
-                } else {
-                    return NetworkError<T.CustomError>.unknown
-                }
+                return (error as? NetworkError<T.CustomError>) ?? NetworkError<T.CustomError>.unknown
             }
             .tryCatch{ (error) throws -> AnyPublisher<T.Response, NetworkError<T.CustomError>> in
                 guard !retrying && !(request is LoginRequest) else { throw error }
@@ -204,13 +112,9 @@ final class NetworkClient {
                 return self.resendRequest(request)
             }
             .mapError{ error in
-                if let error = error as? NetworkError<T.CustomError> {
-                    return error
-                } else {
-                    return NetworkError<T.CustomError>.unknown
-                }
-        }
-        .receive(on: RunLoop.main)
-        .eraseToAnyPublisher()
+                return (error as? NetworkError<T.CustomError>) ?? NetworkError<T.CustomError>.unknown
+            }
+            .receive(on: RunLoop.main)
+            .eraseToAnyPublisher()
     }
 }

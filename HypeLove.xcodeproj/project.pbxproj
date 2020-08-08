@@ -33,6 +33,10 @@
 		1FA1F6DE24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */; };
 		1FC2F39124DD6246006C78A8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Colors.swift */; };
 		1FC2F39224DD6246006C78A8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Colors.swift */; };
+		1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
+		1FEFE54224DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
+		1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */; };
+		1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +58,8 @@
 		1FA1F6D924DC81A50095C0A2 /* HypeTexfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeTexfield.swift; sourceTree = "<group>"; };
 		1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTapDismissKeyboard.swift; sourceTree = "<group>"; };
 		1FC2F39024DD6246006C78A8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				1F49747624DC1F350085F599 /* NetworkClient.swift */,
+				1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */,
+				1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */,
 				1F49747724DC1F350085F599 /* Requests */,
 			);
 			path = Network;
@@ -307,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F83325424DC246E0054DD8D /* UserState.swift in Sources */,
 				1FC2F39124DD6246006C78A8 /* Colors.swift in Sources */,
 				1F49745F24DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
@@ -317,6 +326,7 @@
 				1F49747B24DC1F350085F599 /* LoginRequest.swift in Sources */,
 				1F49748724DC1F540085F599 /* PopularView.swift in Sources */,
 				1F49748924DC1F540085F599 /* LoginView.swift in Sources */,
+				1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */,
 				1F49747924DC1F350085F599 /* NetworkClient.swift in Sources */,
 				1F83325724DC50F00054DD8D /* LoginViewModel.swift in Sources */,
 			);
@@ -326,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F83325524DC246E0054DD8D /* UserState.swift in Sources */,
 				1FC2F39224DD6246006C78A8 /* Colors.swift in Sources */,
 				1F49746024DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
@@ -336,6 +347,7 @@
 				1F49747C24DC1F350085F599 /* LoginRequest.swift in Sources */,
 				1F49748824DC1F540085F599 /* PopularView.swift in Sources */,
 				1F49748A24DC1F540085F599 /* LoginView.swift in Sources */,
+				1FEFE54224DE9DD6002DEEB8 /* NetworkError.swift in Sources */,
 				1F49747A24DC1F350085F599 /* NetworkClient.swift in Sources */,
 				1F83325824DC50F00054DD8D /* LoginViewModel.swift in Sources */,
 			);
