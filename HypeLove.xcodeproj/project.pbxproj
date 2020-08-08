@@ -31,8 +31,8 @@
 		1FA1F6DB24DC81A50095C0A2 /* HypeTexfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1F6D924DC81A50095C0A2 /* HypeTexfield.swift */; };
 		1FA1F6DD24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */; };
 		1FA1F6DE24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */; };
-		1FC2F39124DD6246006C78A8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Colors.swift */; };
-		1FC2F39224DD6246006C78A8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Colors.swift */; };
+		1FC2F39124DD6246006C78A8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Color.swift */; };
+		1FC2F39224DD6246006C78A8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Color.swift */; };
 		1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
 		1FEFE54224DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
 		1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */; };
@@ -41,6 +41,8 @@
 		1FEFE54824DEAA1D002DEEB8 /* TrackListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54624DEAA1D002DEEB8 /* TrackListRequest.swift */; };
 		1FEFE54A24DEAC75002DEEB8 /* PopularViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54924DEAC75002DEEB8 /* PopularViewModel.swift */; };
 		1FEFE54B24DEAC75002DEEB8 /* PopularViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54924DEAC75002DEEB8 /* PopularViewModel.swift */; };
+		1FEFE57324DF1B06002DEEB8 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57224DF1B06002DEEB8 /* TrackView.swift */; };
+		1FEFE57424DF1B06002DEEB8 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57224DF1B06002DEEB8 /* TrackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,11 +63,12 @@
 		1F83325624DC50F00054DD8D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		1FA1F6D924DC81A50095C0A2 /* HypeTexfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeTexfield.swift; sourceTree = "<group>"; };
 		1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTapDismissKeyboard.swift; sourceTree = "<group>"; };
-		1FC2F39024DD6246006C78A8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		1FC2F39024DD6246006C78A8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		1FEFE54624DEAA1D002DEEB8 /* TrackListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListRequest.swift; sourceTree = "<group>"; };
 		1FEFE54924DEAC75002DEEB8 /* PopularViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewModel.swift; sourceTree = "<group>"; };
+		1FEFE57224DF1B06002DEEB8 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				1F49748224DC1F540085F599 /* PopularView.swift */,
+				1FEFE57224DF1B06002DEEB8 /* TrackView.swift */,
 				1FEFE54924DEAC75002DEEB8 /* PopularViewModel.swift */,
 			);
 			path = Explorer;
@@ -221,7 +225,7 @@
 		1FC2F38F24DD623A006C78A8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1FC2F39024DD6246006C78A8 /* Colors.swift */,
+				1FC2F39024DD6246006C78A8 /* Color.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -327,9 +331,10 @@
 				1FEFE54724DEAA1D002DEEB8 /* TrackListRequest.swift in Sources */,
 				1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F83325424DC246E0054DD8D /* UserState.swift in Sources */,
-				1FC2F39124DD6246006C78A8 /* Colors.swift in Sources */,
+				1FC2F39124DD6246006C78A8 /* Color.swift in Sources */,
 				1F49745F24DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
 				1F49747124DC1F1F0085F599 /* Keychain.swift in Sources */,
+				1FEFE57324DF1B06002DEEB8 /* TrackView.swift in Sources */,
 				1F49747224DC1F1F0085F599 /* KeychainService.swift in Sources */,
 				1FA1F6DA24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
 				1FA1F6DD24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */,
@@ -350,9 +355,10 @@
 				1FEFE54824DEAA1D002DEEB8 /* TrackListRequest.swift in Sources */,
 				1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F83325524DC246E0054DD8D /* UserState.swift in Sources */,
-				1FC2F39224DD6246006C78A8 /* Colors.swift in Sources */,
+				1FC2F39224DD6246006C78A8 /* Color.swift in Sources */,
 				1F49746024DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
 				1F49747324DC1F230085F599 /* Keychain.swift in Sources */,
+				1FEFE57424DF1B06002DEEB8 /* TrackView.swift in Sources */,
 				1F49747424DC1F260085F599 /* KeychainService.swift in Sources */,
 				1FA1F6DB24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
 				1FA1F6DE24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */,

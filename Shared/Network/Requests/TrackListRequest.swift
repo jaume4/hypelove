@@ -15,7 +15,7 @@ struct TrackListRequest: NetworkRequest {
     
     typealias Response = [TrackListResponseElement]
     
-    let endPoint = "tracks"
+    let endPoint = "popular"
     let method = HTTPMethod.get
     let urlParams: [String: String]
     let authNeeded = false

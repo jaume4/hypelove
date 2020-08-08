@@ -35,7 +35,6 @@ extension NetworkRequest where Response: Decodable {
         }
         
         let response = try NetworkClient.shared.decoder.decode(Response.self, from: data)
-        print(response)
         return response
     }
 }
