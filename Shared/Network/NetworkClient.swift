@@ -13,7 +13,8 @@ final class NetworkClient {
     
     static let shared = NetworkClient()
     
-    private let baseURL = URL(string: "https://api.hypem.com")!
+    private let host = "api.hypem.com"
+//    private let host = "192.168.1.2"
     private let version = "v2"
     private let session: URLSession
     
@@ -31,29 +32,45 @@ final class NetworkClient {
         configuration.requestCachePolicy = .reloadRevalidatingCacheData
         configuration.timeoutIntervalForRequest = 30
         configuration.timeoutIntervalForResource = 120
+        decoder.dateDecodingStrategy = .secondsSince1970
+        #if !DEBUG
         session = URLSession(configuration: configuration)
+        #else
+        session = URLSession(configuration: configuration, delegate: SessionDelegate(), delegateQueue: nil)
+        #endif
     }
     
     private func makeURL<T: NetworkRequest>(_ request: T) -> URL {
-        return baseURL
-            .appendingPathComponent(version)
-            .appendingPathComponent(request.endPoint)
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = host
+        components.path = "/" + version + "/" + request.endPoint
+        components.queryItems = request.urlParams.map(URLQueryItem.init)
+        return components.url!
     }
     
-    func sendRequest<T: NetworkFormRequest>(_ request: T) -> AnyPublisher<T.Response, NetworkError<T.CustomError>> {
-        var urlRequest = makeBaseRequest(request)
+    func send<T: NetworkRequest>(_ request: T) -> AnyPublisher<T.Response, NetworkError<T.CustomError>> {
+        let urlRequest = makeBaseURLRequest(request)
+        return send(request, urlRequest: urlRequest)
+    }
+    
+    func send<T: NetworkFormRequest>(_ request: T) -> AnyPublisher<T.Response, NetworkError<T.CustomError>> {
+        var urlRequest = makeBaseURLRequest(request)
         urlRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         let formBody = request.params.reduce("", { $0 + $1.key + "=" + $1.value + "&" })
         urlRequest.httpBody = Data(formBody.utf8)
-        return sendRequest(request, urlRequest: urlRequest)
+        return send(request, urlRequest: urlRequest)
     }
     
-    private func makeBaseRequest<T: NetworkRequest>(_ request: T) -> URLRequest {
+    private func makeBaseURLRequest<T: NetworkRequest>(_ request: T) -> URLRequest {
         var urlRequest = URLRequest(url: makeURL(request))
         urlRequest.httpMethod = request.method.rawValue
         return urlRequest
     }
     
+    /// Retries the given request attemting to login first
+    /// - Parameter request: Request to retry
+    /// - Returns: Future that fullfills after login attempt is finished and request is resent, or on login error
     private func resendRequest<T: NetworkRequest>(_ request: T) -> AnyPublisher<T.Response, NetworkError<T.CustomError>> {
         
         let promise = Future<T.Response, NetworkError<T.CustomError>>  { promise in
@@ -63,18 +80,23 @@ final class NetworkClient {
             if let currentPublisher = self.loginPublisher {
                 loginPublisher = currentPublisher
             } else {
+                #warning("fix data")
                 let loginRequest = LoginRequest(userName: "", password: "", deviceID: "")
-                let urlRequest = self.makeBaseRequest(loginRequest)
-                loginPublisher = self.sendRequest(loginRequest, urlRequest: urlRequest).share().eraseToAnyPublisher()
+                let urlRequest = self.makeBaseURLRequest(loginRequest)
+                loginPublisher = self.send(loginRequest, urlRequest: urlRequest).share().eraseToAnyPublisher()
                 self.loginPublisher = loginPublisher.eraseToAnyPublisher()
             }
 
             loginPublisher
-                .sink { (error) in
-                    promise(.failure(NetworkError<T.CustomError>.notAuthorized))
+                .sink { completion in
+                    switch completion {
+                    case .finished: return
+                    case .failure(_): promise(.failure(NetworkError<T.CustomError>.notAuthorized))
+                    }
                 } receiveValue: { (response) in
+                    //Succeeded refresh, resend request regenerating urlRequest as token has changed
                     self.token = response.hmToken
-                    self.sendRequest(request, urlRequest: self.makeBaseRequest(request))
+                    self.send(request, urlRequest: self.makeBaseURLRequest(request))
                         .sink { completion in
                             switch completion {
                             
@@ -91,7 +113,8 @@ final class NetworkClient {
         return promise.eraseToAnyPublisher()
     }
     
-    private func sendRequest<T: NetworkRequest>(_ request: T, urlRequest: URLRequest) -> AnyPublisher<T.Response, NetworkError<T.CustomError>> {
+    /// Sends any NetworkRequest and retries it if an error is given and [shouldRetry](x-source-tag://ShouldRetry) returns true
+    private func send<T: NetworkRequest>(_ request: T, urlRequest: URLRequest) -> AnyPublisher<T.Response, NetworkError<T.CustomError>> {
         
         var retrying = false
         let requestPublisher = session.dataTaskPublisher(for: urlRequest)
@@ -103,10 +126,10 @@ final class NetworkClient {
                 try request.transformResponse(data: data, response: response)
             }
             .mapError { error -> NetworkError<T.CustomError> in
-                return (error as? NetworkError<T.CustomError>) ?? NetworkError<T.CustomError>.unknown
+                (error as? NetworkError<T.CustomError>) ?? NetworkError<T.CustomError>.unknown
             }
             .tryCatch{ (error) throws -> AnyPublisher<T.Response, NetworkError<T.CustomError>> in
-                guard !retrying && !(request is LoginRequest) else { throw error }
+                guard !retrying, self.shouldRetry(request: request, error: error) else { throw error }
                 retrying = true
                 guard error == NetworkError<T.CustomError>.notAuthorized else { throw error }
                 return self.resendRequest(request)
@@ -117,4 +140,24 @@ final class NetworkClient {
             .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
     }
+    
+    /// Logic for retrying requests. Login request or custom errors are not retried, not authorized and everything else gets retried.
+    /// - Tag: ShouldRetry
+    private func shouldRetry<T: NetworkRequest>(request: T, error: NetworkError<T.CustomError>) -> Bool {
+        switch (request, error) {
+        case (request, _) where request is LoginRequest: return false
+        case (request, .notAuthorized) where request.authNeeded: return true
+        case (_, .custom(_)): return false
+        default: return true
+        }
+    }
 }
+
+
+#if DEBUG
+final fileprivate class SessionDelegate: NSObject, URLSessionDelegate {
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
+    }
+}
+#endif

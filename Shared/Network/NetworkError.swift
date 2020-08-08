@@ -29,7 +29,7 @@ enum NetworkError<CustomError: RawRepresentable>: Error, Equatable where CustomE
         case (.decoding(_), .decoding(_)): return true
         case (.custom(let lhsRawValue), .custom(let rhsRawValue)): return lhsRawValue == rhsRawValue
         default: return false
-                    }
+        }
     }
 }
 

@@ -22,6 +22,7 @@ struct LoginRequest: NetworkFormRequest {
     let endPoint = "get_token"
     let method = HTTPMethod.post
     let params: [String : String]
+    let authNeeded = false
     
     init(userName: String, password: String, deviceID: String) {
         params = ["device_id": deviceID,

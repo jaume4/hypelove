@@ -10,9 +10,13 @@ import SwiftUI
 
 struct PopularView: View {
     @EnvironmentObject var userState: UserState
+    @StateObject var viewModel = PopularViewModel()
     
     var body: some View {
         Text("Hello \(userState.userName)")
+            .onAppear {
+                viewModel.requestTracks()
+            }
     }
 }
 

@@ -25,7 +25,7 @@ final class LoginViewModel: ObservableObject {
         loginError = nil
         let request = LoginRequest(userName: userState.userName, password: password, deviceID: userState.deviceID)
 
-        loginCancellable = NetworkClient.shared.sendRequest(request).sink { [weak self] (completion) in
+        loginCancellable = NetworkClient.shared.send(request).sink { [weak self] (completion) in
             guard let self = self else { return }
             defer { self.loginCancellable = nil }
             switch completion {

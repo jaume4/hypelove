@@ -7,10 +7,12 @@
 
 import Foundation
 
-protocol NetworkRequest {
+protocol NetworkRequest: Equatable {
     associatedtype Response
     associatedtype CustomError: RawRepresentable = NoCustomError where CustomError.RawValue == String
     var endPoint: String { get }
+    var authNeeded: Bool { get }
+    var urlParams: [String: String] { get }
     var method: HTTPMethod { get }
     var controlledErrorCodes: Set<Int> { get }
     func transformResponse(data: Data, response: URLResponse) throws -> Response
@@ -18,9 +20,8 @@ protocol NetworkRequest {
 }
 
 extension NetworkRequest {
-    var controlledErrorCodes: Set<Int> {
-        return []
-    }
+    var controlledErrorCodes: Set<Int> { [] }
+    var urlParams: [String: String] { [:] }
 }
 
 extension NetworkRequest where Response: Decodable {
@@ -33,7 +34,9 @@ extension NetworkRequest where Response: Decodable {
             throw processError(code: httpResponse.statusCode, data: data)
         }
         
-        return try NetworkClient.shared.decoder.decode(Response.self, from: data)
+        let response = try NetworkClient.shared.decoder.decode(Response.self, from: data)
+        print(response)
+        return response
     }
 }
 
@@ -48,13 +51,15 @@ extension NetworkRequest {
         
         //No custom error, use stantard errors
         switch code {
-        case 401: return NetworkError<CustomError>.notAuthorized
-        case 500...599: return NetworkError<CustomError>.serverError
-        default: return NetworkError<CustomError>.unknown
+        case 401: return .notAuthorized
+        case 404: return .notFound
+        case 500...599: return .serverError
+        default: return .unknown
         }
     }
 }
 
+//MARK: - Request types
 protocol NetworkEncodableRequest: NetworkRequest {
     associatedtype Body: Encodable
 }
