@@ -14,8 +14,15 @@ struct TrackView: View {
     
     var body: some View {
         HStack {
+            Spacer(minLength: 5)
             ZStack {
-                track.color
+                Button(action: {
+                    print("play \(track)")
+                }, label: {
+                    track.color
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .shadow(radius: 5)
+                })
                 if isPlaying {
                     Image(systemName: "play.fill")
                         .resizable()
@@ -25,20 +32,26 @@ struct TrackView: View {
                 }
             }.aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
             .frame(maxHeight: 50)
+            .padding(5)
+            
             VStack(alignment: .leading) {
                 Text(track.title)
+                    .fontWeight(.bold)
                     .lineLimit(1)
+        
                 Text(track.artist)
+                    .fontWeight(.bold)
                     .lineLimit(1)
                     .foregroundColor(.gray)
-            }.frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
 
 struct TrackView_Previews: PreviewProvider {
     
-    static let trackDetail = TrackDetails(color: Color.red, title: "Let You Know (feat. London Grammar)", artist: "Flume")
+    static let trackDetail = TrackDetails(color: Color.red, title: "Let You Know (feat. London Grammar)", artist: "Flume", duration: "3:27")
     
     static var previews: some View {
         TrackView(track: trackDetail, isPlaying: true)

@@ -14,6 +14,7 @@ struct TrackDetails: Identifiable {
     let color: Color
     let title: String
     let artist: String
+    let duration: String
 }
 
 final class PopularViewModel: ObservableObject {
@@ -34,10 +35,10 @@ final class PopularViewModel: ObservableObject {
             self.tracks = tracksResponse.map { track in
                 let colorString = track.thumbURL.split(separator: "/").last?.replacingOccurrences(of: ".png", with: "")
                 let color = colorString.flatMap(Color.init(hex:)) ?? .black
-                print("""
-TrackDetails(color: Color(hex: "\(colorString!)")!, title: "\(track.title)", artist: "\(track.artist)"),
-""")
-                return TrackDetails(color: color, title: track.title, artist: track.artist)
+//                print("""
+//TrackDetails(color: Color(hex: "\(colorString!)")!, title: "\(track.title)", artist: "\(track.artist)", duration: "\(MinuteSecondsFormatter.format(track.time))"),
+//""")
+                return TrackDetails(color: color, title: track.title, artist: track.artist, duration: MinuteSecondsFormatter.format(track.time))
             }
         })
     }
