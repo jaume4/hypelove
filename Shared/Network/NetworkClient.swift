@@ -15,8 +15,8 @@ final class NetworkClient {
     
     static let shared = NetworkClient()
     
-    fileprivate let host = "api.hypem.com"
-//    fileprivate let host = "192.168.1.2"
+//    fileprivate let host = "api.hypem.com"
+    fileprivate let host = "192.168.1.2"
     private let version = "v2"
     private let session: URLSession
     

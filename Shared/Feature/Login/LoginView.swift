@@ -26,48 +26,6 @@ struct LoginViewError: View {
             }
         }
         .font(.callout)
-        .foregroundColor(.contrast)
-    }
-}
-
-struct HypeButton: ButtonStyle {
-    var enabled: Bool = true
-    
-    func fillColor(isPressed: Bool, enabled: Bool) -> Color {
-        switch (enabled, isPressed) {
-        case (false, _): return Color.buttonDisabled
-        case (true, true): return Color.buttonFill.opacity(0.7)
-        case (true, false): return Color.buttonFill
-        }
-    }
-    
-    func makeBody(configuration: ButtonStyleConfiguration) -> some View {
-        configuration.label
-            .frame(maxWidth: .infinity)
-            .foregroundColor(configuration.isPressed ? Color.fillClear.opacity(0.7) : Color.fillClear)
-            .padding(8)
-            .background(
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .fill(fillColor(isPressed: configuration.isPressed, enabled: enabled))
-        )
-    }
-}
-
-struct HypeSecondaryButton: ButtonStyle {
-    var enabled: Bool = true
-    
-    func fillColor(isPressed: Bool, enabled: Bool) -> Color {
-        switch (enabled, isPressed) {
-        case (false, _): return Color.buttonDisabled
-        case (true, true): return Color.buttonFill.opacity(0.7)
-        case (true, false): return Color.buttonFill
-        }
-    }
-    
-    func makeBody(configuration: ButtonStyleConfiguration) -> some View {
-        configuration.label
-            .frame(maxWidth: .infinity)
-            .foregroundColor(fillColor(isPressed: configuration.isPressed, enabled: enabled))
     }
 }
 
@@ -93,19 +51,12 @@ struct LoginView: View {
                 SecureField("Password", text: $viewModel.password)
                     .textContentType(.password)
                     .modifier(HypeTextfield())
-                Button(action: viewModel.doLogin) {
-                    Text("Login")
-                        .fontWeight(.heavy)
-                }.disabled(loginDisabled)
+                Button("Login", action: viewModel.doLogin)
+                .disabled(loginDisabled)
                 .buttonStyle(HypeButton(enabled: !loginDisabled))
                     
-                Button(action: {
-                    print("skip")
-                }, label: {
-                    Text("Skip")
-                        .fontWeight(.heavy)
-                })
-                .buttonStyle(HypeSecondaryButton())
+                Button("Not now", action: {print("skip")})
+                    .buttonStyle(HypeSecondaryButton())
             }
             .padding()
             .matchedGeometryEffect(id: loginButtonID, in: loginNameSpace, properties: [.position], anchor: .bottom)

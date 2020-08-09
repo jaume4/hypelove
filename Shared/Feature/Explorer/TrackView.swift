@@ -21,7 +21,7 @@ struct TrackView: View {
                 }, label: {
                     track.color
                         .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .shadow(radius: 5)
+                        .shadow(radius: 1)
                 })
                 if isPlaying {
                     Image(systemName: "play.fill")
@@ -54,7 +54,7 @@ struct TrackView_Previews: PreviewProvider {
     static let trackDetail = TrackDetails(color: Color.red, title: "Let You Know (feat. London Grammar)", artist: "Flume", duration: "3:27")
     
     static var previews: some View {
-        TrackView(track: trackDetail, isPlaying: true)
+        TrackView(track: trackDetail, isPlaying: false)
             .previewLayout(PreviewLayout.fixed(width: 400, height: 400))
     }
 }

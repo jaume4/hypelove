@@ -14,13 +14,12 @@ struct PopularView: View {
     
     var body: some View {
         ScrollView {
-            LazyVStack(spacing: 0) {
+            LazyVGrid(columns: [GridItem(.flexible())]) {
                 ForEach(viewModel.tracks) { track in
                     TrackView(track: track)
                 }
             }
         }
-        .navigationBarHidden(true)
         .onAppear {
             viewModel.requestTracks()
         }

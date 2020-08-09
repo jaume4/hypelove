@@ -14,13 +14,7 @@ struct HypeLoveApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                if userState.validToken {
-                    PopularView()
-                        .transition(.opacity)
-                } else {
-                    LoginView(viewModel: LoginViewModel(userState: userState))
-                        .transition(.opacity)
-                }
+                HomeView()
             }.environmentObject(userState)
         }
     }

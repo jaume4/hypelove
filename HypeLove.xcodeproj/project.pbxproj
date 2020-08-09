@@ -23,6 +23,8 @@
 		1F49748824DC1F540085F599 /* PopularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49748224DC1F540085F599 /* PopularView.swift */; };
 		1F49748924DC1F540085F599 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49748424DC1F540085F599 /* LoginView.swift */; };
 		1F49748A24DC1F540085F599 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49748424DC1F540085F599 /* LoginView.swift */; };
+		1F6F73BC24DFEF0A00A9186A /* HypeButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F73BB24DFEF0A00A9186A /* HypeButtons.swift */; };
+		1F6F73BD24DFEF0A00A9186A /* HypeButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F73BB24DFEF0A00A9186A /* HypeButtons.swift */; };
 		1F83325424DC246E0054DD8D /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325324DC246E0054DD8D /* UserState.swift */; };
 		1F83325524DC246E0054DD8D /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325324DC246E0054DD8D /* UserState.swift */; };
 		1F83325724DC50F00054DD8D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325624DC50F00054DD8D /* LoginViewModel.swift */; };
@@ -45,6 +47,8 @@
 		1FEFE57424DF1B06002DEEB8 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57224DF1B06002DEEB8 /* TrackView.swift */; };
 		1FEFE57724DFD15C002DEEB8 /* MinuteSecondSFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */; };
 		1FEFE57824DFD15C002DEEB8 /* MinuteSecondSFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */; };
+		1FEFE57B24DFE426002DEEB8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57A24DFE426002DEEB8 /* HomeView.swift */; };
+		1FEFE57C24DFE426002DEEB8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57A24DFE426002DEEB8 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +65,7 @@
 		1F49747824DC1F350085F599 /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		1F49748224DC1F540085F599 /* PopularView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularView.swift; sourceTree = "<group>"; };
 		1F49748424DC1F540085F599 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		1F6F73BB24DFEF0A00A9186A /* HypeButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeButtons.swift; sourceTree = "<group>"; };
 		1F83325324DC246E0054DD8D /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		1F83325624DC50F00054DD8D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		1FA1F6D924DC81A50095C0A2 /* HypeTexfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeTexfield.swift; sourceTree = "<group>"; };
@@ -72,6 +77,7 @@
 		1FEFE54924DEAC75002DEEB8 /* PopularViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewModel.swift; sourceTree = "<group>"; };
 		1FEFE57224DF1B06002DEEB8 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 		1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinuteSecondSFormatter.swift; sourceTree = "<group>"; };
+		1FEFE57A24DFE426002DEEB8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +189,7 @@
 		1F49747E24DC1F540085F599 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				1FEFE57924DFE41B002DEEB8 /* Home */,
 				1FEFE57524DFD150002DEEB8 /* Utils */,
 				1F49748124DC1F540085F599 /* Explorer */,
 				1F49748324DC1F540085F599 /* Login */,
@@ -222,6 +229,7 @@
 			children = (
 				1FA1F6D924DC81A50095C0A2 /* HypeTexfield.swift */,
 				1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */,
+				1F6F73BB24DFEF0A00A9186A /* HypeButtons.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -240,6 +248,14 @@
 				1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		1FEFE57924DFE41B002DEEB8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1FEFE57A24DFE426002DEEB8 /* HomeView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,6 +364,7 @@
 				1F49747124DC1F1F0085F599 /* Keychain.swift in Sources */,
 				1FEFE57324DF1B06002DEEB8 /* TrackView.swift in Sources */,
 				1F49747224DC1F1F0085F599 /* KeychainService.swift in Sources */,
+				1F6F73BC24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1FA1F6DA24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
 				1FA1F6DD24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */,
 				1F49747B24DC1F350085F599 /* LoginRequest.swift in Sources */,
@@ -357,6 +374,7 @@
 				1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */,
 				1F49747924DC1F350085F599 /* NetworkClient.swift in Sources */,
 				1F83325724DC50F00054DD8D /* LoginViewModel.swift in Sources */,
+				1FEFE57B24DFE426002DEEB8 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +391,7 @@
 				1F49747324DC1F230085F599 /* Keychain.swift in Sources */,
 				1FEFE57424DF1B06002DEEB8 /* TrackView.swift in Sources */,
 				1F49747424DC1F260085F599 /* KeychainService.swift in Sources */,
+				1F6F73BD24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1FA1F6DB24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
 				1FA1F6DE24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */,
 				1F49747C24DC1F350085F599 /* LoginRequest.swift in Sources */,
@@ -382,6 +401,7 @@
 				1FEFE54224DE9DD6002DEEB8 /* NetworkError.swift in Sources */,
 				1F49747A24DC1F350085F599 /* NetworkClient.swift in Sources */,
 				1F83325824DC50F00054DD8D /* LoginViewModel.swift in Sources */,
+				1FEFE57C24DFE426002DEEB8 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
