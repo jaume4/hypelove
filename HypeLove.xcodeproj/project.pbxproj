@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F069A8424E04B270055BC3F /* Playingindicator.swift */; };
+		1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F069A8424E04B270055BC3F /* Playingindicator.swift */; };
 		1F49745F24DC1EC10085F599 /* HypeLoveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */; };
 		1F49746024DC1EC10085F599 /* HypeLoveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */; };
 		1F49746324DC1EC10085F599 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F49744E24DC1EC10085F599 /* Assets.xcassets */; };
@@ -52,6 +54,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F069A8424E04B270055BC3F /* Playingindicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playingindicator.swift; sourceTree = "<group>"; };
 		1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeLoveApp.swift; sourceTree = "<group>"; };
 		1F49744E24DC1EC10085F599 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F49745324DC1EC10085F599 /* HypeLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HypeLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +101,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F069A8324E04B1A0055BC3F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1F069A8424E04B270055BC3F /* Playingindicator.swift */,
+				1FEFE57224DF1B06002DEEB8 /* TrackView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		1F49744624DC1EBF0085F599 = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +201,7 @@
 		1F49747E24DC1F540085F599 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				1F069A8324E04B1A0055BC3F /* Views */,
 				1FEFE57924DFE41B002DEEB8 /* Home */,
 				1FEFE57524DFD150002DEEB8 /* Utils */,
 				1F49748124DC1F540085F599 /* Explorer */,
@@ -201,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				1F49748224DC1F540085F599 /* PopularView.swift */,
-				1FEFE57224DF1B06002DEEB8 /* TrackView.swift */,
 				1FEFE54924DEAC75002DEEB8 /* PopularViewModel.swift */,
 			);
 			path = Explorer;
@@ -358,6 +370,7 @@
 				1FEFE54A24DEAC75002DEEB8 /* PopularViewModel.swift in Sources */,
 				1FEFE54724DEAA1D002DEEB8 /* TrackListRequest.swift in Sources */,
 				1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
+				1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F83325424DC246E0054DD8D /* UserState.swift in Sources */,
 				1FC2F39124DD6246006C78A8 /* Color.swift in Sources */,
 				1F49745F24DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
@@ -385,6 +398,7 @@
 				1FEFE54B24DEAC75002DEEB8 /* PopularViewModel.swift in Sources */,
 				1FEFE54824DEAA1D002DEEB8 /* TrackListRequest.swift in Sources */,
 				1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
+				1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F83325524DC246E0054DD8D /* UserState.swift in Sources */,
 				1FC2F39224DD6246006C78A8 /* Color.swift in Sources */,
 				1F49746024DC1EC10085F599 /* HypeLoveApp.swift in Sources */,

@@ -17,18 +17,17 @@ struct TrackView: View {
             Spacer(minLength: 5)
             ZStack {
                 Button(action: {
-                    print("play \(track)")
+                    isPlaying.toggle()
                 }, label: {
                     track.color
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .shadow(radius: 1)
                 })
                 if isPlaying {
-                    Image(systemName: "play.fill")
-                        .resizable()
-                        .padding()
-                        .foregroundColor(.white)
-                        .opacity(0.7)
+                PlayingIndicator()
+                    .padding([.leading, .top, .trailing], 6)
+                    .foregroundColor(.white)
+                    .opacity(0.7)
                 }
             }.aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
             .frame(maxHeight: 50)
@@ -37,11 +36,8 @@ struct TrackView: View {
             VStack(alignment: .leading) {
                 Text(track.title)
                     .fontWeight(.bold)
-                    .lineLimit(1)
-        
                 Text(track.artist)
                     .fontWeight(.bold)
-                    .lineLimit(1)
                     .foregroundColor(.gray)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -54,7 +50,12 @@ struct TrackView_Previews: PreviewProvider {
     static let trackDetail = TrackDetails(color: Color.red, title: "Let You Know (feat. London Grammar)", artist: "Flume", duration: "3:27")
     
     static var previews: some View {
-        TrackView(track: trackDetail, isPlaying: false)
-            .previewLayout(PreviewLayout.fixed(width: 400, height: 400))
+        VStack {
+            TrackView(track: trackDetail, isPlaying: false)
+            TrackView(track: trackDetail, isPlaying: true)
+            TrackView(track: trackDetail, isPlaying: false)
+                .redacted(reason: .placeholder)
+        }
+        .previewLayout(PreviewLayout.fixed(width: 400, height: 400))
     }
 }

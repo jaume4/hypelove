@@ -28,6 +28,13 @@ struct HomeView: View {
                     }
                 }.padding()
                 .buttonStyle(HypeButton())
+                HStack {
+                    Text("Playing now")
+                        .font(.title3)
+                        .frame(alignment: .leading)
+                        .padding()
+                    Spacer()
+                }
                 PopularView()
             }.navigationTitle("Home")
             .navigationBarItems(trailing:
