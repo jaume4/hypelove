@@ -8,12 +8,18 @@
 import Foundation
 import SwiftUI
 
+enum APPColor: String {
+    case fill
+}
+
 extension Color {
     static let background = Color(red: 0.506, green: 0.914, blue: 0.475, opacity: 1.000)
     static let buttonMain = Color(red: 0.929, green: 0.106, blue: 0.180, opacity: 1.000)
     static let buttonDisabled = Color(red: 0.443, green: 0.035, blue: 0.071, opacity: 1.000)
-    static let fillDark = Color(red: 0.667, green: 0.561, blue: 0.400, opacity: 1.000)
-    static let fillClear = Color(red: 0.961, green: 0.961, blue: 0.961, opacity: 1.000)
+    
+    init(_ appColor: APPColor) {
+        self = Color(appColor.rawValue)
+    }
     
     init?(hex: String) {
         guard hex.count == 6 else { return nil }
@@ -44,8 +50,15 @@ struct Color_Previews: PreviewProvider {
             Color.background
             Color.buttonMain
             Color.buttonDisabled
-            Color.fillDark
-            Color.fillClear
+            Color(.fill)
         }
+        
+        VStack {
+            Color.background
+            Color.buttonMain
+            Color.buttonDisabled
+            Color(.fill)
+        }
+        .preferredColorScheme(.dark)
     }
 }

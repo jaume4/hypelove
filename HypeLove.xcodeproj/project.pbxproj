@@ -41,6 +41,12 @@
 		1FA1F6DB24DC81A50095C0A2 /* HypeTexfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1F6D924DC81A50095C0A2 /* HypeTexfield.swift */; };
 		1FA1F6DD24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */; };
 		1FA1F6DE24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */; };
+		1FA51CBF24E1979D00DECA7A /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CBE24E1979D00DECA7A /* AppInfo.swift */; };
+		1FA51CC024E1979D00DECA7A /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CBE24E1979D00DECA7A /* AppInfo.swift */; };
+		1FA51CC324E1A8D400DECA7A /* VisualEffectBlur-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CC124E1A8D400DECA7A /* VisualEffectBlur-iOS.swift */; };
+		1FA51CC624E1A8D400DECA7A /* VisualEffectBlur-Mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CC224E1A8D400DECA7A /* VisualEffectBlur-Mac.swift */; };
+		1FA51CC924E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CC824E1B8F500DECA7A /* UITabBarAppareance.swift */; };
+		1FA51CCA24E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CC824E1B8F500DECA7A /* UITabBarAppareance.swift */; };
 		1FC2F39124DD6246006C78A8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Color.swift */; };
 		1FC2F39224DD6246006C78A8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Color.swift */; };
 		1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
@@ -82,6 +88,10 @@
 		1F83325624DC50F00054DD8D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		1FA1F6D924DC81A50095C0A2 /* HypeTexfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeTexfield.swift; sourceTree = "<group>"; };
 		1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTapDismissKeyboard.swift; sourceTree = "<group>"; };
+		1FA51CBE24E1979D00DECA7A /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		1FA51CC124E1A8D400DECA7A /* VisualEffectBlur-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VisualEffectBlur-iOS.swift"; sourceTree = "<group>"; };
+		1FA51CC224E1A8D400DECA7A /* VisualEffectBlur-Mac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VisualEffectBlur-Mac.swift"; sourceTree = "<group>"; };
+		1FA51CC824E1B8F500DECA7A /* UITabBarAppareance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarAppareance.swift; sourceTree = "<group>"; };
 		1FC2F39024DD6246006C78A8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
@@ -113,6 +123,7 @@
 		1F069A8324E04B1A0055BC3F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1FA51CC724E1B1DC00DECA7A /* Representables */,
 				1F069A8424E04B270055BC3F /* Playingindicator.swift */,
 				1FEFE57224DF1B06002DEEB8 /* TrackView.swift */,
 				1F083D5C24E150F10033DA27 /* NowPlayingView.swift */,
@@ -264,6 +275,15 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		1FA51CC724E1B1DC00DECA7A /* Representables */ = {
+			isa = PBXGroup;
+			children = (
+				1FA51CC124E1A8D400DECA7A /* VisualEffectBlur-iOS.swift */,
+				1FA51CC224E1A8D400DECA7A /* VisualEffectBlur-Mac.swift */,
+			);
+			path = Representables;
+			sourceTree = "<group>";
+		};
 		1FC2F38F24DD623A006C78A8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +298,8 @@
 				1F49746D24DC1EFE0085F599 /* Keychain */,
 				1FC2F38F24DD623A006C78A8 /* Extensions */,
 				1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */,
+				1FA51CBE24E1979D00DECA7A /* AppInfo.swift */,
+				1FA51CC824E1B8F500DECA7A /* UITabBarAppareance.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -395,6 +417,7 @@
 				1F83325424DC246E0054DD8D /* UserState.swift in Sources */,
 				1FC2F39124DD6246006C78A8 /* Color.swift in Sources */,
 				1F49745F24DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
+				1FA51CC924E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */,
 				1F083D6424E153250033DA27 /* TrackDetails.swift in Sources */,
 				1F49747124DC1F1F0085F599 /* Keychain.swift in Sources */,
 				1FEFE57324DF1B06002DEEB8 /* TrackView.swift in Sources */,
@@ -404,10 +427,12 @@
 				1FA1F6DA24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
 				1FA1F6DD24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */,
 				1F49747B24DC1F350085F599 /* LoginRequest.swift in Sources */,
+				1FA51CC324E1A8D400DECA7A /* VisualEffectBlur-iOS.swift in Sources */,
 				1FEFE57724DFD15C002DEEB8 /* MinuteSecondSFormatter.swift in Sources */,
 				1F49748724DC1F540085F599 /* PopularView.swift in Sources */,
 				1F49748924DC1F540085F599 /* LoginView.swift in Sources */,
 				1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */,
+				1FA51CBF24E1979D00DECA7A /* AppInfo.swift in Sources */,
 				1F49747924DC1F350085F599 /* NetworkClient.swift in Sources */,
 				1F83325724DC50F00054DD8D /* LoginViewModel.swift in Sources */,
 				1FEFE57B24DFE426002DEEB8 /* HomeView.swift in Sources */,
@@ -426,6 +451,7 @@
 				1F83325524DC246E0054DD8D /* UserState.swift in Sources */,
 				1FC2F39224DD6246006C78A8 /* Color.swift in Sources */,
 				1F49746024DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
+				1FA51CCA24E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */,
 				1F083D6524E153250033DA27 /* TrackDetails.swift in Sources */,
 				1F49747324DC1F230085F599 /* Keychain.swift in Sources */,
 				1FEFE57424DF1B06002DEEB8 /* TrackView.swift in Sources */,
@@ -439,6 +465,8 @@
 				1F49748824DC1F540085F599 /* PopularView.swift in Sources */,
 				1F49748A24DC1F540085F599 /* LoginView.swift in Sources */,
 				1FEFE54224DE9DD6002DEEB8 /* NetworkError.swift in Sources */,
+				1FA51CC624E1A8D400DECA7A /* VisualEffectBlur-Mac.swift in Sources */,
+				1FA51CC024E1979D00DECA7A /* AppInfo.swift in Sources */,
 				1F49747A24DC1F350085F599 /* NetworkClient.swift in Sources */,
 				1F83325824DC50F00054DD8D /* LoginViewModel.swift in Sources */,
 				1FEFE57C24DFE426002DEEB8 /* HomeView.swift in Sources */,

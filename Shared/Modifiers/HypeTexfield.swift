@@ -15,7 +15,7 @@ struct HypeTextfield: ViewModifier {
             .padding(8)
             .background(
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .fill(Color.fillClear))
+                    .fill(Color(.fill)))
             .overlay(
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
                     .stroke()

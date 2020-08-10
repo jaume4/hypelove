@@ -59,6 +59,7 @@ final class NetworkClient {
     private func makeBaseURLRequest<T: NetworkRequest>(_ request: T) -> URLRequest {
         var urlRequest = URLRequest(url: makeURL(request))
         urlRequest.httpMethod = request.method.rawValue
+        urlRequest.setValue("HypeLove \(AppInfo.appVersion)-\(AppInfo.buildNumber)", forHTTPHeaderField: "User-Agent")
         return urlRequest
     }
     

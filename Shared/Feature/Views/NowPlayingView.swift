@@ -9,29 +9,31 @@ import SwiftUI
 
 struct NowPlayingView: View {
     @EnvironmentObject var playingState: PlayingState
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
+        
+        
         HStack {
             if let track = playingState.currentTrack {
-                TrackView(track: track)
+                TrackView(track: .constant(track), showPlayingBackground: false)
                     .disabled(true)
             }
             Button(action: {
                 playingState.playing.toggle()
             }, label: {
-                Image(systemName: playingState.playing ? "play.fill" : "pause.fill")
+                Image(systemName: playingState.playing ? "pause.fill" : "play.fill")
                     .resizable()
                     .frame(width: 20, height: 20)
                     .padding()
             }).accentColor(.primary)
         }
         .background(
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(.white)
+            VisualEffectBlur(blurStyle: colorScheme == .dark ? .dark : .light)
+                .cornerRadius(20)
                 .padding(.bottom, -6)
                 .padding(.top, -10)
                 .edgesIgnoringSafeArea(.bottom)
-                .shadow(radius: 4)
         )
     }
 }

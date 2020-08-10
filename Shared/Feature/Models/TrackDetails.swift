@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct TrackDetails: Identifiable {
+struct TrackDetails: Identifiable, Equatable {
     let id: String
     let color: Color
     let title: String
@@ -31,6 +31,10 @@ struct TrackDetails: Identifiable {
         //                print("""
         //TrackDetails(color: Color(hex: "\(colorString!)")!, title: "\(track.title)", artist: "\(track.artist)", duration: "\(MinuteSecondsFormatter.format(track.time))"),
         //""")
+    }
+    
+    static func == (lhs: TrackDetails, rhs: TrackDetails) -> Bool {
+        return lhs.id == rhs.id
     }
     
     static let placeholderTracks: [TrackDetails] = [

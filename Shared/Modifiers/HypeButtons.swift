@@ -28,7 +28,7 @@ struct HypeButton: ButtonStyle {
         configuration.label
             .font(Font.body.bold())
             .frame(maxWidth: .infinity)
-            .foregroundColor(configuration.isPressed ? Color.fillClear.opacity(0.7) : Color.fillClear)
+            .foregroundColor(Color(.fill).opacity(configuration.isPressed ? 0.7 : 1.0))
             .padding(8)
             .background(
                 RoundedRectangle(cornerRadius: 10, style: .continuous)

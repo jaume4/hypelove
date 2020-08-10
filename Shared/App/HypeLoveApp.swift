@@ -12,6 +12,10 @@ struct HypeLoveApp: App {
     @StateObject private var userState = UserState()
     @StateObject private var playingState = PlayingState()
     
+    init() {
+        UITabBar.setBlurAppareance()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ZStack(alignment: .bottom) {
