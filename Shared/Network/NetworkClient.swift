@@ -98,9 +98,14 @@ final class NetworkClient {
         return requestPublisher
             .receive(on: DispatchQueue.global())
             .subscribe(on: DispatchQueue.global())
-            .delay(for: .seconds(2), scheduler: RunLoop.main)
             .tryMap { data, response in
-                try request.transformResponse(data: data, response: response)
+                guard let response = response as? HTTPURLResponse else {
+                    throw NetworkError<T.CustomError>.unknown
+                }
+                guard 200...299 ~= response.statusCode else {
+                    throw request.processError(code: response.statusCode, data: data)
+                }
+                return try request.transformResponse(data: data, response: response)
             }
             .mapError { error -> NetworkError<T.CustomError> in
                 (error as? NetworkError<T.CustomError>) ?? NetworkError<T.CustomError>.unknown
@@ -108,7 +113,6 @@ final class NetworkClient {
             .tryCatch{ (error) throws -> AnyPublisher<T.Response, NetworkError<T.CustomError>> in
                 guard !retrying, self.shouldRetry(request: request, error: error) else { throw error }
                 retrying = true
-                guard error == NetworkError<T.CustomError>.notAuthorized else { throw error }
                 return self.resendRequest(request)
             }
             .mapError{ error in

@@ -22,14 +22,28 @@ struct PopularView: View {
                             .modifier(MakeButton {
                                 playingState.play(track: track)
                             })
+                            .onAppear {
+                                if track == viewModel.tracks.last {
+                                    viewModel.requestTracks()
+                                }
+                            }
                     }
+                }
+                if viewModel.tracksCancellable != nil {
+                    LazyVGrid(columns: [GridItem(.flexible())]) {
+                        ForEach(viewModel.placeholderTracks) { track in
+                            TrackView(track: .constant(track), showPlayingBackground: false)
+                        }
+                    }
+                    .redacted(reason: .placeholder)
                 }
                 Spacer() // Space for allowing seeing last trask: NowPlaying 50 + 10
                     .frame(height: 60)
             }
-            .redacted(reason: viewModel.tracksCancellable == nil ? [] : .placeholder)
             .onAppear {
-                viewModel.requestTracks()
+                if viewModel.tracks.isEmpty {
+                    viewModel.requestTracks()
+                }
             }
             if playingState.currentTrack != nil {
                 NowPlayingView()

@@ -29,7 +29,6 @@ struct HypeLoveApp: App {
                         Text("Popular")
                     }
                     
-                    
                     NavigationView {
                         PopularView()
                     }
@@ -57,6 +56,7 @@ struct HypeLoveApp: App {
             }
             .environmentObject(userState)
             .environmentObject(playingState)
+            .accentColor(.buttonMain)
         }
     }
 }

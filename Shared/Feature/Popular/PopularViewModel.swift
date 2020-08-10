@@ -13,20 +13,20 @@ final class PopularViewModel: ObservableObject {
     
     @Published var tracksCancellable: AnyCancellable?
     @Published var mode: TrackListMode?
-    @Published var tracks: [TrackDetails] = TrackDetails.placeholderTracks
+    @Published var tracks: [TrackDetails] = []
     @Published var currentlyPlaying: Int?
+    let placeholderTracks = TrackDetails.placeholderTracks
     private var currentPage = 0
     
     func requestTracks() {
+        guard tracksCancellable == nil else { return }
         let request = TrackListRequest(page: currentPage + 1, mode: mode)
         tracksCancellable = NetworkClient.shared.send(request).sink(receiveCompletion: { [weak self] completion in
             self?.tracksCancellable = nil
+            #warning("control error")
             print("ended request")
         }, receiveValue: { [weak self] (tracksResponse) in
             guard let self = self else { return }
-            if self.currentPage == 0 {
-                self.tracks.removeAll(keepingCapacity: true)
-            }
             self.currentPage += 1
             self.tracks += tracksResponse.map(TrackDetails.init)
         })

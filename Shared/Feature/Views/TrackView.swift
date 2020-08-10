@@ -22,15 +22,25 @@ struct TrackView: View {
             HStack {
                 Spacer(minLength: 5)
                 ZStack {
-                    track.color
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .shadow(radius: 1)
-                    if showPlayingBackground && playingState.currentTrack?.id == track.id && playingState.playing {
-                        PlayingIndicator()
-                            .padding(6)
-                            .foregroundColor(.white)
+                    if redactionReasons.isEmpty {
+                        //Color
+                        track.color
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .shadow(radius: 1)
+                        //Player
+                        if showPlayingBackground && playingState.currentTrack?.id == track.id && playingState.playing {
+                            PlayingIndicator()
+                                .padding(6)
+                                .foregroundColor(.white)
+                        }
+                    } else { //Placeholder color
+                        Color(.systemFill)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .shadow(radius: 1)
                     }
-                }.aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
+
+                }
+                .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
                 .frame(maxHeight: 50)
                 .padding(5)
                 

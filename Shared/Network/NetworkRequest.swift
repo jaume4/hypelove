@@ -15,7 +15,7 @@ protocol NetworkRequest: Equatable {
     var urlParams: [String: String] { get }
     var method: HTTPMethod { get }
     var controlledErrorCodes: Set<Int> { get }
-    func transformResponse(data: Data, response: URLResponse) throws -> Response
+    func transformResponse(data: Data, response: HTTPURLResponse) throws -> Response
     func processError(code: Int, data: Data) -> NetworkError<CustomError>
 }
 
@@ -25,15 +25,7 @@ extension NetworkRequest {
 }
 
 extension NetworkRequest where Response: Decodable {
-    func transformResponse(data: Data, response: URLResponse) throws -> Response {
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw NetworkError<CustomError>.unknown
-        }
-        
-        guard 200...299 ~= httpResponse.statusCode else {
-            throw processError(code: httpResponse.statusCode, data: data)
-        }
-        
+    func transformResponse(data: Data, response: HTTPURLResponse) throws -> Response {
         let response = try NetworkClient.shared.decoder.decode(Response.self, from: data)
         return response
     }
