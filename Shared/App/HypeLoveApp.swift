@@ -14,8 +14,42 @@ struct HypeLoveApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                HomeView()
+            ZStack(alignment: .bottom) {
+                TabView {
+                    
+                    NavigationView {
+                        PopularView()
+                    }
+                    .tabItem {
+                        Image(systemName: "chart.bar.fill")
+                        Text("Popular")
+                    }
+                    
+                    
+                    NavigationView {
+                        PopularView()
+                    }
+                    .tabItem {
+                        Image(systemName: "heart.fill")
+                        Text("Favorites")
+                    }
+                    
+                    NavigationView {
+                        PopularView()
+                    }
+                    .tabItem {
+                        Image(systemName: "clock")
+                        Text("Latest")
+                    }
+                    
+                    NavigationView {
+                        LoginView(viewModel: LoginViewModel(userState: userState))
+                    }
+                    .tabItem {
+                        Image(systemName: "gear")
+                        Text("Settings")
+                    }
+                }
             }
             .environmentObject(userState)
             .environmentObject(playingState)

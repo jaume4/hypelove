@@ -14,10 +14,11 @@ struct TrackDetails: Identifiable {
     let title: String
     let artist: String
     let duration: String
+    let lovedCount: Int
     
     init(_ track: TrackListResponseElement) {
-        let colorString = track.thumbURL.split(separator: "/").last?.replacingOccurrences(of: ".png", with: "")
-        let color = colorString.flatMap(Color.init(hex:)) ?? .black
+        let colorString = track.thumbURL.lastPathComponent.replacingOccurrences(of: ".png", with: "")
+        let color = Color(hex: colorString) ?? .black
         let duration = MinuteSecondsFormatter.format(track.time)
 
         self.id = track.itemid
@@ -25,6 +26,7 @@ struct TrackDetails: Identifiable {
         self.title = track.title
         self.artist = track.artist
         self.duration = duration
+        self.lovedCount = track.lovedCount
         
         //                print("""
         //TrackDetails(color: Color(hex: "\(colorString!)")!, title: "\(track.title)", artist: "\(track.artist)", duration: "\(MinuteSecondsFormatter.format(track.time))"),
@@ -87,5 +89,6 @@ struct TrackDetails: Identifiable {
         self.title = title
         self.artist = artist
         self.duration = duration
+        self.lovedCount = Int.random(in: 0...Int.max)
     }
 }

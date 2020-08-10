@@ -10,19 +10,29 @@ import SwiftUI
 
 struct PopularView: View {
     @EnvironmentObject var userState: UserState
+    @EnvironmentObject var playingState: PlayingState
     @StateObject var viewModel = PopularViewModel()
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: [GridItem(.flexible())]) {
-                ForEach(viewModel.tracks) { track in
-                    TrackView(track: track)
+        ZStack(alignment: .bottom) {
+            ScrollView {
+                LazyVGrid(columns: [GridItem(.flexible())]) {
+                    ForEach(viewModel.tracks) { track in
+                        TrackView(track: track)
+                    }
                 }
+                Spacer() // Space for allowing seeing last trask: NowPlaying 50 + 10
+                    .frame(height: 60)
             }
-        }
-        .redacted(reason: viewModel.tracksCancellable == nil ? [] : .placeholder)
-        .onAppear {
-            viewModel.requestTracks()
+            .redacted(reason: viewModel.tracksCancellable == nil ? [] : .placeholder)
+            .onAppear {
+                viewModel.requestTracks()
+            }
+            if playingState.currentTrack != nil {
+                NowPlayingView()
+                    .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .top)))
+                    .animation(.easeInOut(duration: 0.2))
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ final class Animator: ObservableObject {
     
     init() {
         
-        Timer.publish(every: 1 / 4, on: RunLoop.main, in: .default)
+        Timer.publish(every: 1 / 4, on: RunLoop.main, in: .common)
             .autoconnect()
             .scan(0) { _, _ in
                 return CGFloat.random(in: 0...1)
@@ -55,6 +55,9 @@ struct PlayingIndicator: View {
                     .cornerRadius(6)
                     .animation(.easeIn)
             }
+        }
+        .onAppear {
+            animator.percent = CGFloat.random(in: 0...1)
         }
     }
 }

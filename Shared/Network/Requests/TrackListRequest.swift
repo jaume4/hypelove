@@ -35,7 +35,7 @@ struct TrackListResponseElement: Codable {
     let sitename: String
     let posturl: String
     let postid, lovedCount, postedCount: Int
-    let thumbURL: String
+    let thumbURL: URL
     let thumbURLMedium: URL?
     let thumbURLLarge: URL
     let time: Int
