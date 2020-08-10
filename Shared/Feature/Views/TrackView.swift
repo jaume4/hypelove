@@ -22,14 +22,10 @@ struct TrackView: View {
             HStack {
                 Spacer(minLength: 5)
                 ZStack {
-                    Button(action: {
-                        playingState.play(track: track)
-                    }, label: {
-                        track.color
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .shadow(radius: 1)
-                    }).disabled(!redactionReasons.isEmpty)
-                    if playingState.currentTrack?.id == track.id && playingState.playing {
+                    track.color
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .shadow(radius: 1)
+                    if showPlayingBackground && playingState.currentTrack?.id == track.id && playingState.playing {
                         PlayingIndicator()
                             .padding(6)
                             .foregroundColor(.white)

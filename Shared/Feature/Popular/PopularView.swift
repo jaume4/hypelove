@@ -19,6 +19,9 @@ struct PopularView: View {
                 LazyVGrid(columns: [GridItem(.flexible())]) {
                     ForEach(viewModel.tracks) { track in
                         TrackView(track: .constant(track), showPlayingBackground: true)
+                            .modifier(MakeButton {
+                                playingState.play(track: track)
+                            })
                     }
                 }
                 Spacer() // Space for allowing seeing last trask: NowPlaying 50 + 10

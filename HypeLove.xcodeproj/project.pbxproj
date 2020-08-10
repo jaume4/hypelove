@@ -47,6 +47,8 @@
 		1FA51CC624E1A8D400DECA7A /* VisualEffectBlur-Mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CC224E1A8D400DECA7A /* VisualEffectBlur-Mac.swift */; };
 		1FA51CC924E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CC824E1B8F500DECA7A /* UITabBarAppareance.swift */; };
 		1FA51CCA24E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CC824E1B8F500DECA7A /* UITabBarAppareance.swift */; };
+		1FA51CCC24E1C26F00DECA7A /* MakeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CCB24E1C26F00DECA7A /* MakeButton.swift */; };
+		1FA51CCD24E1C26F00DECA7A /* MakeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CCB24E1C26F00DECA7A /* MakeButton.swift */; };
 		1FC2F39124DD6246006C78A8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Color.swift */; };
 		1FC2F39224DD6246006C78A8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Color.swift */; };
 		1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
@@ -92,6 +94,7 @@
 		1FA51CC124E1A8D400DECA7A /* VisualEffectBlur-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VisualEffectBlur-iOS.swift"; sourceTree = "<group>"; };
 		1FA51CC224E1A8D400DECA7A /* VisualEffectBlur-Mac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VisualEffectBlur-Mac.swift"; sourceTree = "<group>"; };
 		1FA51CC824E1B8F500DECA7A /* UITabBarAppareance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarAppareance.swift; sourceTree = "<group>"; };
+		1FA51CCB24E1C26F00DECA7A /* MakeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeButton.swift; sourceTree = "<group>"; };
 		1FC2F39024DD6246006C78A8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 				1FA1F6D924DC81A50095C0A2 /* HypeTexfield.swift */,
 				1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */,
 				1F6F73BB24DFEF0A00A9186A /* HypeButtons.swift */,
+				1FA51CCB24E1C26F00DECA7A /* MakeButton.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -414,6 +418,7 @@
 				1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F083D5D24E150F10033DA27 /* NowPlayingView.swift in Sources */,
+				1FA51CCC24E1C26F00DECA7A /* MakeButton.swift in Sources */,
 				1F83325424DC246E0054DD8D /* UserState.swift in Sources */,
 				1FC2F39124DD6246006C78A8 /* Color.swift in Sources */,
 				1F49745F24DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
@@ -448,6 +453,7 @@
 				1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F083D5E24E150F10033DA27 /* NowPlayingView.swift in Sources */,
+				1FA51CCD24E1C26F00DECA7A /* MakeButton.swift in Sources */,
 				1F83325524DC246E0054DD8D /* UserState.swift in Sources */,
 				1FC2F39224DD6246006C78A8 /* Color.swift in Sources */,
 				1F49746024DC1EC10085F599 /* HypeLoveApp.swift in Sources */,

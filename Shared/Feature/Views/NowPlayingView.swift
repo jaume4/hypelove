@@ -17,7 +17,6 @@ struct NowPlayingView: View {
         HStack {
             if let track = playingState.currentTrack {
                 TrackView(track: .constant(track), showPlayingBackground: false)
-                    .disabled(true)
             }
             Button(action: {
                 playingState.playing.toggle()
@@ -28,6 +27,7 @@ struct NowPlayingView: View {
                     .padding()
             }).accentColor(.primary)
         }
+        .padding(.bottom, 5)
         .background(
             VisualEffectBlur(blurStyle: colorScheme == .dark ? .dark : .light)
                 .cornerRadius(20)
@@ -43,7 +43,7 @@ struct NowPlayingView_Previews: PreviewProvider {
         VStack {
             Spacer()
             NowPlayingView()
-                .environmentObject(PlayingState.songPlaying)
+                .environmentObject(PlayingState.songPaused)
         }
         .previewLayout(PreviewLayout.fixed(width: 400, height: 100))
         VStack {
