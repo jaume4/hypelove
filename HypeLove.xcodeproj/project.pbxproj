@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F069A8424E04B270055BC3F /* Playingindicator.swift */; };
 		1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F069A8424E04B270055BC3F /* Playingindicator.swift */; };
+		1F083D5D24E150F10033DA27 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D5C24E150F10033DA27 /* NowPlayingView.swift */; };
+		1F083D5E24E150F10033DA27 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D5C24E150F10033DA27 /* NowPlayingView.swift */; };
+		1F083D6024E1517E0033DA27 /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D5F24E1517E0033DA27 /* PlayingState.swift */; };
+		1F083D6124E1517E0033DA27 /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D5F24E1517E0033DA27 /* PlayingState.swift */; };
+		1F083D6424E153250033DA27 /* TrackDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D6324E153250033DA27 /* TrackDetails.swift */; };
+		1F083D6524E153250033DA27 /* TrackDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D6324E153250033DA27 /* TrackDetails.swift */; };
 		1F49745F24DC1EC10085F599 /* HypeLoveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */; };
 		1F49746024DC1EC10085F599 /* HypeLoveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */; };
 		1F49746324DC1EC10085F599 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F49744E24DC1EC10085F599 /* Assets.xcassets */; };
@@ -55,6 +61,9 @@
 
 /* Begin PBXFileReference section */
 		1F069A8424E04B270055BC3F /* Playingindicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playingindicator.swift; sourceTree = "<group>"; };
+		1F083D5C24E150F10033DA27 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
+		1F083D5F24E1517E0033DA27 /* PlayingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
+		1F083D6324E153250033DA27 /* TrackDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetails.swift; sourceTree = "<group>"; };
 		1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeLoveApp.swift; sourceTree = "<group>"; };
 		1F49744E24DC1EC10085F599 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F49745324DC1EC10085F599 /* HypeLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HypeLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,8 +115,17 @@
 			children = (
 				1F069A8424E04B270055BC3F /* Playingindicator.swift */,
 				1FEFE57224DF1B06002DEEB8 /* TrackView.swift */,
+				1F083D5C24E150F10033DA27 /* NowPlayingView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1F083D6224E1530A0033DA27 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1F083D6324E153250033DA27 /* TrackDetails.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		1F49744624DC1EBF0085F599 = {
@@ -126,8 +144,7 @@
 				1F49746E24DC1F0B0085F599 /* App */,
 				1FA1F6D824DC81970095C0A2 /* Modifiers */,
 				1F83325224DC245B0054DD8D /* Environments */,
-				1F49746D24DC1EFE0085F599 /* Keychain */,
-				1FC2F38F24DD623A006C78A8 /* Extensions */,
+				1FEFE57524DFD150002DEEB8 /* Utils */,
 				1F49747E24DC1F540085F599 /* Feature */,
 				1F49747524DC1F350085F599 /* Network */,
 				1F49744E24DC1EC10085F599 /* Assets.xcassets */,
@@ -201,22 +218,22 @@
 		1F49747E24DC1F540085F599 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				1F083D6224E1530A0033DA27 /* Models */,
 				1F069A8324E04B1A0055BC3F /* Views */,
 				1FEFE57924DFE41B002DEEB8 /* Home */,
-				1FEFE57524DFD150002DEEB8 /* Utils */,
-				1F49748124DC1F540085F599 /* Explorer */,
+				1F49748124DC1F540085F599 /* Popular */,
 				1F49748324DC1F540085F599 /* Login */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
 		};
-		1F49748124DC1F540085F599 /* Explorer */ = {
+		1F49748124DC1F540085F599 /* Popular */ = {
 			isa = PBXGroup;
 			children = (
 				1F49748224DC1F540085F599 /* PopularView.swift */,
 				1FEFE54924DEAC75002DEEB8 /* PopularViewModel.swift */,
 			);
-			path = Explorer;
+			path = Popular;
 			sourceTree = "<group>";
 		};
 		1F49748324DC1F540085F599 /* Login */ = {
@@ -232,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				1F83325324DC246E0054DD8D /* UserState.swift */,
+				1F083D5F24E1517E0033DA27 /* PlayingState.swift */,
 			);
 			path = Environments;
 			sourceTree = "<group>";
@@ -257,6 +275,8 @@
 		1FEFE57524DFD150002DEEB8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1F49746D24DC1EFE0085F599 /* Keychain */,
+				1FC2F38F24DD623A006C78A8 /* Extensions */,
 				1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */,
 			);
 			path = Utils;
@@ -371,13 +391,16 @@
 				1FEFE54724DEAA1D002DEEB8 /* TrackListRequest.swift in Sources */,
 				1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */,
+				1F083D5D24E150F10033DA27 /* NowPlayingView.swift in Sources */,
 				1F83325424DC246E0054DD8D /* UserState.swift in Sources */,
 				1FC2F39124DD6246006C78A8 /* Color.swift in Sources */,
 				1F49745F24DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
+				1F083D6424E153250033DA27 /* TrackDetails.swift in Sources */,
 				1F49747124DC1F1F0085F599 /* Keychain.swift in Sources */,
 				1FEFE57324DF1B06002DEEB8 /* TrackView.swift in Sources */,
 				1F49747224DC1F1F0085F599 /* KeychainService.swift in Sources */,
 				1F6F73BC24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
+				1F083D6024E1517E0033DA27 /* PlayingState.swift in Sources */,
 				1FA1F6DA24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
 				1FA1F6DD24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */,
 				1F49747B24DC1F350085F599 /* LoginRequest.swift in Sources */,
@@ -399,13 +422,16 @@
 				1FEFE54824DEAA1D002DEEB8 /* TrackListRequest.swift in Sources */,
 				1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */,
+				1F083D5E24E150F10033DA27 /* NowPlayingView.swift in Sources */,
 				1F83325524DC246E0054DD8D /* UserState.swift in Sources */,
 				1FC2F39224DD6246006C78A8 /* Color.swift in Sources */,
 				1F49746024DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
+				1F083D6524E153250033DA27 /* TrackDetails.swift in Sources */,
 				1F49747324DC1F230085F599 /* Keychain.swift in Sources */,
 				1FEFE57424DF1B06002DEEB8 /* TrackView.swift in Sources */,
 				1F49747424DC1F260085F599 /* KeychainService.swift in Sources */,
 				1F6F73BD24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
+				1F083D6124E1517E0033DA27 /* PlayingState.swift in Sources */,
 				1FA1F6DB24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
 				1FA1F6DE24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */,
 				1F49747C24DC1F350085F599 /* LoginRequest.swift in Sources */,

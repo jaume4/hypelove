@@ -10,7 +10,7 @@ import SwiftUI
 struct TrackView: View {
     
     @State var track: TrackDetails
-    @State var isPlaying: Bool = false
+    @EnvironmentObject var playingState: PlayingState
     @Environment(\.redactionReasons) var redactionReasons
     
     var body: some View {
@@ -18,13 +18,13 @@ struct TrackView: View {
             Spacer(minLength: 5)
             ZStack {
                 Button(action: {
-                    isPlaying.toggle()
+                    playingState.currentTrack = track
                 }, label: {
                     track.color
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .shadow(radius: 1)
                 }).disabled(!redactionReasons.isEmpty)
-                if isPlaying {
+                if playingState.currentTrack?.id == track.id && playingState.playing {
                 PlayingIndicator()
                     .padding(6)
                     .foregroundColor(.white)
@@ -47,15 +47,14 @@ struct TrackView: View {
 
 struct TrackView_Previews: PreviewProvider {
     
-    static let trackDetail = TrackDetails(color: Color.red, title: "Let You Know (feat. London Grammar)", artist: "Flume", duration: "3:27")
-    
     static var previews: some View {
         VStack {
-            TrackView(track: trackDetail, isPlaying: false)
-            TrackView(track: trackDetail, isPlaying: true)
-            TrackView(track: trackDetail, isPlaying: false)
+            TrackView(track: TrackDetails.placeholderTracks[0])
+            TrackView(track: TrackDetails.placeholderTracks[1])
+            TrackView(track: TrackDetails.placeholderTracks[2])
                 .redacted(reason: .placeholder)
         }
         .previewLayout(PreviewLayout.fixed(width: 400, height: 400))
+        .environmentObject(PlayingState.songPlaying)
     }
 }

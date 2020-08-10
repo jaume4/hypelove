@@ -30,14 +30,9 @@ struct PopularView: View {
 struct PopularView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PopularView(viewModel: viewModel)
+            PopularView(viewModel: PopularViewModel.tracksLoaded)
         }
         .environmentObject(UserState())
+        .environmentObject(PlayingState.songPlaying)
     }
-    
-    static let viewModel: PopularViewModel = {
-        let viewModel = PopularViewModel()
-        viewModel.tracks = TrackDetails.placeholderTracks
-        return viewModel
-    }()
 }

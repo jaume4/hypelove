@@ -10,12 +10,15 @@ import SwiftUI
 @main
 struct HypeLoveApp: App {
     @StateObject private var userState = UserState()
+    @StateObject private var playingState = PlayingState()
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 HomeView()
-            }.environmentObject(userState)
+            }
+            .environmentObject(userState)
+            .environmentObject(playingState)
         }
     }
 }

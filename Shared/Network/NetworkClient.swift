@@ -97,6 +97,7 @@ final class NetworkClient {
         return requestPublisher
             .receive(on: DispatchQueue.global())
             .subscribe(on: DispatchQueue.global())
+            .delay(for: .seconds(2), scheduler: RunLoop.main)
             .tryMap { data, response in
                 try request.transformResponse(data: data, response: response)
             }
