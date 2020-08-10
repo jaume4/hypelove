@@ -124,37 +124,41 @@ final class NetworkClient {
         let promise = Future<T.Response, NetworkError<T.CustomError>>  { promise in
             
             let loginPublisher: AnyPublisher<LoginRequest.Response, NetworkError<LoginRequest.CustomError>>
+            let updateToken: Bool //Only the first suscriber to loginPublisher will update the token to prevent a race condition
             
             if let currentPublisher = self.loginPublisher {
+                updateToken = false
                 loginPublisher = currentPublisher
             } else {
+                updateToken = true
                 #warning("fix data")
                 let loginRequest = LoginRequest(userName: "", password: "", deviceID: "")
                 let urlRequest = self.makeBaseURLRequest(loginRequest)
                 loginPublisher = self.send(loginRequest, urlRequest: urlRequest).share().eraseToAnyPublisher()
-                self.loginPublisher = loginPublisher.eraseToAnyPublisher()
+                self.loginPublisher = loginPublisher
             }
 
             loginPublisher
                 .sink { completion in
                     switch completion {
-                    case .finished: return
+                    case .finished:
+                        //Login finished, resend request regenerating urlRequest as token has changed
+                        self.send(request, urlRequest: self.makeBaseURLRequest(request))
+                            .sink { completion in
+                                switch completion {
+                                case .finished: return
+                                case .failure(let error): promise(.failure(error))
+                                }
+                            } receiveValue: { response in
+                                promise(.success(response))
+                            }.store(in: &self.currentCancellables)
                     case .failure(_): promise(.failure(NetworkError<T.CustomError>.notAuthorized))
                     }
                 } receiveValue: { (response) in
-                    //Succeeded refresh, resend request regenerating urlRequest as token has changed
-                    self.token = response.hmToken
-                    self.send(request, urlRequest: self.makeBaseURLRequest(request))
-                        .sink { completion in
-                            switch completion {
-                            
-                            case .finished: return
-                            case .failure(let error): promise(.failure(error))
-                            }
-                        } receiveValue: { response in
-                            promise(.success(response))
-                        }.store(in: &self.currentCancellables)
-
+                    //Succeeded refresh
+                    if updateToken {
+                        self.token = response.hmToken
+                    }
                 }.store(in: &self.currentCancellables)
         }
         
@@ -166,7 +170,7 @@ final class NetworkClient {
     private func shouldRetry<T: NetworkRequest>(request: T, error: NetworkError<T.CustomError>) -> Bool {
         switch (request, error) {
         case (request, _) where request is LoginRequest: return false
-        case (request, .notAuthorized) where request.authNeeded: return true
+        case (request, .notAuthorized): return request.authNeeded
         case (_, .custom(_)): return false
         default: return true
         }
