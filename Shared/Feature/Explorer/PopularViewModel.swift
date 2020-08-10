@@ -10,7 +10,7 @@ import Combine
 import SwiftUI
 
 struct TrackDetails: Identifiable {
-    let id = UUID()
+    let id: String
     let color: Color
     let title: String
     let artist: String
@@ -21,6 +21,7 @@ struct TrackDetails: Identifiable {
         let color = colorString.flatMap(Color.init(hex:)) ?? .black
         let duration = MinuteSecondsFormatter.format(track.time)
 
+        self.id = track.itemid
         self.color = color
         self.title = track.title
         self.artist = track.artist
@@ -31,7 +32,7 @@ struct TrackDetails: Identifiable {
         //""")
     }
     
-    static let placeholderTracks = [
+    static let placeholderTracks: [TrackDetails] = [
         TrackDetails(color: Color(hex: "FE0034")!, title: "Getting There From Here (with Todd Edwards)", artist: "Poolside", duration: "4:09"),
         TrackDetails(color: Color(hex: "CA3829")!, title: "BrightonTapes 01", artist: "bonobo", duration: "5:30"),
         TrackDetails(color: Color(hex: "D99884")!, title: "Color My Heart (PBR Streetgang Remix)", artist: "Charlotte OC", duration: "10:12"),
@@ -82,6 +83,7 @@ struct TrackDetails: Identifiable {
     ]
     
     init(color: Color, title: String, artist: String, duration: String) {
+        self.id = UUID().uuidString
         self.color = color
         self.title = title
         self.artist = artist
@@ -99,7 +101,8 @@ final class PopularViewModel: ObservableObject {
     
     func requestTracks() {
         let request = TrackListRequest(page: currentPage + 1, mode: mode)
-        tracksCancellable = NetworkClient.shared.send(request).sink(receiveCompletion: { completion in
+        tracksCancellable = NetworkClient.shared.send(request).sink(receiveCompletion: { [weak self] completion in
+            self?.tracksCancellable = nil
             print("ended request")
         }, receiveValue: { [weak self] (tracksResponse) in
             guard let self = self else { return }

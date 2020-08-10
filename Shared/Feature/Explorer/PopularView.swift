@@ -20,6 +20,7 @@ struct PopularView: View {
                 }
             }
         }
+        .redacted(reason: viewModel.tracksCancellable == nil ? [] : .placeholder)
         .onAppear {
             viewModel.requestTracks()
         }

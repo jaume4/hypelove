@@ -8,14 +8,12 @@
 import SwiftUI
 import Combine
 
-extension String: Error {}
-
 final class Animator: ObservableObject {
-    @Published var percent: CGFloat = 0
+    @Published var percent: CGFloat = 0.4
     
     init() {
         
-        Timer.publish(every: 1 / 10, on: .main, in: .default)
+        Timer.publish(every: 1 / 4, on: RunLoop.main, in: .default)
             .autoconnect()
             .scan(0) { _, _ in
                 return CGFloat.random(in: 0...1)
@@ -31,30 +29,32 @@ struct PlayingIndicator: View {
     var body: some View {
         GeometryReader { proxy in
             
-            HStack(spacing: 0) {
+            HStack(spacing: proxy.size.width / 15) {
                 VStack(spacing: 0) {
                     Spacer(minLength: 0)
                     Rectangle()
                         .frame(height: proxy.size.height * animator.percent)
+                        .cornerRadius(6)
                         .animation(.easeIn)
-                }
-                Spacer(minLength: proxy.size.width / 20)
-                VStack(spacing: 0) {
                     Spacer(minLength: 0)
-                    Rectangle()
-                        .frame(height: proxy.size.height * (0.4 + (0.6 * (1 - CGFloat.random(in: 0...animator.percent)))))
-                        .animation(.easeIn)
                 }
-                Spacer(minLength: proxy.size.width / 20)
-                VStack(spacing: 0) {
-                    Spacer(minLength: 0)
-                    Rectangle()
-                        .frame(height: proxy.size.height * (0.3 + (0.7 * (1 - CGFloat.random(in: 0...animator.percent)))))
-                        .animation(.easeIn)
-                }
+                Rectangle()
+                    .frame(height: proxy.size.height * (0.3 + (0.7 * (1 - CGFloat.random(in: 0...animator.percent)))))
+                    .cornerRadius(6)
+                    .animation(.easeIn)
+                Rectangle()
+                    .frame(height: proxy.size.height * (0.3 + (0.7 * (1 - CGFloat.random(in: 0...animator.percent)))))
+                    .cornerRadius(6)
+                    .animation(.easeIn)
+                Rectangle()
+                    .frame(height: proxy.size.height * (0.6 + (0.4 * (1 - CGFloat.random(in: 0...animator.percent)))))
+                    .cornerRadius(6)
+                    .animation(.easeIn)
+                Rectangle()
+                    .frame(height: proxy.size.height * (0.3 + (0.7 * (1 - CGFloat.random(in: 0...animator.percent)))))
+                    .cornerRadius(6)
+                    .animation(.easeIn)
             }
-        }.onDisappear {
-            Just(CGFloat(0)).assign(to: &animator.$percent)
         }
     }
 }

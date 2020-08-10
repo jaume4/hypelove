@@ -11,6 +11,7 @@ struct TrackView: View {
     
     @State var track: TrackDetails
     @State var isPlaying: Bool = false
+    @Environment(\.redactionReasons) var redactionReasons
     
     var body: some View {
         HStack {
@@ -22,12 +23,11 @@ struct TrackView: View {
                     track.color
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .shadow(radius: 1)
-                })
+                }).disabled(!redactionReasons.isEmpty)
                 if isPlaying {
                 PlayingIndicator()
-                    .padding([.leading, .top, .trailing], 6)
+                    .padding(6)
                     .foregroundColor(.white)
-                    .opacity(0.7)
                 }
             }.aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
             .frame(maxHeight: 50)
