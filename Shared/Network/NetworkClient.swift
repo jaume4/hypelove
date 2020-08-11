@@ -15,8 +15,8 @@ final class NetworkClient {
     
     static let shared = NetworkClient()
     
-//    fileprivate let host = "api.hypem.com"
-    fileprivate let host = "192.168.1.2"
+//    let host = "api.hypem.com"
+    let host = "192.168.1.2"
     private let version = "v2"
     private let session: URLSession
     
@@ -25,6 +25,7 @@ final class NetworkClient {
     
     private var loginPublisher: RequestPublisher<LoginRequest>?
     private var currentCancellables: Set<AnyCancellable> = []
+    private let userAgent = "HypeLove \(AppInfo.appVersion)-\(AppInfo.buildNumber)"
     
     @Published var token: String?
     
@@ -44,7 +45,7 @@ final class NetworkClient {
     }
 
     //MARK: - URL generator
-    private func makeURL<T: NetworkRequest>(_ request: T) -> URL {
+    private func makeURL<T: ApiRequest>(_ request: T) -> URL {
         var components = URLComponents()
         components.scheme = "https"
         components.host = host
@@ -56,15 +57,22 @@ final class NetworkClient {
         return components.url!
     }
     
-    private func makeBaseURLRequest<T: NetworkRequest>(_ request: T) -> URLRequest {
+    private func makeBaseURLRequest<T: ApiRequest>(_ request: T) -> URLRequest {
         var urlRequest = URLRequest(url: makeURL(request))
         urlRequest.httpMethod = request.method.rawValue
-        urlRequest.setValue("HypeLove \(AppInfo.appVersion)-\(AppInfo.buildNumber)", forHTTPHeaderField: "User-Agent")
+        urlRequest.setValue(userAgent, forHTTPHeaderField: "User-Agent")
         return urlRequest
     }
     
     //MARK: - Exposed send request methods
-    func send<T: NetworkRequest>(_ request: T) -> RequestPublisher<T> {
+    func send(_ request: ImageRequest) -> RequestPublisher<ImageRequest> {
+        var urlRequest = URLRequest(url: request.url)
+        urlRequest.httpMethod = request.method.rawValue
+        urlRequest.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+        return send(request, urlRequest: urlRequest)
+    }
+    
+    func send<T: ApiRequest>(_ request: T) -> RequestPublisher<T> {
         let urlRequest = makeBaseURLRequest(request)
         return send(request, urlRequest: urlRequest)
     }
@@ -89,8 +97,26 @@ final class NetworkClient {
     
     //MARK: - Request handling and sending
     
+    /// Sends image requests. Does not retry.
+    private func send(_ request: ImageRequest, urlRequest: URLRequest) -> RequestPublisher<ImageRequest> {
+        
+        let requestPublisher = session.dataTaskPublisher(for: urlRequest)
+        
+        return requestPublisher
+            .receive(on: DispatchQueue.global())
+            .subscribe(on: DispatchQueue.global())
+            .tryMap { data, response in
+                try NetworkClient.process(data, response, for: request)
+            }
+            .mapError { error -> NetworkError<ImageRequest.CustomError> in
+                (error as? NetworkError<ImageRequest.CustomError>) ?? NetworkError<ImageRequest.CustomError>.noConnection
+            }
+            .receive(on: RunLoop.main)
+            .eraseToAnyPublisher()
+    }
+    
     /// Sends any NetworkRequest and retries it if an error is given and [shouldRetry](x-source-tag://ShouldRetry) returns true
-    private func send<T: NetworkRequest>(_ request: T, urlRequest: URLRequest) -> RequestPublisher<T> {
+    private func send<T: ApiRequest>(_ request: T, urlRequest: URLRequest) -> RequestPublisher<T> {
         
         var retrying = false
         let requestPublisher = session.dataTaskPublisher(for: urlRequest)
@@ -99,13 +125,7 @@ final class NetworkClient {
             .receive(on: DispatchQueue.global())
             .subscribe(on: DispatchQueue.global())
             .tryMap { data, response in
-                guard let response = response as? HTTPURLResponse else {
-                    throw NetworkError<T.CustomError>.unknown
-                }
-                guard 200...299 ~= response.statusCode else {
-                    throw request.processError(code: response.statusCode, data: data)
-                }
-                return try request.transformResponse(data: data, response: response)
+                try NetworkClient.process(data, response, for: request)
             }
             .mapError { error -> NetworkError<T.CustomError> in
                 (error as? NetworkError<T.CustomError>) ?? NetworkError<T.CustomError>.noConnection
@@ -125,7 +145,7 @@ final class NetworkClient {
     /// Retries the given request attemting to login first
     /// - Parameter request: Request to retry
     /// - Returns: Future that fullfills after login attempt is finished and request is resent, or on login error
-    private func resendRequest<T: NetworkRequest>(_ request: T) -> RequestPublisher<T> {
+    private func resendRequest<T: ApiRequest>(_ request: T) -> RequestPublisher<T> {
         
         let promise = Future<T.Response, NetworkError<T.CustomError>>  { promise in
             
@@ -178,13 +198,44 @@ final class NetworkClient {
         return promise.eraseToAnyPublisher()
     }
     
-    /// Logic for retrying requests. Login request or custom errors are not retried, not authorized and everything else gets retried.
+    //MARK: - Request and error processing
+    
+    /// Tries to transform data from response to request Response, throws if fails or status code is not 2XX
+    static func process<T: NetworkRequest>(_ data: Data, _ response: URLResponse, for request: T) throws -> T.Response {
+        guard let response = response as? HTTPURLResponse else {
+            throw NetworkError<T.CustomError>.unknown
+        }
+        
+        let statusCode = response.statusCode
+        
+        guard 200...299 ~= statusCode else {
+            if request.controlledErrorCodes.contains(response.statusCode), let error = request.processError(code: statusCode, data: data) {
+                throw error
+            } else {
+                throw processError(code: statusCode, request: request)
+            }
+        }
+        
+        return try request.transformResponse(data: data, response: response)
+    }
+    
+    //Process standard errors
+    static func processError<T: NetworkRequest>(code: Int, request _: T) -> NetworkError<T.CustomError> {
+        switch code {
+        case 401: return .notAuthorized
+        case 404: return .notFound
+        case 500...599: return .serverError
+        default: return .unknown
+        }
+    }
+    
+    /// Logic for retrying api requests. Login request or custom errors are not retried, not authorized and everything else gets retried.
     /// - Tag: ShouldRetry
-    private func shouldRetry<T: NetworkRequest>(request: T, error: NetworkError<T.CustomError>) -> Bool {
-        switch (request, error) {
-        case (request, _) where request is LoginRequest: return false
-        case (request, .notAuthorized): return request.authNeeded
-        case (_, .custom(_)): return false
+    private func shouldRetry<T: ApiRequest>(request: T, error: NetworkError<T.CustomError>) -> Bool {
+        switch error {
+        case _ where request is LoginRequest: return false
+        case .notAuthorized: return request.authNeeded
+        case .custom(_): return false
         default: return true
         }
     }

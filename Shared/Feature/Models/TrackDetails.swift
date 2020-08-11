@@ -16,6 +16,7 @@ struct TrackDetails: Identifiable, Equatable, Hashable {
     let duration: String
     let lovedCount: Int
     let lovedDate: Date?
+    let imageURL: URL
     
     init(_ track: TrackListResponseElement) {
         let colorString = track.thumbURL.lastPathComponent.replacingOccurrences(of: ".png", with: "")
@@ -29,6 +30,7 @@ struct TrackDetails: Identifiable, Equatable, Hashable {
         self.duration = duration
         self.lovedCount = track.lovedCount
         self.lovedDate = track.lovedDate
+        self.imageURL = track.thumbURLLarge
         
         
         
@@ -99,5 +101,6 @@ struct TrackDetails: Identifiable, Equatable, Hashable {
         self.duration = duration
         self.lovedCount = Int.random(in: 0...Int.max)
         self.lovedDate = nil
+        self.imageURL = URL(string: "https://via.placeholder.com/300x300.jpg/0000ff/ffffff?text=\(title.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)")!
     }
 }

@@ -11,7 +11,7 @@ enum TrackListMode: String {
     case all, fresh, noremix, remix
 }
 
-struct TrackListRequest: NetworkRequest {
+struct TrackListRequest: ApiRequest {
     
     typealias Response = [TrackListResponseElement]
     
