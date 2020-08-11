@@ -36,7 +36,7 @@ struct HomeView: View {
                         .padding()
                     Spacer()
                 }
-                PopularView()
+//                PopularView()
             }
             .navigationTitle("Home")
             .navigationBarItems(trailing:
@@ -44,11 +44,12 @@ struct HomeView: View {
                                         Button(action: {}, label: {
                                             Image(systemName: "magnifyingglass")
                                         })
-                                        Button(action: {}, label: {
+                                        Button(action: {
+                                            userState.presentingSettings.toggle()
+                                        }, label: {
                                             Image(systemName: "gear")
                                         })
-                                    }.foregroundColor(.black)
-            
+                                    }
             )
         }
     }

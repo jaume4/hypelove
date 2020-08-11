@@ -14,31 +14,18 @@ final class UserState: ObservableObject {
     @AppStorage("userName") private var savedUserName: String = ""
     @Published var validToken = false
     @Published var userName: String = ""
-    @Published var selectedTab = HomeTab.popular
+    @Published var selectedTab = HomeTab.home
+    @Published var presentingSettings = false
     
-    private var loginTokenCancellable: AnyCancellable?
-    private var userNameCancellable: AnyCancellable?
-    var cancellables: Set<AnyCancellable> = []
+    private var cancellables: Set<AnyCancellable> = []
     
     init() {
         
-        userName = savedUserName
-        
-        loginTokenCancellable = NetworkClient.shared.$token
-            .receive(on: RunLoop.main)
-            .sink { [weak self] (token) in
-                self?.validToken = token != nil
-            }
+        setupCancellables()
         
         if let savedToken = KeychainService.getSavedToken(userName: savedUserName) {
             validToken = true
             set(token: savedToken)
-        }
-        
-        userNameCancellable = $userName
-            .receive(on: RunLoop.main)
-            .sink { [weak self] in
-            self?.savedUserName = $0
         }
         
         if deviceID.isEmpty {
@@ -50,6 +37,19 @@ final class UserState: ObservableObject {
             }
             deviceID = randomID
         }
+    }
+    
+    private func setupCancellables() {
+        NetworkClient.shared.$token
+            .map { $0 != nil }
+            .receive(on: RunLoop.main)
+            .assign(to: \.validToken, on: self)
+            .store(in: &cancellables)
+        
+        $userName
+            .receive(on: RunLoop.main)
+            .assign(to: \.savedUserName, on: self)
+            .store(in: &cancellables)
     }
     
     func set(token: String) {
