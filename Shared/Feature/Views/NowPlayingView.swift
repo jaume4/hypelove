@@ -23,8 +23,18 @@ struct NowPlayingView: View {
             }, label: {
                 Image(systemName: playingState.playing ? "pause.fill" : "play.fill")
                     .resizable()
-                    .frame(width: 20, height: 20)
-                    .padding()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 25)
+                    .padding(.leading, 10)
+            }).accentColor(.primary)
+            Button(action: {
+                playingState.next()
+            }, label: {
+                Image(systemName: "forward.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 25)
+                    .padding([.leading, .trailing], 15)
             }).accentColor(.primary)
         }
         .padding(.bottom, 5)
@@ -38,6 +48,7 @@ struct NowPlayingView: View {
     }
 }
 
+#if DEBUG
 struct NowPlayingView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
@@ -54,3 +65,4 @@ struct NowPlayingView_Previews: PreviewProvider {
         .previewLayout(PreviewLayout.fixed(width: 400, height: 100))
     }
 }
+#endif

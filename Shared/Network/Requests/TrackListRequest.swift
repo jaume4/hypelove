@@ -41,6 +41,7 @@ struct TrackListResponseElement: Codable {
     let time: Int
     let trackListResponseDescription: String
     let itunesLink: String
+    let lovedDate: Date?
 
     enum CodingKeys: String, CodingKey {
         case itemid, artist, title, dateposted, siteid, sitename, posturl, postid
@@ -52,5 +53,6 @@ struct TrackListResponseElement: Codable {
         case time
         case trackListResponseDescription = "description"
         case itunesLink = "itunes_link"
+        case lovedDate = "ts_loved_me"
     }
 }

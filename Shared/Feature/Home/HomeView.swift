@@ -11,32 +11,61 @@ struct HomeView: View {
     @EnvironmentObject var userState: UserState
     
     var body: some View {
+        
         ScrollView {
-            VStack {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
-                    Button("Popular") {
-                        print("tap popular")
+            LazyVStack {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("Popular now")
+                            .frame(alignment: .leading)
+                            .padding()
+                        Spacer(minLength: 0)
+                        Image(systemName: "chevron.right")
+                            .padding()
                     }
-                    Button("Recent") {
-                        print("tap recent")
+                    .font(Font.title2.bold())
+                }
+                .modifier(MakeButton {
+                    print("Popular now")
+                })
+                TrackCarrouselView()
+                
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("Popular last week")
+                            .font(Font.title2.bold())
+                            .frame(alignment: .leading)
+                            .padding()
+                        Spacer(minLength: 0)
                     }
+                }
+                TrackCarrouselView()
+                
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("Feed")
+                            .font(Font.title2.bold())
+                            .frame(alignment: .leading)
+                            .padding()
+                        Spacer(minLength: 0)
+                    }
+                }
+                TrackCarrouselView()
+                
+                VStack(spacing: 15) {
                     Button("New") {
-                        print("tap recent")
+                        print("New")
                     }
-                    Button("Favorites") {
-                        print("tap recent")
+                    Button("Artists") {
+                        print("Artists")
+                    }
+                    Button("Blogs") {
+                        print("Blogs")
                     }
                 }
                 .padding()
                 .buttonStyle(HypeButton())
-                HStack {
-                    Text("Playing now")
-                        .font(.title3)
-                        .frame(alignment: .leading)
-                        .padding()
-                    Spacer()
-                }
-//                PopularView()
+                
             }
             .navigationTitle("Home")
             .navigationBarItems(trailing:
@@ -50,6 +79,7 @@ struct HomeView: View {
                                             Image(systemName: "gear")
                                         })
                                     }
+                                    .unredacted()
             )
         }
     }
@@ -60,5 +90,10 @@ struct HomeView_Previews: PreviewProvider {
         NavigationView {
             HomeView()
         }.environmentObject(UserState())
+        
+        NavigationView {
+            HomeView()
+        }.environmentObject(UserState())
+        .redacted(reason: .placeholder)
     }
 }

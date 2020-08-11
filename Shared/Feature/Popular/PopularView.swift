@@ -65,9 +65,22 @@ struct PopularView: View {
                     .animation(.easeInOut(duration: 0.2))
             }
         }
+        .navigationTitle("Popular")
+        .navigationBarItems(trailing:
+                                HStack(spacing: 25) {
+                                    Button(action: {}, label: {
+                                        Image(systemName: "magnifyingglass")
+                                    })
+                                    Button(action: {}, label: {
+                                        Image(systemName: "line.horizontal.3.decrease.circle")
+                                    })
+                                }
+                                .unredacted()
+        )
     }
 }
 
+#if DEBUG
 struct PopularView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
@@ -77,3 +90,4 @@ struct PopularView_Previews: PreviewProvider {
         .environmentObject(PlayingState.songPlaying)
     }
 }
+#endif

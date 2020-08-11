@@ -57,6 +57,7 @@ struct TrackView: View {
     }
 }
 
+#if DEBUG
 struct TrackView_Previews: PreviewProvider {
     
     static var previews: some View {
@@ -70,3 +71,4 @@ struct TrackView_Previews: PreviewProvider {
         .environmentObject(PlayingState.songPlaying)
     }
 }
+#endif

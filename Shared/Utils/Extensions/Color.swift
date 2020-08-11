@@ -38,6 +38,10 @@ extension Color {
         let values: [Double] = [UInt8].init(uintSequence).map{ Double($0) / 255 }
         self.init(red: values[0], green: values[1], blue: values[2])
     }
+    
+    static var random: Color {
+        Color(hue: Double.random(in: 0...1), saturation: Double.random(in: 0.5...1), brightness: 1)
+    }
 }
 
 fileprivate extension String {

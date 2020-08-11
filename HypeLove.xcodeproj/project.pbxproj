@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F00DE2624E301B0008A9843 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F00DE2224E2FFC1008A9843 /* Preview Assets.xcassets */; };
+		1F00DE2824E305DD008A9843 /* TrackCarrouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE2724E305DD008A9843 /* TrackCarrouselView.swift */; };
+		1F00DE2924E305DD008A9843 /* TrackCarrouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE2724E305DD008A9843 /* TrackCarrouselView.swift */; };
 		1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F069A8424E04B270055BC3F /* Playingindicator.swift */; };
 		1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F069A8424E04B270055BC3F /* Playingindicator.swift */; };
 		1F083D5D24E150F10033DA27 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D5C24E150F10033DA27 /* NowPlayingView.swift */; };
@@ -70,6 +73,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F00DE2224E2FFC1008A9843 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1F00DE2724E305DD008A9843 /* TrackCarrouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCarrouselView.swift; sourceTree = "<group>"; };
 		1F069A8424E04B270055BC3F /* Playingindicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playingindicator.swift; sourceTree = "<group>"; };
 		1F083D5C24E150F10033DA27 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		1F083D5F24E1517E0033DA27 /* PlayingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
@@ -126,6 +131,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F00DE2124E2FFB1008A9843 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1F00DE2224E2FFC1008A9843 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		1F069A8324E04B1A0055BC3F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +179,7 @@
 				1F49747E24DC1F540085F599 /* Feature */,
 				1F49747524DC1F350085F599 /* Network */,
 				1F49744E24DC1EC10085F599 /* Assets.xcassets */,
+				1F00DE2124E2FFB1008A9843 /* Preview Content */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -316,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				1FEFE57A24DFE426002DEEB8 /* HomeView.swift */,
+				1F00DE2724E305DD008A9843 /* TrackCarrouselView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -398,6 +413,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F00DE2624E301B0008A9843 /* Preview Assets.xcassets in Resources */,
 				1F49746324DC1EC10085F599 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +438,7 @@
 				1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F083D5D24E150F10033DA27 /* NowPlayingView.swift in Sources */,
+				1F00DE2824E305DD008A9843 /* TrackCarrouselView.swift in Sources */,
 				1FA51CCC24E1C26F00DECA7A /* MakeButton.swift in Sources */,
 				1F83325424DC246E0054DD8D /* UserState.swift in Sources */,
 				1FC2F39124DD6246006C78A8 /* Color.swift in Sources */,
@@ -458,6 +475,7 @@
 				1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F083D5E24E150F10033DA27 /* NowPlayingView.swift in Sources */,
+				1F00DE2924E305DD008A9843 /* TrackCarrouselView.swift in Sources */,
 				1FA51CCD24E1C26F00DECA7A /* MakeButton.swift in Sources */,
 				1F83325524DC246E0054DD8D /* UserState.swift in Sources */,
 				1FC2F39224DD6246006C78A8 /* Color.swift in Sources */,
@@ -605,6 +623,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "Shared/Preview\\ Content/Preview\\ Assets.xcassets";
 				DEVELOPMENT_TEAM = HQV3E5C7S2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -627,6 +646,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "Shared/Preview\\ Content/Preview\\ Assets.xcassets";
 				DEVELOPMENT_TEAM = HQV3E5C7S2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;

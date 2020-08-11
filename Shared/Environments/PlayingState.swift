@@ -32,6 +32,10 @@ final class PlayingState: ObservableObject {
         playing = true
     }
     
+    func next() {
+        print("next")
+    }
+    
     #if DEBUG
     static let songPlaying: PlayingState = {
         let state = PlayingState()
