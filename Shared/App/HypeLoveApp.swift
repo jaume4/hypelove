@@ -7,10 +7,15 @@
 
 import SwiftUI
 
+enum HomeTab: Hashable {
+    case popular, favorites, latest, settings
+}
+
 @main
 struct HypeLoveApp: App {
     @StateObject private var userState = UserState()
     @StateObject private var playingState = PlayingState()
+    @State var selectedTab = HomeTab.popular
     
     init() {
         UITabBar.setBlurAppareance()
@@ -19,7 +24,7 @@ struct HypeLoveApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack(alignment: .bottom) {
-                TabView {
+                TabView(selection: $selectedTab) {
                     
                     NavigationView {
                         PopularView()
@@ -28,22 +33,25 @@ struct HypeLoveApp: App {
                         Image(systemName: "chart.bar.fill")
                         Text("Popular")
                     }
+                    .tag(HomeTab.popular)
                     
                     NavigationView {
-                        PopularView()
+                        Color.clear
                     }
                     .tabItem {
                         Image(systemName: "heart.fill")
                         Text("Favorites")
                     }
+                    .tag(HomeTab.favorites)
                     
                     NavigationView {
-                        PopularView()
+                        Color.clear
                     }
                     .tabItem {
                         Image(systemName: "clock")
                         Text("Latest")
                     }
+                    .tag(HomeTab.latest)
                     
                     NavigationView {
                         LoginView(viewModel: LoginViewModel(userState: userState))
@@ -52,11 +60,23 @@ struct HypeLoveApp: App {
                         Image(systemName: "gear")
                         Text("Settings")
                     }
+                    .tag(HomeTab.settings)
+                    
                 }
             }
             .environmentObject(userState)
             .environmentObject(playingState)
             .accentColor(.buttonMain)
+            .onAppear {
+                suscribeToTabChanges()
+            }
         }
+    }
+    
+    func suscribeToTabChanges() {
+        userState.$selectedTab
+            .receive(on: RunLoop.main)
+            .assign(to: \.selectedTab, on: self)
+            .store(in: &userState.cancellables)
     }
 }

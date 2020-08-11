@@ -14,9 +14,11 @@ final class UserState: ObservableObject {
     @AppStorage("userName") private var savedUserName: String = ""
     @Published var validToken = false
     @Published var userName: String = ""
+    @Published var selectedTab = HomeTab.popular
     
     private var loginTokenCancellable: AnyCancellable?
     private var userNameCancellable: AnyCancellable?
+    var cancellables: Set<AnyCancellable> = []
     
     init() {
         

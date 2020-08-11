@@ -16,6 +16,8 @@ struct PopularView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView {
+                
+                //Tracks view
                 LazyVGrid(columns: [GridItem(.flexible())]) {
                     ForEach(viewModel.tracks) { track in
                         TrackView(track: .constant(track), showPlayingBackground: true)
@@ -29,6 +31,8 @@ struct PopularView: View {
                             }
                     }
                 }
+                
+                //Placeholder tracks
                 if viewModel.tracksCancellable != nil {
                     LazyVGrid(columns: [GridItem(.flexible())]) {
                         ForEach(viewModel.placeholderTracks) { track in
@@ -37,7 +41,15 @@ struct PopularView: View {
                     }
                     .redacted(reason: .placeholder)
                 }
-                Spacer() // Space for allowing seeing last trask: NowPlaying 50 + 10
+                
+                //Error button
+                ErrorButton(error: viewModel.error, actionDescription: ", tap to retry.") {
+                    viewModel.resetError()
+                    viewModel.requestTracks()
+                }
+                
+                // Space for allowing seeing last trask: NowPlaying 50 + 10
+                Spacer()
                     .frame(height: 60)
             }
             .onAppear {
@@ -45,6 +57,8 @@ struct PopularView: View {
                     viewModel.requestTracks()
                 }
             }
+            
+            //Now Playing on top of ZStack
             if playingState.currentTrack != nil {
                 NowPlayingView()
                     .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .top)))

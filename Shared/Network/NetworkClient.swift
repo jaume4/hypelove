@@ -108,7 +108,7 @@ final class NetworkClient {
                 return try request.transformResponse(data: data, response: response)
             }
             .mapError { error -> NetworkError<T.CustomError> in
-                (error as? NetworkError<T.CustomError>) ?? NetworkError<T.CustomError>.unknown
+                (error as? NetworkError<T.CustomError>) ?? NetworkError<T.CustomError>.noConnection
             }
             .tryCatch{ (error) throws -> AnyPublisher<T.Response, NetworkError<T.CustomError>> in
                 guard !retrying, self.shouldRetry(request: request, error: error) else { throw error }
@@ -158,7 +158,14 @@ final class NetworkClient {
                             } receiveValue: { response in
                                 promise(.success(response))
                             }.store(in: &self.currentCancellables)
-                    case .failure(_): promise(.failure(NetworkError<T.CustomError>.notAuthorized))
+                    case .failure(let error):
+                        //Custom error are wrong user name or password, convert to not authorized, else convert normally
+                        if case .custom(_) = error {
+                            promise(.failure(NetworkError<T.CustomError>.notAuthorized))
+                        } else {
+                            let convertedError = NetworkError<T.CustomError>.convert(from: error)
+                            promise(.failure(convertedError))
+                        }
                     }
                 } receiveValue: { (response) in
                     //Succeeded refresh

@@ -26,7 +26,8 @@ struct HomeView: View {
                     Button("Favorites") {
                         print("tap recent")
                     }
-                }.padding()
+                }
+                .padding()
                 .buttonStyle(HypeButton())
                 HStack {
                     Text("Playing now")
@@ -36,7 +37,8 @@ struct HomeView: View {
                     Spacer()
                 }
                 PopularView()
-            }.navigationTitle("Home")
+            }
+            .navigationTitle("Home")
             .navigationBarItems(trailing:
                                     HStack(spacing: 25) {
                                         Button(action: {}, label: {

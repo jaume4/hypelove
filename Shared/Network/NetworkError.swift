@@ -32,6 +32,18 @@ enum NetworkError<CustomError: RawRepresentable>: Error, Equatable where CustomE
         default: return false
         }
     }
+    
+    static func convert<FromCustomError: RawRepresentable>(from: NetworkError<FromCustomError>) -> Self {
+        switch from {
+        case .noConnection: return .noConnection
+        case .serverError: return .serverError
+        case .notAuthorized: return .notAuthorized
+        case .notFound: return .notFound
+        case .encoding(let error): return .encoding(error)
+        case .decoding(let error): return .decoding(error)
+        case .unknown, .custom(_): return .unknown
+        }
+    }
 }
 
 enum NoCustomError: String {
