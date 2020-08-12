@@ -34,17 +34,12 @@ struct KeychainService {
         }
     }
     
-    static func deleteData() {
+    static func deleteData(userName: String) {
         do {
-            try KeychainPasswordItem.passwordItems(forService: serviceName, accessGroup: serviceGroup).forEach {
-                do {
-                    try $0.deleteItem()
-                } catch {
-                    print("Error deleting item for \($0.account): \(error)")
-                }
-            }
+            let passwordItem = KeychainPasswordItem(service: serviceName, account: userName, accessGroup: serviceGroup)
+            try passwordItem.deleteItem()
         } catch {
-            print("Error accesing pasword items: \(error)")
+            print("Error deleting item for \(userName): \(error)")
         }
     }
 }

@@ -28,7 +28,7 @@ struct HypeButton: ButtonStyle {
         configuration.label
             .font(Font.body.bold())
             .frame(maxWidth: .infinity)
-            .foregroundColor(Color(.fill).opacity(configuration.isPressed ? 0.7 : 1.0))
+            .foregroundColor(Color.white.opacity(configuration.isPressed ? 0.7 : 1.0))
             .padding(8)
             .background(
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
@@ -54,13 +54,15 @@ struct HypeSecondaryButton: ButtonStyle {
             .frame(maxWidth: expand ? .infinity : nil)
             .font(Font.body.bold())
             .foregroundColor(fillColor(isPressed: configuration.isPressed, enabled: enabled))
-            .padding(8)
+            .padding([.leading, .trailing], expand ? 16 : 0)
+            .padding([.top, .bottom], 8)
     }
 }
 
 
 struct HypeButtons_Previews: PreviewProvider {
     static var previews: some View {
+        
         VStack {
             Button("Primary", action: {})
                 .buttonStyle(HypeButton())
@@ -71,6 +73,22 @@ struct HypeButtons_Previews: PreviewProvider {
                 .buttonStyle(HypeButton(enabled: false))
             Button("Secondary dis", action: {})
                 .buttonStyle((HypeSecondaryButton(enabled: false)))
-        }.padding()
+        }
+        .padding()
+        
+        VStack {
+            Button("Primary", action: {})
+                .buttonStyle(HypeButton())
+            Button("Secondary", action: {})
+                .buttonStyle((HypeSecondaryButton()))
+            Spacer().frame(height: 30)
+            Button("Primary dis", action: {})
+                .buttonStyle(HypeButton(enabled: false))
+            Button("Secondary dis", action: {})
+                .buttonStyle((HypeSecondaryButton(enabled: false)))
+        }
+        .padding()
+        .preferredColorScheme(.dark)
+        
     }
 }

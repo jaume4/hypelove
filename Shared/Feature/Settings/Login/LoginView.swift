@@ -25,7 +25,7 @@ struct LoginViewError: View {
             default: EmptyView()
             }
         }
-        .font(.callout)
+        .font(Font.callout.bold())
     }
 }
 
@@ -33,6 +33,7 @@ struct LoginView: View {
     
     @StateObject var viewModel: LoginViewModel
     @EnvironmentObject var userState: UserState
+    @Environment(\.presentationMode) var presentationMode
     @Namespace var loginNameSpace
     let loginButtonID = "loginButton"
     var loginDisabled: Bool {
@@ -41,7 +42,7 @@ struct LoginView: View {
     
     var body: some View {
         ZStack {
-            Color.background.edgesIgnoringSafeArea(.all)
+            Color.clear.edgesIgnoringSafeArea(.all)
                 .modifier(OnTapDismissKeyboard())
             VStack(spacing: 20) {
                 TextField("Username", text: $userState.userName)
@@ -52,18 +53,29 @@ struct LoginView: View {
                     .textContentType(.password)
                     .modifier(HypeTextfield())
                 Button("Login", action: viewModel.doLogin)
-                .disabled(loginDisabled)
-                .buttonStyle(HypeButton(enabled: !loginDisabled))
-                    
-                Button("Not now", action: {print("skip")})
-                    .buttonStyle(HypeSecondaryButton())
+                    .disabled(loginDisabled)
+                    .buttonStyle(HypeButton(enabled: !loginDisabled))
             }
             .padding()
             .matchedGeometryEffect(id: loginButtonID, in: loginNameSpace, properties: [.position], anchor: .bottom)
             LoginViewError(error: viewModel.loginError)
                 .matchedGeometryEffect(id: loginButtonID, in: loginNameSpace, properties: [.position], anchor: .top, isSource: false)
             
-        }.navigationTitle("Welcome")
+        }
+        .onChange(of: userState.validToken, perform: { loggedIn in
+            if loggedIn {
+                presentationMode.wrappedValue.dismiss()
+            }
+        })
+        .navigationTitle("Welcome")
+        .navigationBarItems(trailing:
+                                Button(action: {
+                                    presentationMode.wrappedValue.dismiss()
+                                }, label: {
+                                    Image(systemName: "xmark")
+                                })
+                                .accentColor(.buttonMain)
+        )
     }
 }
 
@@ -79,5 +91,16 @@ struct LoginView_Previews: PreviewProvider {
                     viewModel.loginError = NetworkError<LoginError>.custom(.wrongUsername)
                 }
         }
+        .accentColor(.buttonMain)
+        
+        NavigationView {
+            LoginView(viewModel: viewModel)
+                .environmentObject(userState)
+                .onAppear {
+                    viewModel.loginError = NetworkError<LoginError>.custom(.wrongUsername)
+                }
+        }
+        .accentColor(.buttonMain)
+        .preferredColorScheme(.dark)
     }
 }

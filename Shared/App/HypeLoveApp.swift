@@ -70,9 +70,11 @@ struct HypeLoveApp: App {
             .environmentObject(popularDataStore)
             .accentColor(.buttonMain)
             .sheet(isPresented: $userState.presentingSettings) {
-                LoginView(viewModel: LoginViewModel(userState: userState))
-                    .environmentObject(userState)
-                    .environmentObject(playingState)
+                NavigationView {
+                    SettingsView(viewModel: SettingsViewModel(userState: userState))    
+                }
+                .environmentObject(userState)
+                .environmentObject(playingState)
             }
         }
     }
