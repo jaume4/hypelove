@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum TrackListMode: String, Hashable {
+enum PopularMode: String, Hashable {
     case now = ""
     case lastWeek = "lastweek"
     case noRemix = "noRemix"
@@ -15,7 +15,7 @@ enum TrackListMode: String, Hashable {
     
     var title: String {
         switch self {
-        case .now: return "Popular"
+        case .now: return "Popular now"
         case .lastWeek: return "Popular last week"
         case .noRemix: return "No remix"
         case .remix: return "Remix"
@@ -32,7 +32,7 @@ struct TrackListRequest: ApiRequest {
     let urlParams: [String: String]
     let authNeeded = false
     
-    init(page: Int, mode: TrackListMode) {
+    init(page: Int, mode: PopularMode) {
         var params: [String: String] = ["page": "\(page)"]
         if !mode.rawValue.isEmpty {
             params["mode"] = mode.rawValue

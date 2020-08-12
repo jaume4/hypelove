@@ -15,6 +15,7 @@ final class UserState: ObservableObject {
     @Published var validToken = false
     @Published var userName: String = ""
     @Published var selectedTab = HomeTab.home
+    @Published var popularMode = PopularMode.now
     @Published var presentingSettings = false
     
     private var cancellables: Set<AnyCancellable> = []

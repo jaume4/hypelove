@@ -17,7 +17,7 @@ struct HomeView: View {
             LazyVStack {
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Popular now")
+                        Text(PopularMode.now.title)
                             .frame(alignment: .leading)
                             .padding()
                         Spacer(minLength: 0)
@@ -27,20 +27,27 @@ struct HomeView: View {
                     .font(Font.title2.bold())
                 }
                 .modifier(MakeButton {
-                    print("Popular now")
+                    userState.popularMode = .now
+                    userState.selectedTab = .popular
                 })
-                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .now)))
+                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .now), userState: userState))
                 
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Popular last week")
-                            .font(Font.title2.bold())
+                        Text(PopularMode.lastWeek.title)
                             .frame(alignment: .leading)
                             .padding()
                         Spacer(minLength: 0)
+                        Image(systemName: "chevron.right")
+                            .padding()
                     }
+                    .font(Font.title2.bold())
                 }
-                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .lastWeek)))
+                .modifier(MakeButton {
+                    userState.popularMode = .lastWeek
+                    userState.selectedTab = .popular
+                })
+                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .lastWeek), userState: userState))
                 
                 VStack(alignment: .leading) {
                     HStack {
@@ -51,7 +58,8 @@ struct HomeView: View {
                         Spacer(minLength: 0)
                     }
                 }
-                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .remix)))
+                
+                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .remix), userState: userState))
                 
                 VStack(spacing: 15) {
                     Button("New") {

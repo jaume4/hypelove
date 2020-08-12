@@ -14,18 +14,17 @@ struct PopularView: View {
     @EnvironmentObject var playingState: PlayingState
     @EnvironmentObject var dataStore: TracksDataStore
     @ObservedObject var viewModel: TrackViewerModel
-    @State var mode: TrackListMode = .now
     
     var body: some View {
         ZStack(alignment: .bottom) {
             
             ScrollView {
                 
-                Picker("", selection: $mode) {
-                    Text("Now").tag(TrackListMode.now)
-                    Text("Last week").tag(TrackListMode.lastWeek)
-                    Text("Remixes").tag(TrackListMode.remix)
-                    Text("No remixes").tag(TrackListMode.noRemix)
+                Picker("", selection: Binding(get: {userState.popularMode}, set: {userState.popularMode = $0})) {
+                    Text("Now").tag(PopularMode.now)
+                    Text("Last week").tag(PopularMode.lastWeek)
+                    Text("Remixes").tag(PopularMode.remix)
+                    Text("No remixes").tag(PopularMode.noRemix)
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
@@ -79,10 +78,10 @@ struct PopularView: View {
                 viewModel.store.requestTracks()
             }
         }
-        .onChange(of: mode) {
+        .onChange(of: viewModel.mode) {
             viewModel.replace(store: dataStore.store(for: $0))
         }
-        .navigationTitle("Popular")
+        .navigationTitle(viewModel.mode.title)
         .navigationBarItems(trailing:
                                 HStack(spacing: 25) {
                                     Button(action: {}, label: {
@@ -100,19 +99,20 @@ struct PopularView: View {
 #if DEBUG
 struct PopularView_Previews: PreviewProvider {
     
+    static let userState = UserState()
     static let store = TracksDataStore()
     
     static var previews: some View {
         NavigationView {
-            PopularView(viewModel: TrackViewerModel(store: store.store(for: .now)))
+            PopularView(viewModel: TrackViewerModel(store: store.store(for: .now), userState: userState))
         }
         .accentColor(.buttonMain)
-        .environmentObject(UserState())
+        .environmentObject(userState)
         .environmentObject(PlayingState.songPlaying)
         .environmentObject(TracksDataStore())
         
         NavigationView {
-            PopularView(viewModel: TrackViewerModel(store: store.store(for: .now)))
+            PopularView(viewModel: TrackViewerModel(store: store.store(for: .now), userState: userState))
         }
         .redacted(reason: .placeholder)
         .accentColor(.buttonMain)

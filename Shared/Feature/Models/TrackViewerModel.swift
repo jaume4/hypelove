@@ -13,16 +13,18 @@ final class TrackViewerModel: ObservableObject {
     @Published var placholder: Bool = true
     @Published var loading: Bool = false
     @Published var error: NetworkError<TrackListRequest.CustomError>? = nil
+    @Published var mode: PopularMode = .now
     
     var store: TracksDownloader
     
-    init(store: TracksDownloader) {
+    init(store: TracksDownloader, userState: UserState) {
         self.store = store
 
         store.$tracks.assign(to: &$tracks)
         store.$placeholderTracks.assign(to: &$placholder)
         store.$error.assign(to: &$error)
         store.$tracksCancellable.map{ $0 != nil }.assign(to: &$loading)
+        userState.$popularMode.assign(to: &$mode)
     }
     
     func replace(store: TracksDownloader) {

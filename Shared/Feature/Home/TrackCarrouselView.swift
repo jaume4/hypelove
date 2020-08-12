@@ -27,13 +27,15 @@ struct TrackCarrouselView: View {
 struct TrackCarrouselView_Previews: PreviewProvider {
     
     static let store = TracksDataStore()
+    static let userState = UserState()
     
     static var previews: some View {
         VStack {
-            TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .now)))
-            TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .now)))
+            TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .now), userState: userState))
+            TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .now), userState: userState))
                 .redacted(reason: .placeholder)
         }
-        .environmentObject(TracksDataStore())
+        .environmentObject(store)
+        .environmentObject(userState)
     }
 }
