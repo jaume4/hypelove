@@ -54,7 +54,7 @@ struct LoginView: View {
                     .modifier(HypeTextfield())
                 Button("Login", action: viewModel.doLogin)
                     .disabled(loginDisabled)
-                    .buttonStyle(HypeButton(enabled: !loginDisabled))
+                    .buttonStyle(HypeButton(enabled: !loginDisabled, loading: viewModel.loginCancellable != nil))
             }
             .padding()
             .matchedGeometryEffect(id: loginButtonID, in: loginNameSpace, properties: [.position], anchor: .bottom)

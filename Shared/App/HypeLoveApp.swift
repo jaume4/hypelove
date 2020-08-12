@@ -71,7 +71,7 @@ struct HypeLoveApp: App {
             .accentColor(.buttonMain)
             .sheet(isPresented: $userState.presentingSettings) {
                 NavigationView {
-                    SettingsView(viewModel: SettingsViewModel(userState: userState))    
+                    SettingsView(viewModel: SettingsViewModel(userState: userState))
                 }
                 .environmentObject(userState)
                 .environmentObject(playingState)
