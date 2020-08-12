@@ -99,7 +99,7 @@ struct TrackDetails: Identifiable, Equatable, Hashable {
         self.title = title
         self.artist = artist
         self.duration = duration
-        self.lovedCount = Int.random(in: 0...Int.max)
+        self.lovedCount = Int.random(in: 0...100)
         self.lovedDate = nil
         self.imageURL = URL(string: "https://via.placeholder.com/300x300.jpg/0000ff/ffffff?text=\(title.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)")!
     }

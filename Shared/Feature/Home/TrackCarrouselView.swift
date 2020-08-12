@@ -7,57 +7,29 @@
 
 import SwiftUI
 
+final class TrackCarrouselViewModel: ObservableObject {
+    @Published var tracks: [TrackDetails] = []
+    @Published var placholder: Bool = true
+}
+
 struct TrackCarrouselView: View {
     
-    @Environment(\.redactionReasons) var redactionReasons
+    @StateObject var viewModel = TrackCarrouselViewModel()
+    @EnvironmentObject var dataStore: TracksDataStore
+    let mode: TrackListMode?
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHGrid(rows: [GridItem(.flexible())]) {
-                ForEach(0..<11) { index in
-                    VStack {
-                        ZStack(alignment: .bottom) {
-                            
-                            //Album image
-                            Image("sample\(index)")
-                                .resizable()
-                                .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
-                                .frame(width: UIScreen.main.bounds.width / 2)
-                                .cornerRadius(5)
-                            
-                            //Likes
-                            HStack {
-                                Text("\(index * index)")
-                                Image(systemName: "heart.fill")
-                                    .unredacted()
-                            }
-                            .foregroundColor(.white)
-                            .font(Font.largeTitle.weight(.heavy))
-                            .shadow(color: .black, radius: redactionReasons.isEmpty ? 2 : 0)
-                            .padding()
-                        }
-                        
-                        //Title + artist
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(TrackDetails.placeholderTracks[index].title)
-                                    .fontWeight(.bold)
-                                Text(TrackDetails.placeholderTracks[index].artist)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.gray)
-                            }
-                            Spacer(minLength: 0)
-                        }
-                        .frame(width: UIScreen.main.bounds.width / 2)
-                        
-                        Spacer()
-                    }
-                    .padding([.leading, .trailing], 15)
-                    .modifier(MakeButton {
-                        print("hola")
-                    })
+                ForEach(viewModel.tracks.prefix(10)) { track in
+                    TrackCarrouselElementView(track: track)
+                        .redacted(reason: viewModel.placholder ? .placeholder : [])
                 }
             }
+        }
+        .onAppear {
+            dataStore.store(for: mode).$tracks.assign(to: &viewModel.$tracks)
+            dataStore.store(for: mode).$placeholderTracks.assign(to: &viewModel.$placholder)
         }
     }
 }
@@ -65,9 +37,10 @@ struct TrackCarrouselView: View {
 struct TrackCarrouselView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            TrackCarrouselView()
-            TrackCarrouselView()
+            TrackCarrouselView(mode: nil)
+            TrackCarrouselView(mode: nil)
                 .redacted(reason: .placeholder)
         }
+        .environmentObject(TracksDataStore())
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 enum TrackListMode: String {
-    case all, fresh, noremix, remix
+    case lastweek, fresh, noremix, remix
 }
 
 struct TrackListRequest: ApiRequest {

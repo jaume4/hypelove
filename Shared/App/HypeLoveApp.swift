@@ -15,6 +15,7 @@ enum HomeTab: Hashable {
 struct HypeLoveApp: App {
     @StateObject private var userState = UserState()
     @StateObject private var playingState = PlayingState()
+    @StateObject private var popularDataStore = TracksDataStore()
     
     init() {
         UITabBar.setBlurAppareance()
@@ -65,6 +66,7 @@ struct HypeLoveApp: App {
             }
             .environmentObject(userState)
             .environmentObject(playingState)
+            .environmentObject(popularDataStore)
             .accentColor(.buttonMain)
             .sheet(isPresented: $userState.presentingSettings) {
                 LoginView(viewModel: LoginViewModel(userState: userState))

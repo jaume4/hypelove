@@ -42,12 +42,12 @@ final class UserState: ObservableObject {
     private func setupCancellables() {
         NetworkClient.shared.$token
             .map { $0 != nil }
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .assign(to: \.validToken, on: self)
             .store(in: &cancellables)
         
         $userName
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .assign(to: \.savedUserName, on: self)
             .store(in: &cancellables)
     }

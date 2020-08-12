@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 typealias RequestPublisher<T: NetworkRequest> = AnyPublisher<T.Response, NetworkError<T.CustomError>>
 
@@ -19,6 +20,7 @@ final class NetworkClient {
     let host = "192.168.1.2"
     private let version = "v2"
     private let session: URLSession
+    private let downloadSession: URLSession
     
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
@@ -37,10 +39,19 @@ final class NetworkClient {
         configuration.timeoutIntervalForResource = 120
         decoder.dateDecodingStrategy = .secondsSince1970
         encoder.dateEncodingStrategy = .secondsSince1970
+        
+        let downloadConfiguration = URLSessionConfiguration.default
+        downloadConfiguration.urlCache = .shared
+        downloadConfiguration.requestCachePolicy = .returnCacheDataElseLoad
+        downloadConfiguration.timeoutIntervalForRequest = 30
+        downloadConfiguration.timeoutIntervalForResource = 120
+        
         #if !DEBUG
         session = URLSession(configuration: configuration)
+        downloadSession = URLSession(configuration: downloadConfiguration)
         #else
         session = URLSession(configuration: configuration, delegate: SessionDelegate(), delegateQueue: nil)
+        downloadSession = URLSession(configuration: downloadConfiguration, delegate: SessionDelegate(), delegateQueue: nil)
         #endif
     }
 
@@ -65,11 +76,11 @@ final class NetworkClient {
     }
     
     //MARK: - Exposed send request methods
-    func send(_ request: ImageRequest) -> RequestPublisher<ImageRequest> {
+    func download(_ request: ImageRequest) -> AnyPublisher<Image?, Never> {
         var urlRequest = URLRequest(url: request.url)
         urlRequest.httpMethod = request.method.rawValue
         urlRequest.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-        return send(request, urlRequest: urlRequest)
+        return download(urlRequest: urlRequest)
     }
     
     func send<T: ApiRequest>(_ request: T) -> RequestPublisher<T> {
@@ -91,27 +102,26 @@ final class NetworkClient {
             urlRequest.httpBody = try encoder.encode(request.body)
             return send(request, urlRequest: urlRequest)
         } catch {
-            return Fail(outputType: T.Response.self, failure: NetworkError<T.CustomError>.encoding(error)).receive(on: RunLoop.main).eraseToAnyPublisher()
+            return Fail(outputType: T.Response.self, failure: NetworkError<T.CustomError>.encoding(error)).receive(on: DispatchQueue.main).eraseToAnyPublisher()
         }
     }
     
     //MARK: - Request handling and sending
     
-    /// Sends image requests. Does not retry.
-    private func send(_ request: ImageRequest, urlRequest: URLRequest) -> RequestPublisher<ImageRequest> {
-        
-        let requestPublisher = session.dataTaskPublisher(for: urlRequest)
-        
-        return requestPublisher
+    /// Download image requests. Does not retry.
+    private func download(urlRequest: URLRequest) -> AnyPublisher<Image?, Never> {
+        return downloadSession.dataTaskPublisher(for: urlRequest)
+            .share()
             .receive(on: DispatchQueue.global())
             .subscribe(on: DispatchQueue.global())
-            .tryMap { data, response in
-                try NetworkClient.process(data, response, for: request)
+            .replaceError(with: (Data(), URLResponse()))
+            .map { data, _ -> UIImage? in
+                UIImage(data: data)
             }
-            .mapError { error -> NetworkError<ImageRequest.CustomError> in
-                (error as? NetworkError<ImageRequest.CustomError>) ?? NetworkError<ImageRequest.CustomError>.noConnection
+            .map { (image: UIImage?) -> Image? in
+                image.flatMap { Image(uiImage: $0) }
             }
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
     
@@ -138,7 +148,7 @@ final class NetworkClient {
             .mapError{ error in
                 return (error as? NetworkError<T.CustomError>) ?? NetworkError<T.CustomError>.unknown
             }
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
     

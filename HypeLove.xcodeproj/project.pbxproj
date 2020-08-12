@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F00DE2624E301B0008A9843 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F00DE2224E2FFC1008A9843 /* Preview Assets.xcassets */; };
 		1F00DE2824E305DD008A9843 /* TrackCarrouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE2724E305DD008A9843 /* TrackCarrouselView.swift */; };
 		1F00DE2924E305DD008A9843 /* TrackCarrouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE2724E305DD008A9843 /* TrackCarrouselView.swift */; };
 		1F00DE5C24E3361E008A9843 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE5B24E3361E008A9843 /* ImageRequest.swift */; };
 		1F00DE5D24E3361E008A9843 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE5B24E3361E008A9843 /* ImageRequest.swift */; };
+		1F00DE5F24E3DD31008A9843 /* TrackCarrouselElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE5E24E3DD31008A9843 /* TrackCarrouselElementView.swift */; };
+		1F00DE6024E3DD31008A9843 /* TrackCarrouselElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE5E24E3DD31008A9843 /* TrackCarrouselElementView.swift */; };
+		1F00DE6224E3E958008A9843 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE6124E3E958008A9843 /* ImageDownloader.swift */; };
+		1F00DE6324E3E958008A9843 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE6124E3E958008A9843 /* ImageDownloader.swift */; };
+		1F00DE6524E3EC20008A9843 /* TracksDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE6424E3EC20008A9843 /* TracksDownloader.swift */; };
+		1F00DE6624E3EC20008A9843 /* TracksDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE6424E3EC20008A9843 /* TracksDownloader.swift */; };
+		1F00DE6824E3EE4E008A9843 /* TracksDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE6724E3EE4E008A9843 /* TracksDataStore.swift */; };
+		1F00DE6924E3EE4E008A9843 /* TracksDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE6724E3EE4E008A9843 /* TracksDataStore.swift */; };
 		1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F069A8424E04B270055BC3F /* Playingindicator.swift */; };
 		1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F069A8424E04B270055BC3F /* Playingindicator.swift */; };
 		1F083D5D24E150F10033DA27 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D5C24E150F10033DA27 /* NowPlayingView.swift */; };
@@ -75,9 +82,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1F00DE2224E2FFC1008A9843 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1F00DE2724E305DD008A9843 /* TrackCarrouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCarrouselView.swift; sourceTree = "<group>"; };
 		1F00DE5B24E3361E008A9843 /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
+		1F00DE5E24E3DD31008A9843 /* TrackCarrouselElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCarrouselElementView.swift; sourceTree = "<group>"; };
+		1F00DE6124E3E958008A9843 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		1F00DE6424E3EC20008A9843 /* TracksDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksDownloader.swift; sourceTree = "<group>"; };
+		1F00DE6724E3EE4E008A9843 /* TracksDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksDataStore.swift; sourceTree = "<group>"; };
 		1F069A8424E04B270055BC3F /* Playingindicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playingindicator.swift; sourceTree = "<group>"; };
 		1F083D5C24E150F10033DA27 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		1F083D5F24E1517E0033DA27 /* PlayingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
@@ -134,14 +144,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F00DE2124E2FFB1008A9843 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				1F00DE2224E2FFC1008A9843 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		1F069A8324E04B1A0055BC3F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +159,9 @@
 		1F083D6224E1530A0033DA27 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1F00DE6124E3E958008A9843 /* ImageDownloader.swift */,
+				1F00DE6424E3EC20008A9843 /* TracksDownloader.swift */,
+				1F00DE6724E3EE4E008A9843 /* TracksDataStore.swift */,
 				1F083D6324E153250033DA27 /* TrackDetails.swift */,
 			);
 			path = Models;
@@ -182,7 +187,6 @@
 				1F49747E24DC1F540085F599 /* Feature */,
 				1F49747524DC1F350085F599 /* Network */,
 				1F49744E24DC1EC10085F599 /* Assets.xcassets */,
-				1F00DE2124E2FFB1008A9843 /* Preview Content */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -335,6 +339,7 @@
 			children = (
 				1FEFE57A24DFE426002DEEB8 /* HomeView.swift */,
 				1F00DE2724E305DD008A9843 /* TrackCarrouselView.swift */,
+				1F00DE5E24E3DD31008A9843 /* TrackCarrouselElementView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -417,7 +422,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F00DE2624E301B0008A9843 /* Preview Assets.xcassets in Resources */,
 				1F49746324DC1EC10085F599 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,6 +445,7 @@
 				1FEFE54724DEAA1D002DEEB8 /* TrackListRequest.swift in Sources */,
 				1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */,
+				1F00DE5F24E3DD31008A9843 /* TrackCarrouselElementView.swift in Sources */,
 				1F083D5D24E150F10033DA27 /* NowPlayingView.swift in Sources */,
 				1F00DE2824E305DD008A9843 /* TrackCarrouselView.swift in Sources */,
 				1FA51CCC24E1C26F00DECA7A /* MakeButton.swift in Sources */,
@@ -455,6 +460,7 @@
 				1F49747224DC1F1F0085F599 /* KeychainService.swift in Sources */,
 				1F6F73BC24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1F083D6024E1517E0033DA27 /* PlayingState.swift in Sources */,
+				1F00DE6524E3EC20008A9843 /* TracksDownloader.swift in Sources */,
 				1FA1F6DA24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
 				1FA1F6DD24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */,
 				1F49747B24DC1F350085F599 /* LoginRequest.swift in Sources */,
@@ -462,8 +468,10 @@
 				1FEFE57724DFD15C002DEEB8 /* MinuteSecondSFormatter.swift in Sources */,
 				1F49748724DC1F540085F599 /* PopularView.swift in Sources */,
 				1F49748924DC1F540085F599 /* LoginView.swift in Sources */,
+				1F00DE6824E3EE4E008A9843 /* TracksDataStore.swift in Sources */,
 				1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */,
 				1FA51CBF24E1979D00DECA7A /* AppInfo.swift in Sources */,
+				1F00DE6224E3E958008A9843 /* ImageDownloader.swift in Sources */,
 				1F49747924DC1F350085F599 /* NetworkClient.swift in Sources */,
 				1F83325724DC50F00054DD8D /* LoginViewModel.swift in Sources */,
 				1F72300324E2A64D00D3FFA5 /* ErrorButton.swift in Sources */,
@@ -479,6 +487,7 @@
 				1FEFE54824DEAA1D002DEEB8 /* TrackListRequest.swift in Sources */,
 				1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */,
+				1F00DE6024E3DD31008A9843 /* TrackCarrouselElementView.swift in Sources */,
 				1F083D5E24E150F10033DA27 /* NowPlayingView.swift in Sources */,
 				1F00DE2924E305DD008A9843 /* TrackCarrouselView.swift in Sources */,
 				1FA51CCD24E1C26F00DECA7A /* MakeButton.swift in Sources */,
@@ -493,6 +502,7 @@
 				1F49747424DC1F260085F599 /* KeychainService.swift in Sources */,
 				1F6F73BD24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1F083D6124E1517E0033DA27 /* PlayingState.swift in Sources */,
+				1F00DE6624E3EC20008A9843 /* TracksDownloader.swift in Sources */,
 				1FA1F6DB24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
 				1FA1F6DE24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */,
 				1F49747C24DC1F350085F599 /* LoginRequest.swift in Sources */,
@@ -500,8 +510,10 @@
 				1F49748824DC1F540085F599 /* PopularView.swift in Sources */,
 				1F49748A24DC1F540085F599 /* LoginView.swift in Sources */,
 				1FEFE54224DE9DD6002DEEB8 /* NetworkError.swift in Sources */,
+				1F00DE6924E3EE4E008A9843 /* TracksDataStore.swift in Sources */,
 				1FA51CC624E1A8D400DECA7A /* VisualEffectBlur-Mac.swift in Sources */,
 				1FA51CC024E1979D00DECA7A /* AppInfo.swift in Sources */,
+				1F00DE6324E3E958008A9843 /* ImageDownloader.swift in Sources */,
 				1F49747A24DC1F350085F599 /* NetworkClient.swift in Sources */,
 				1F83325824DC50F00054DD8D /* LoginViewModel.swift in Sources */,
 				1F72300424E2A64D00D3FFA5 /* ErrorButton.swift in Sources */,
@@ -629,7 +641,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "Shared/Preview\\ Content/Preview\\ Assets.xcassets";
 				DEVELOPMENT_TEAM = HQV3E5C7S2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -652,7 +663,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "Shared/Preview\\ Content/Preview\\ Assets.xcassets";
 				DEVELOPMENT_TEAM = HQV3E5C7S2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
