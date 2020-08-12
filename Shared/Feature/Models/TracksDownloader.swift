@@ -16,9 +16,9 @@ final class TracksDownloader: ObservableObject {
     @Published private(set) var placeholderTracks = true
     
     private var currentPage = 0
-    let trackListMode: TrackListMode?
+    let trackListMode: TrackListMode
     
-    init(trackListMode: TrackListMode?) {
+    init(trackListMode: TrackListMode) {
         self.trackListMode = trackListMode
         requestTracks()
     }

@@ -29,7 +29,7 @@ struct HomeView: View {
                 .modifier(MakeButton {
                     print("Popular now")
                 })
-                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: nil)))
+                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .now)))
                 
                 VStack(alignment: .leading) {
                     HStack {
@@ -40,7 +40,7 @@ struct HomeView: View {
                         Spacer(minLength: 0)
                     }
                 }
-                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .lastweek)))
+                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .lastWeek)))
                 
                 VStack(alignment: .leading) {
                     HStack {
@@ -51,7 +51,7 @@ struct HomeView: View {
                         Spacer(minLength: 0)
                     }
                 }
-                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .fresh)))
+                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .remix)))
                 
                 VStack(spacing: 15) {
                     Button("New") {

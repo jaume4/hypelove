@@ -7,16 +7,28 @@
 //
 
 import SwiftUI
+import Combine
 
 struct PopularView: View {
     @EnvironmentObject var userState: UserState
     @EnvironmentObject var playingState: PlayingState
     @EnvironmentObject var dataStore: TracksDataStore
     @ObservedObject var viewModel: TrackViewerModel
+    @State var mode: TrackListMode = .now
     
     var body: some View {
         ZStack(alignment: .bottom) {
+            
             ScrollView {
+                
+                Picker("", selection: $mode) {
+                    Text("Now").tag(TrackListMode.now)
+                    Text("Last week").tag(TrackListMode.lastWeek)
+                    Text("Remixes").tag(TrackListMode.remix)
+                    Text("No remixes").tag(TrackListMode.noRemix)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
                 
                 //Tracks view
                 LazyVGrid(columns: [GridItem(.flexible())]) {
@@ -54,11 +66,6 @@ struct PopularView: View {
                 Spacer()
                     .frame(height: 60)
             }
-            .onAppear {
-                if viewModel.tracks.isEmpty {
-                    viewModel.store.requestTracks()
-                }
-            }
             
             //Now Playing on top of ZStack
             if playingState.currentTrack != nil {
@@ -66,6 +73,14 @@ struct PopularView: View {
                     .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .top)))
                     .animation(.easeInOut(duration: 0.2))
             }
+        }
+        .onAppear {
+            if viewModel.tracks.isEmpty {
+                viewModel.store.requestTracks()
+            }
+        }
+        .onChange(of: mode) {
+            viewModel.replace(store: dataStore.store(for: $0))
         }
         .navigationTitle("Popular")
         .navigationBarItems(trailing:
@@ -84,14 +99,26 @@ struct PopularView: View {
 
 #if DEBUG
 struct PopularView_Previews: PreviewProvider {
+    
     static let store = TracksDataStore()
     
     static var previews: some View {
         NavigationView {
-            PopularView(viewModel: TrackViewerModel(store: store.store(for: nil)))
+            PopularView(viewModel: TrackViewerModel(store: store.store(for: .now)))
         }
+        .accentColor(.buttonMain)
         .environmentObject(UserState())
         .environmentObject(PlayingState.songPlaying)
+        .environmentObject(TracksDataStore())
+        
+        NavigationView {
+            PopularView(viewModel: TrackViewerModel(store: store.store(for: .now)))
+        }
+        .redacted(reason: .placeholder)
+        .accentColor(.buttonMain)
+        .environmentObject(UserState())
+        .environmentObject(PlayingState.songPlaying)
+        .environmentObject(TracksDataStore())
     }
 }
 #endif

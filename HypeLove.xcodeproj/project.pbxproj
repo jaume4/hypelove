@@ -81,6 +81,8 @@
 		1FEFE57824DFD15C002DEEB8 /* MinuteSecondSFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */; };
 		1FEFE57B24DFE426002DEEB8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57A24DFE426002DEEB8 /* HomeView.swift */; };
 		1FEFE57C24DFE426002DEEB8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57A24DFE426002DEEB8 /* HomeView.swift */; };
+		1FFFE14424E4545C00A914A7 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE14324E4545C00A914A7 /* UISegmentedControl.swift */; };
+		1FFFE14524E4545C00A914A7 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE14324E4545C00A914A7 /* UISegmentedControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +129,7 @@
 		1FEFE57224DF1B06002DEEB8 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 		1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinuteSecondSFormatter.swift; sourceTree = "<group>"; };
 		1FEFE57A24DFE426002DEEB8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1FFFE14324E4545C00A914A7 /* UISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +336,7 @@
 				1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */,
 				1FA51CBE24E1979D00DECA7A /* AppInfo.swift */,
 				1FA51CC824E1B8F500DECA7A /* UITabBarAppareance.swift */,
+				1FFFE14324E4545C00A914A7 /* UISegmentedControl.swift */,
 				1F70B9E424E432A600B67223 /* BigNumberFormatter.swift */,
 			);
 			path = Utils;
@@ -460,6 +464,7 @@
 				1FA51CC924E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */,
 				1F083D6424E153250033DA27 /* TrackDetails.swift in Sources */,
 				1F49747124DC1F1F0085F599 /* Keychain.swift in Sources */,
+				1FFFE14424E4545C00A914A7 /* UISegmentedControl.swift in Sources */,
 				1FEFE57324DF1B06002DEEB8 /* TrackView.swift in Sources */,
 				1F49747224DC1F1F0085F599 /* KeychainService.swift in Sources */,
 				1F6F73BC24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
@@ -503,6 +508,7 @@
 				1FA51CCA24E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */,
 				1F083D6524E153250033DA27 /* TrackDetails.swift in Sources */,
 				1F49747324DC1F230085F599 /* Keychain.swift in Sources */,
+				1FFFE14524E4545C00A914A7 /* UISegmentedControl.swift in Sources */,
 				1FEFE57424DF1B06002DEEB8 /* TrackView.swift in Sources */,
 				1F49747424DC1F260085F599 /* KeychainService.swift in Sources */,
 				1F6F73BD24DFEF0A00A9186A /* HypeButtons.swift in Sources */,

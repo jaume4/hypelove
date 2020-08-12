@@ -39,6 +39,7 @@ struct HypeButton: ButtonStyle {
 
 struct HypeSecondaryButton: ButtonStyle {
     var enabled: Bool = true
+    var expand: Bool = true
     
     func fillColor(isPressed: Bool, enabled: Bool) -> Color {
         switch (isPressed, enabled) {
@@ -50,7 +51,7 @@ struct HypeSecondaryButton: ButtonStyle {
     
     func makeBody(configuration: ButtonStyleConfiguration) -> some View {
         configuration.label
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: expand ? .infinity : nil)
             .font(Font.body.bold())
             .foregroundColor(fillColor(isPressed: configuration.isPressed, enabled: enabled))
             .padding(8)

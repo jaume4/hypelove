@@ -30,8 +30,8 @@ struct TrackCarrouselView_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack {
-            TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: nil)))
-            TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: nil)))
+            TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .now)))
+            TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .now)))
                 .redacted(reason: .placeholder)
         }
         .environmentObject(TracksDataStore())

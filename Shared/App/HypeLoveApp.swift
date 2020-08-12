@@ -19,6 +19,7 @@ struct HypeLoveApp: App {
     
     init() {
         UITabBar.setBlurAppareance()
+        UISegmentedControl.setAppareance()
     }
     
     var body: some Scene {
@@ -36,7 +37,7 @@ struct HypeLoveApp: App {
                     .tag(HomeTab.home)
                     
                     NavigationView {
-                        PopularView(viewModel: TrackViewerModel(store: popularDataStore.store(for: nil)))
+                        PopularView(viewModel: TrackViewerModel(store: popularDataStore.store(for: .now)))
                     }
                     .tabItem {
                         Image(systemName: "chart.bar.fill")

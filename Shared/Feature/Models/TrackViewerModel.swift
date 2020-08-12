@@ -14,10 +14,18 @@ final class TrackViewerModel: ObservableObject {
     @Published var loading: Bool = false
     @Published var error: NetworkError<TrackListRequest.CustomError>? = nil
     
-    let store: TracksDownloader
+    var store: TracksDownloader
     
     init(store: TracksDownloader) {
-        
+        self.store = store
+
+        store.$tracks.assign(to: &$tracks)
+        store.$placeholderTracks.assign(to: &$placholder)
+        store.$error.assign(to: &$error)
+        store.$tracksCancellable.map{ $0 != nil }.assign(to: &$loading)
+    }
+    
+    func replace(store: TracksDownloader) {
         self.store = store
         
         store.$tracks.assign(to: &$tracks)

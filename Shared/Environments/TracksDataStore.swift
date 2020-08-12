@@ -10,18 +10,16 @@ import Combine
 
 final class TracksDataStore: ObservableObject {
     
-    lazy var popular = TracksDownloader(trackListMode: nil)
-    lazy var lastWeek = TracksDownloader(trackListMode: .lastweek)
-    lazy var fresh = TracksDownloader(trackListMode: .fresh)
-    lazy var noRemix = TracksDownloader(trackListMode: .noremix)
+    lazy var popular = TracksDownloader(trackListMode: .now)
+    lazy var lastWeek = TracksDownloader(trackListMode: .lastWeek)
+    lazy var noRemix = TracksDownloader(trackListMode: .noRemix)
     lazy var remix = TracksDownloader(trackListMode: .remix)
     
-    func store(for mode: TrackListMode?) -> TracksDownloader {
+    func store(for mode: TrackListMode) -> TracksDownloader {
         switch mode {
-        case nil: return popular
-        case .lastweek: return lastWeek
-        case .fresh: return fresh
-        case .noremix: return noRemix
+        case .now: return popular
+        case .lastWeek: return lastWeek
+        case .noRemix: return noRemix
         case .remix: return remix
         }
     }
