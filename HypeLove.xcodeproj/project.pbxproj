@@ -47,6 +47,8 @@
 		1F49748A24DC1F540085F599 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49748424DC1F540085F599 /* LoginView.swift */; };
 		1F6F73BC24DFEF0A00A9186A /* HypeButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F73BB24DFEF0A00A9186A /* HypeButtons.swift */; };
 		1F6F73BD24DFEF0A00A9186A /* HypeButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F73BB24DFEF0A00A9186A /* HypeButtons.swift */; };
+		1F70B9E524E432A600B67223 /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F70B9E424E432A600B67223 /* BigNumberFormatter.swift */; };
+		1F70B9E624E432A600B67223 /* BigNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F70B9E424E432A600B67223 /* BigNumberFormatter.swift */; };
 		1F72300324E2A64D00D3FFA5 /* ErrorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F72300224E2A64D00D3FFA5 /* ErrorButton.swift */; };
 		1F72300424E2A64D00D3FFA5 /* ErrorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F72300224E2A64D00D3FFA5 /* ErrorButton.swift */; };
 		1F83325424DC246E0054DD8D /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325324DC246E0054DD8D /* UserState.swift */; };
@@ -107,6 +109,7 @@
 		1F49748224DC1F540085F599 /* PopularView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularView.swift; sourceTree = "<group>"; };
 		1F49748424DC1F540085F599 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1F6F73BB24DFEF0A00A9186A /* HypeButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeButtons.swift; sourceTree = "<group>"; };
+		1F70B9E424E432A600B67223 /* BigNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigNumberFormatter.swift; sourceTree = "<group>"; };
 		1F72300224E2A64D00D3FFA5 /* ErrorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorButton.swift; sourceTree = "<group>"; };
 		1F83325324DC246E0054DD8D /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		1F83325624DC50F00054DD8D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -162,7 +165,6 @@
 				1F00DE6124E3E958008A9843 /* ImageDownloader.swift */,
 				1F00DE6A24E3FF3A008A9843 /* TrackViewerModel.swift */,
 				1F00DE6424E3EC20008A9843 /* TracksDownloader.swift */,
-				1F00DE6724E3EE4E008A9843 /* TracksDataStore.swift */,
 				1F083D6324E153250033DA27 /* TrackDetails.swift */,
 			);
 			path = Models;
@@ -290,6 +292,7 @@
 			children = (
 				1F83325324DC246E0054DD8D /* UserState.swift */,
 				1F083D5F24E1517E0033DA27 /* PlayingState.swift */,
+				1F00DE6724E3EE4E008A9843 /* TracksDataStore.swift */,
 			);
 			path = Environments;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */,
 				1FA51CBE24E1979D00DECA7A /* AppInfo.swift */,
 				1FA51CC824E1B8F500DECA7A /* UITabBarAppareance.swift */,
+				1F70B9E424E432A600B67223 /* BigNumberFormatter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -451,6 +455,7 @@
 				1F83325424DC246E0054DD8D /* UserState.swift in Sources */,
 				1F00DE5C24E3361E008A9843 /* ImageRequest.swift in Sources */,
 				1FC2F39124DD6246006C78A8 /* Color.swift in Sources */,
+				1F70B9E524E432A600B67223 /* BigNumberFormatter.swift in Sources */,
 				1F49745F24DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
 				1FA51CC924E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */,
 				1F083D6424E153250033DA27 /* TrackDetails.swift in Sources */,
@@ -493,6 +498,7 @@
 				1F83325524DC246E0054DD8D /* UserState.swift in Sources */,
 				1F00DE5D24E3361E008A9843 /* ImageRequest.swift in Sources */,
 				1FC2F39224DD6246006C78A8 /* Color.swift in Sources */,
+				1F70B9E624E432A600B67223 /* BigNumberFormatter.swift in Sources */,
 				1F49746024DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
 				1FA51CCA24E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */,
 				1F083D6524E153250033DA27 /* TrackDetails.swift in Sources */,

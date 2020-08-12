@@ -28,7 +28,7 @@ struct TrackCarrouselElementView: View {
                 
                 //Likes
                 HStack {
-                    Text("\(track?.lovedCount ?? Int.random(in: 1...100))k")
+                    Text(BigNumberFormatter.format(track?.lovedCount ?? Int.random(in: 10...1000)))
                     Image(systemName: "heart.fill")
                         .unredacted()
                 }
@@ -45,7 +45,7 @@ struct TrackCarrouselElementView: View {
                         .fontWeight(.bold)
                     Text(track?.artist ?? String(repeating: "w", count: Int.random(in: 5...10)))
                         .fontWeight(.bold)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color(.secondaryLabel))
                 }
                 Spacer(minLength: 0)
             }

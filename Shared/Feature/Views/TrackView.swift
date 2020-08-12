@@ -49,7 +49,7 @@ struct TrackView: View {
                         .fontWeight(.bold)
                     Text(track.artist)
                         .fontWeight(.bold)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color(.secondaryLabel))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }

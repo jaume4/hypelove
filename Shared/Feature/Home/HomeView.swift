@@ -90,11 +90,17 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             HomeView()
-        }.environmentObject(UserState())
+        }
+        .accentColor(.buttonMain)
+        .environmentObject(UserState())
+        .environmentObject(TracksDataStore())
         
         NavigationView {
             HomeView()
-        }.environmentObject(UserState())
-        .redacted(reason: .placeholder)
+        }
+        .accentColor(.buttonMain)
+        .preferredColorScheme(.dark)
+        .environmentObject(UserState())
+        .environmentObject(TracksDataStore())
     }
 }

@@ -25,6 +25,7 @@ struct PopularView: View {
                             .modifier(MakeButton {
                                 playingState.play(track: track)
                             })
+                            //If this is the last track, request more tracks
                             .onAppear {
                                 if track == viewModel.tracks.last {
                                     viewModel.store.requestTracks()
