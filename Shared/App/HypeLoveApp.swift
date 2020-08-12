@@ -36,7 +36,7 @@ struct HypeLoveApp: App {
                     .tag(HomeTab.home)
                     
                     NavigationView {
-                        PopularView()
+                        PopularView(viewModel: TrackViewerModel(store: popularDataStore.store(for: nil)))
                     }
                     .tabItem {
                         Image(systemName: "chart.bar.fill")

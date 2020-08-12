@@ -11,7 +11,8 @@ import SwiftUI
 struct PopularView: View {
     @EnvironmentObject var userState: UserState
     @EnvironmentObject var playingState: PlayingState
-    @StateObject var viewModel = PopularViewModel()
+    @EnvironmentObject var dataStore: TracksDataStore
+    @ObservedObject var viewModel: TrackViewerModel
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -26,16 +27,16 @@ struct PopularView: View {
                             })
                             .onAppear {
                                 if track == viewModel.tracks.last {
-                                    viewModel.requestTracks()
+                                    viewModel.store.requestTracks()
                                 }
                             }
                     }
                 }
                 
                 //Placeholder tracks
-                if viewModel.tracksCancellable != nil {
+                if viewModel.loading {
                     LazyVGrid(columns: [GridItem(.flexible())]) {
-                        ForEach(viewModel.placeholderTracks) { track in
+                        ForEach(TrackDetails.placeholderTracks) { track in
                             TrackView(track: .constant(track), showPlayingBackground: false)
                         }
                     }
@@ -44,8 +45,8 @@ struct PopularView: View {
                 
                 //Error button
                 ErrorButton(error: viewModel.error, actionDescription: ", tap to retry.") {
-                    viewModel.resetError()
-                    viewModel.requestTracks()
+                    viewModel.store.resetError()
+                    viewModel.store.requestTracks()
                 }
                 
                 // Space for allowing seeing last trask: NowPlaying 50 + 10
@@ -54,7 +55,7 @@ struct PopularView: View {
             }
             .onAppear {
                 if viewModel.tracks.isEmpty {
-                    viewModel.requestTracks()
+                    viewModel.store.requestTracks()
                 }
             }
             
@@ -82,9 +83,11 @@ struct PopularView: View {
 
 #if DEBUG
 struct PopularView_Previews: PreviewProvider {
+    static let store = TracksDataStore()
+    
     static var previews: some View {
         NavigationView {
-            PopularView(viewModel: PopularViewModel.tracksLoaded)
+            PopularView(viewModel: TrackViewerModel(store: store.store(for: nil)))
         }
         .environmentObject(UserState())
         .environmentObject(PlayingState.songPlaying)

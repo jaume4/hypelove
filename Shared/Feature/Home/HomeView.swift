@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var userState: UserState
+    @EnvironmentObject var store: TracksDataStore
     
     var body: some View {
         
@@ -28,7 +29,7 @@ struct HomeView: View {
                 .modifier(MakeButton {
                     print("Popular now")
                 })
-                TrackCarrouselView(mode: nil)
+                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: nil)))
                 
                 VStack(alignment: .leading) {
                     HStack {
@@ -39,7 +40,7 @@ struct HomeView: View {
                         Spacer(minLength: 0)
                     }
                 }
-                TrackCarrouselView(mode: .lastweek)
+                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .lastweek)))
                 
                 VStack(alignment: .leading) {
                     HStack {
@@ -50,7 +51,7 @@ struct HomeView: View {
                         Spacer(minLength: 0)
                     }
                 }
-                TrackCarrouselView(mode: .remix)
+                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .fresh)))
                 
                 VStack(spacing: 15) {
                     Button("New") {

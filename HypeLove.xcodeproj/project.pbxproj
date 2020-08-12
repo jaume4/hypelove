@@ -19,6 +19,8 @@
 		1F00DE6624E3EC20008A9843 /* TracksDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE6424E3EC20008A9843 /* TracksDownloader.swift */; };
 		1F00DE6824E3EE4E008A9843 /* TracksDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE6724E3EE4E008A9843 /* TracksDataStore.swift */; };
 		1F00DE6924E3EE4E008A9843 /* TracksDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE6724E3EE4E008A9843 /* TracksDataStore.swift */; };
+		1F00DE6B24E3FF3A008A9843 /* TrackViewerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE6A24E3FF3A008A9843 /* TrackViewerModel.swift */; };
+		1F00DE6C24E3FF3A008A9843 /* TrackViewerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F00DE6A24E3FF3A008A9843 /* TrackViewerModel.swift */; };
 		1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F069A8424E04B270055BC3F /* Playingindicator.swift */; };
 		1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F069A8424E04B270055BC3F /* Playingindicator.swift */; };
 		1F083D5D24E150F10033DA27 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D5C24E150F10033DA27 /* NowPlayingView.swift */; };
@@ -71,8 +73,6 @@
 		1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */; };
 		1FEFE54724DEAA1D002DEEB8 /* TrackListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54624DEAA1D002DEEB8 /* TrackListRequest.swift */; };
 		1FEFE54824DEAA1D002DEEB8 /* TrackListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54624DEAA1D002DEEB8 /* TrackListRequest.swift */; };
-		1FEFE54A24DEAC75002DEEB8 /* PopularViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54924DEAC75002DEEB8 /* PopularViewModel.swift */; };
-		1FEFE54B24DEAC75002DEEB8 /* PopularViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54924DEAC75002DEEB8 /* PopularViewModel.swift */; };
 		1FEFE57324DF1B06002DEEB8 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57224DF1B06002DEEB8 /* TrackView.swift */; };
 		1FEFE57424DF1B06002DEEB8 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57224DF1B06002DEEB8 /* TrackView.swift */; };
 		1FEFE57724DFD15C002DEEB8 /* MinuteSecondSFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */; };
@@ -88,6 +88,7 @@
 		1F00DE6124E3E958008A9843 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		1F00DE6424E3EC20008A9843 /* TracksDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksDownloader.swift; sourceTree = "<group>"; };
 		1F00DE6724E3EE4E008A9843 /* TracksDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksDataStore.swift; sourceTree = "<group>"; };
+		1F00DE6A24E3FF3A008A9843 /* TrackViewerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewerModel.swift; sourceTree = "<group>"; };
 		1F069A8424E04B270055BC3F /* Playingindicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playingindicator.swift; sourceTree = "<group>"; };
 		1F083D5C24E150F10033DA27 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		1F083D5F24E1517E0033DA27 /* PlayingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
@@ -120,7 +121,6 @@
 		1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		1FEFE54624DEAA1D002DEEB8 /* TrackListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListRequest.swift; sourceTree = "<group>"; };
-		1FEFE54924DEAC75002DEEB8 /* PopularViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewModel.swift; sourceTree = "<group>"; };
 		1FEFE57224DF1B06002DEEB8 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 		1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinuteSecondSFormatter.swift; sourceTree = "<group>"; };
 		1FEFE57A24DFE426002DEEB8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -160,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				1F00DE6124E3E958008A9843 /* ImageDownloader.swift */,
+				1F00DE6A24E3FF3A008A9843 /* TrackViewerModel.swift */,
 				1F00DE6424E3EC20008A9843 /* TracksDownloader.swift */,
 				1F00DE6724E3EE4E008A9843 /* TracksDataStore.swift */,
 				1F083D6324E153250033DA27 /* TrackDetails.swift */,
@@ -271,7 +272,6 @@
 			isa = PBXGroup;
 			children = (
 				1F49748224DC1F540085F599 /* PopularView.swift */,
-				1FEFE54924DEAC75002DEEB8 /* PopularViewModel.swift */,
 			);
 			path = Popular;
 			sourceTree = "<group>";
@@ -441,7 +441,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FEFE54A24DEAC75002DEEB8 /* PopularViewModel.swift in Sources */,
 				1FEFE54724DEAA1D002DEEB8 /* TrackListRequest.swift in Sources */,
 				1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */,
@@ -460,6 +459,7 @@
 				1F49747224DC1F1F0085F599 /* KeychainService.swift in Sources */,
 				1F6F73BC24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1F083D6024E1517E0033DA27 /* PlayingState.swift in Sources */,
+				1F00DE6B24E3FF3A008A9843 /* TrackViewerModel.swift in Sources */,
 				1F00DE6524E3EC20008A9843 /* TracksDownloader.swift in Sources */,
 				1FA1F6DA24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
 				1FA1F6DD24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */,
@@ -483,7 +483,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FEFE54B24DEAC75002DEEB8 /* PopularViewModel.swift in Sources */,
 				1FEFE54824DEAA1D002DEEB8 /* TrackListRequest.swift in Sources */,
 				1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */,
@@ -502,6 +501,7 @@
 				1F49747424DC1F260085F599 /* KeychainService.swift in Sources */,
 				1F6F73BD24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1F083D6124E1517E0033DA27 /* PlayingState.swift in Sources */,
+				1F00DE6C24E3FF3A008A9843 /* TrackViewerModel.swift in Sources */,
 				1F00DE6624E3EC20008A9843 /* TracksDownloader.swift in Sources */,
 				1FA1F6DB24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
 				1FA1F6DE24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */,

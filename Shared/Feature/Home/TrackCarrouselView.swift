@@ -7,16 +7,10 @@
 
 import SwiftUI
 
-final class TrackCarrouselViewModel: ObservableObject {
-    @Published var tracks: [TrackDetails] = []
-    @Published var placholder: Bool = true
-}
-
 struct TrackCarrouselView: View {
     
-    @StateObject var viewModel = TrackCarrouselViewModel()
+    @ObservedObject var viewModel: TrackViewerModel
     @EnvironmentObject var dataStore: TracksDataStore
-    let mode: TrackListMode?
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -27,18 +21,17 @@ struct TrackCarrouselView: View {
                 }
             }
         }
-        .onAppear {
-            dataStore.store(for: mode).$tracks.assign(to: &viewModel.$tracks)
-            dataStore.store(for: mode).$placeholderTracks.assign(to: &viewModel.$placholder)
-        }
     }
 }
 
 struct TrackCarrouselView_Previews: PreviewProvider {
+    
+    static let store = TracksDataStore()
+    
     static var previews: some View {
         VStack {
-            TrackCarrouselView(mode: nil)
-            TrackCarrouselView(mode: nil)
+            TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: nil)))
+            TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: nil)))
                 .redacted(reason: .placeholder)
         }
         .environmentObject(TracksDataStore())

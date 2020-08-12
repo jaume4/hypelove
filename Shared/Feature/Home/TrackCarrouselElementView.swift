@@ -11,7 +11,7 @@ import Combine
 struct TrackCarrouselElementView: View {
     
     @State var track: TrackDetails?
-    @ObservedObject var imageDownloader = ImageDownloader()
+    @StateObject var imageDownloader = ImageDownloader()
     @Environment(\.redactionReasons) var redactionReasons
     
     var body: some View {
@@ -62,11 +62,11 @@ struct TrackCarrouselElementView: View {
                 imageDownloader.download(url)
             }
         }
-        .onChange(of: track, perform: { value in
+        .onChange(of: track) { value in
             if redactionReasons.isEmpty, imageDownloader.image == nil, let url = value?.imageURL {
                 imageDownloader.download(url)
             }
-        })
+        }
     }
 }
 

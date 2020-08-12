@@ -51,11 +51,11 @@ final class TracksDownloader: ObservableObject {
     }
     
     #if DEBUG
-    static let tracksLoaded: PopularViewModel = {
-        let viewModel = PopularViewModel()
-        viewModel.tracks = TrackDetails.placeholderTracks
-        return viewModel
-    }()
+//    static let tracksLoaded: PopularViewModel = {
+//        let viewModel = PopularViewModel()
+//        viewModel.tracks = TrackDetails.placeholderTracks
+//        return viewModel
+//    }()
     #endif
     
 }
