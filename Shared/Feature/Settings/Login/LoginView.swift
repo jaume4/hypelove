@@ -34,15 +34,8 @@ struct LoginView: View {
     @StateObject var viewModel: LoginViewModel
     @EnvironmentObject var userState: UserState
     @Environment(\.presentationMode) var presentationMode
-    @State var userName = ""
     @Namespace var loginNameSpace
     let loginButtonID = "loginButton"
-    var loginDisabled: Bool {
-        viewModel.password.isEmpty || userState.userName.isEmpty
-    }
-    var loading: Bool {
-        viewModel.loginCancellable != nil
-    }
     
     var body: some View {
         ZStack {
@@ -57,8 +50,8 @@ struct LoginView: View {
                     .textContentType(.password)
                     .modifier(HypeTextfield())
                 Button("Login", action: viewModel.doLogin)
-                    .disabled(loginDisabled)
-                    .buttonStyle(HypeButton(enabled: !loginDisabled, loading: loading))
+                    .disabled(viewModel.password.isEmpty || viewModel.userName.isEmpty)
+                    .buttonStyle(HypeButton(enabled: !(viewModel.password.isEmpty || viewModel.userName.isEmpty), loading: viewModel.loginCancellable != nil))
             }
             .padding()
             .matchedGeometryEffect(id: loginButtonID, in: loginNameSpace, properties: [.position], anchor: .bottom)
