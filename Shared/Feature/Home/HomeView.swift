@@ -15,6 +15,8 @@ struct HomeView: View {
         
         ScrollView {
             LazyVStack {
+                
+                //Popular now title
                 VStack(alignment: .leading) {
                     HStack {
                         Text(PopularMode.now.title)
@@ -30,8 +32,11 @@ struct HomeView: View {
                     store.popularMode = .now
                     userState.selectedTab = .popular
                 })
+                
+                //Popular now carrousel
                 TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .now))
                 
+                //Popular last week title
                 VStack(alignment: .leading) {
                     HStack {
                         Text(PopularMode.lastWeek.title)
@@ -47,8 +52,11 @@ struct HomeView: View {
                     store.popularMode = .lastWeek
                     userState.selectedTab = .popular
                 })
+                
+                //Popular last week carrousel
                 TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .lastWeek))
                 
+                //Feed title
                 VStack(alignment: .leading) {
                     HStack {
                         Text("Feed")
@@ -59,6 +67,7 @@ struct HomeView: View {
                     }
                 }
                 
+                //Feed carrousel
                 TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .remix))
                 
                 VStack(spacing: 15) {

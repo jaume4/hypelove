@@ -34,7 +34,7 @@ struct TrackListView<T: RawRepresentable>: View where T.RawValue == String {
                     }
             }
         }
-        .redacted(reason: loading ? .placeholder : [])
+        .redacted(reason: placeHolderTracks ? .placeholder : [])
         
         //Placeholder for loading tracks, only shown after initial loading on new tracks space
         if !placeHolderTracks, loading {

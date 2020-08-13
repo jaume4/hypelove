@@ -16,8 +16,9 @@ final class NetworkClient {
     
     static let shared = NetworkClient()
     
-//    let host = "api.hypem.com"
-    let host = "192.168.1.2"
+    @AppStorage("deviceID") private var deviceID: String = ""
+    let host = "api.hypem.com"
+//    let host = "192.168.1.2"
     private let version = "v2"
     private let session: URLSession
     private let downloadSession: URLSession
@@ -64,6 +65,7 @@ final class NetworkClient {
         components.queryItems = request.urlParams.map(URLQueryItem.init)
         if request.authNeeded {
             components.queryItems?.append(URLQueryItem(name: "hm_token", value: token))
+            components.queryItems?.append(URLQueryItem(name: "key", value: deviceID))
         }
         return components.url!
     }
@@ -121,6 +123,7 @@ final class NetworkClient {
             .map { (image: UIImage?) -> Image? in
                 image.flatMap { Image(uiImage: $0) }
             }
+//            .delay(for: .seconds(2), scheduler: RunLoop.main)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
@@ -148,6 +151,7 @@ final class NetworkClient {
             .mapError{ error in
                 return (error as? NetworkError<T.CustomError>) ?? NetworkError<T.CustomError>.unknown
             }
+//            .delay(for: .seconds(2), scheduler: RunLoop.main)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
@@ -245,8 +249,7 @@ final class NetworkClient {
         switch error {
         case _ where request is LoginRequest: return false
         case .notAuthorized: return request.authNeeded
-        case .custom(_): return false
-        default: return true
+        default: return false
         }
     }
 }

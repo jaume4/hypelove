@@ -1,32 +1,22 @@
 //
-//  PopularView.swift
+//  FavoritesView.swift
 //  HypeLove
 //
-//  Created by Jaume on 06/08/2020.
-//  Copyright © 2020 Jaume. All rights reserved.
+//  Created by Jaume on 13/08/2020.
 //
 
 import SwiftUI
 
-struct PopularView: View {
+struct FavoritesView: View {
     @EnvironmentObject var userState: UserState
     @EnvironmentObject var playingState: PlayingState
     @EnvironmentObject var dataStore: TracksDataStore
-    @StateObject var viewModel: PopularViewModel
+    @StateObject var viewModel: FavoritesViewModel
     
     var body: some View {
         ZStack(alignment: .bottom) {
             
             ScrollView {
-                
-                Picker("", selection: $viewModel.store.popularMode) {
-                    Text("Now").tag(PopularMode.now)
-                    Text("Last week").tag(PopularMode.lastWeek)
-                    Text("Remixes").tag(PopularMode.remix)
-                    Text("No remixes").tag(PopularMode.noRemix)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
                 
                 TrackListView(tracks: $viewModel.tracks,
                               loading: $viewModel.loading,
@@ -44,7 +34,7 @@ struct PopularView: View {
             }
             
         }
-        .navigationTitle(viewModel.store.popularMode.title)
+        .navigationTitle("Favorites")
         .navigationBarItems(trailing:
                                 HStack(spacing: 25) {
                                     Button(action: {}, label: {
@@ -60,15 +50,13 @@ struct PopularView: View {
     }
 }
 
-#if DEBUG
-struct PopularView_Previews: PreviewProvider {
-    
+struct FavoritesView_Previews: PreviewProvider {
     static let userState = UserState()
     static let store = TracksDataStore()
     
     static var previews: some View {
         NavigationView {
-            PopularView(viewModel: PopularViewModel(store: store, mode: .now))
+            FavoritesView(viewModel: FavoritesViewModel(store: store.favorites))
         }
         .accentColor(.buttonMain)
         .environmentObject(userState)
@@ -76,7 +64,7 @@ struct PopularView_Previews: PreviewProvider {
         .environmentObject(TracksDataStore())
         
         NavigationView {
-            PopularView(viewModel: PopularViewModel(store: store, mode: .now))
+            FavoritesView(viewModel: FavoritesViewModel(store: store.favorites))
         }
         .redacted(reason: .placeholder)
         .accentColor(.buttonMain)
@@ -85,4 +73,3 @@ struct PopularView_Previews: PreviewProvider {
         .environmentObject(TracksDataStore())
     }
 }
-#endif

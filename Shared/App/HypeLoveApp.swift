@@ -15,7 +15,7 @@ enum HomeTab: Hashable {
 struct HypeLoveApp: App {
     @StateObject private var userState = UserState()
     @StateObject private var playingState = PlayingState()
-    @StateObject private var popularDataStore = TracksDataStore()
+    @StateObject private var tracksStore = TracksDataStore()
     
     init() {
         UITabBar.setBlurAppareance()
@@ -37,7 +37,7 @@ struct HypeLoveApp: App {
                     .tag(HomeTab.home)
                     
                     NavigationView {
-                        PopularView(viewModel: PopularViewModel(store: popularDataStore, mode: .now))
+                        PopularView(viewModel: PopularViewModel(store: tracksStore, mode: .now))
                     }
                     .tabItem {
                         Image(systemName: "chart.bar.fill")
@@ -46,7 +46,7 @@ struct HypeLoveApp: App {
                     .tag(HomeTab.popular)
                     
                     NavigationView {
-                        Color.clear
+                        FavoritesView(viewModel: FavoritesViewModel(store: tracksStore.favorites))
                     }
                     .tabItem {
                         Image(systemName: "heart.fill")
@@ -67,7 +67,7 @@ struct HypeLoveApp: App {
             }
             .environmentObject(userState)
             .environmentObject(playingState)
-            .environmentObject(popularDataStore)
+            .environmentObject(tracksStore)
             .accentColor(.buttonMain)
             .sheet(isPresented: $userState.presentingSettings) {
                 NavigationView {

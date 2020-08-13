@@ -10,14 +10,16 @@ import Combine
 
 final class TracksDataStore: ObservableObject {
     
-    lazy var popular = TracksDownloader(popularListMode: .now)
-    lazy var lastWeek = TracksDownloader(popularListMode: .lastWeek)
-    lazy var noRemix = TracksDownloader(popularListMode: .noRemix)
-    lazy var remix = TracksDownloader(popularListMode: .remix)
+    lazy var popular = TracksDownloader<PopularListRequest>(requestMaker: { page in return PopularListRequest(page: page, mode: .now)})
+    lazy var lastWeek = TracksDownloader<PopularListRequest>(requestMaker: { page in return PopularListRequest(page: page, mode: .lastWeek)})
+    lazy var noRemix = TracksDownloader<PopularListRequest>(requestMaker: { page in return PopularListRequest(page: page, mode: .noRemix)})
+    lazy var remix = TracksDownloader<PopularListRequest>(requestMaker: { page in return PopularListRequest(page: page, mode: .remix)})
+    
+    lazy var favorites = TracksDownloader<FavoritesListRequest>(requestMaker: { page in return FavoritesListRequest(page: page)})
     
     @Published var popularMode = PopularMode.now
     
-    func store(for mode: PopularMode) -> TracksDownloader {
+    func store(for mode: PopularMode) -> TracksDownloader<PopularListRequest> {
         switch mode {
         case .now: return popular
         case .lastWeek: return lastWeek

@@ -11,7 +11,7 @@ struct FavoritesListRequest: ApiRequest {
     
     typealias Response = [TrackListResponseElement]
     
-    let endPoint = "favorites"
+    let endPoint = "me/favorites"
     let method = HTTPMethod.get
     let urlParams: [String: String]
     let authNeeded = true

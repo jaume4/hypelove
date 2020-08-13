@@ -1,5 +1,5 @@
 //
-//  TrackViewerModel.swift
+//  FavoritesViewModel.swift
 //  HypeLove
 //
 //  Created by Jaume on 12/08/2020.
@@ -8,27 +8,18 @@
 import Foundation
 import Combine
 
-final class PopularViewModel: ObservableObject {
+final class FavoritesViewModel: ObservableObject {
     @Published var tracks: [TrackDetails] = []
     @Published var placeholder: Bool = true
     @Published var loading: Bool = false
     @Published var error: NetworkError<PopularListRequest.CustomError>? = nil
-    @Published var store: TracksDataStore
     
-    private var trackStore: TracksDownloader<PopularListRequest>
+    private var trackStore: TracksDownloader<FavoritesListRequest>
     private var cancellables: Set<AnyCancellable> = []
-    private var modeCancellable: AnyCancellable?
     
-    init(store: TracksDataStore, mode: PopularMode) {
-        self.store = store
-        self.trackStore = store.store(for: mode)
-        
-        
-        modeCancellable = store.$popularMode.sink { [weak self] in
-            self?.bind(mode: $0)
-        }
-        
-        bind(mode: mode)
+    init(store: TracksDownloader<FavoritesListRequest>) {
+        self.trackStore = store
+        bind()
     }
     
     func requestTracks() {
@@ -39,11 +30,7 @@ final class PopularViewModel: ObservableObject {
         trackStore.resetError()
     }
     
-    private func bind(mode: PopularMode) {
-        
-        let trackStore = store.store(for: mode)
-
-        cancellables.removeAll()
+    private func bind() {
         
         trackStore.$tracks.weakAssign(on: \.tracks, object: self, store: &cancellables)
         trackStore.$placeholderTracks.weakAssign(on: \.placeholder, object: self, store: &cancellables)

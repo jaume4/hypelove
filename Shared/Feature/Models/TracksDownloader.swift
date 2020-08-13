@@ -8,24 +8,24 @@
 import Foundation
 import Combine
 
-final class TracksDownloader: ObservableObject {
+final class TracksDownloader<Request>: ObservableObject where Request: ApiRequest, Request.Response == [TrackListResponseElement] {
     
     @Published private(set) var tracks: [TrackDetails] = Array(TrackDetails.placeholderTracks.prefix(10))
-    @Published private(set) var error: NetworkError<PopularListRequest.CustomError>?
+    @Published private(set) var error: NetworkError<Request.CustomError>?
     @Published private(set) var tracksCancellable: AnyCancellable?
     @Published private(set) var placeholderTracks = true
     
     private var currentPage = 0
-    let popularListMode: PopularMode
+    let makeRequest: (Int) -> Request
     
-    init(popularListMode: PopularMode) {
-        self.popularListMode = popularListMode
+    init(requestMaker: @escaping (Int) -> Request) {
+        makeRequest = requestMaker
         requestTracks()
     }
     
     func requestTracks() {
         guard tracksCancellable == nil && error == nil else { return }
-        let request = PopularListRequest(page: currentPage + 1, mode: popularListMode)
+        let request = makeRequest(currentPage + 1)
         
         tracksCancellable = NetworkClient.shared.send(request).sink(receiveCompletion: { completion in
             
@@ -49,13 +49,4 @@ final class TracksDownloader: ObservableObject {
     func resetError() {
         error = nil
     }
-    
-    #if DEBUG
-//    static let tracksLoaded: PopularViewModel = {
-//        let viewModel = PopularViewModel()
-//        viewModel.tracks = TrackDetails.placeholderTracks
-//        return viewModel
-//    }()
-    #endif
-    
 }
