@@ -22,6 +22,10 @@ final class FavoritesViewModel: ObservableObject {
         bind()
     }
     
+    func requestTracksIfEmpty() {
+        trackStore.requestTracksIfEmpty()
+    }
+    
     func requestTracks() {
         trackStore.requestTracks()
     }

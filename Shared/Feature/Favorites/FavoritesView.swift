@@ -34,6 +34,10 @@ struct FavoritesView: View {
             }
             
         }
+        .onChange(of: userState.selectedTab) { tab in
+            guard tab == .favorites else { return }
+            viewModel.requestTracksIfEmpty()
+        }
         .navigationTitle("Favorites")
         .navigationBarItems(trailing:
                                 HStack(spacing: 25) {

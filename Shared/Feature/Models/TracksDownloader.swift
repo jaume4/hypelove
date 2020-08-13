@@ -20,6 +20,10 @@ final class TracksDownloader<Request>: ObservableObject where Request: ApiReques
     
     init(requestMaker: @escaping (Int) -> Request) {
         makeRequest = requestMaker
+    }
+    
+    func requestTracksIfEmpty() {
+        guard placeholderTracks else { return }
         requestTracks()
     }
     

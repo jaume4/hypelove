@@ -34,7 +34,10 @@ struct HomeView: View {
                 })
                 
                 //Popular now carrousel
-                TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .now))
+                TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .now, bindModeChange: false))
+                    .onAppear {
+                        store.store(for: .now).requestTracksIfEmpty()
+                    }
                 
                 //Popular last week title
                 VStack(alignment: .leading) {
@@ -54,7 +57,10 @@ struct HomeView: View {
                 })
                 
                 //Popular last week carrousel
-                TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .lastWeek))
+                TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .lastWeek, bindModeChange: false))
+                    .onAppear {
+                        store.store(for: .lastWeek).requestTracksIfEmpty()
+                    }
                 
                 //Feed title
                 VStack(alignment: .leading) {
@@ -68,7 +74,10 @@ struct HomeView: View {
                 }
                 
                 //Feed carrousel
-                TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .remix))
+                TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .remix, bindModeChange: false))
+                    .onAppear {
+                        store.store(for: .remix).requestTracksIfEmpty()
+                    }
                 
                 VStack(spacing: 15) {
                     Button("New") {

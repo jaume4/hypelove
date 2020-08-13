@@ -31,8 +31,8 @@ struct TrackCarrouselView_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack {
-            TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .now))
-            TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .now))
+            TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .now, bindModeChange: false))
+            TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .now, bindModeChange: false))
                 .redacted(reason: .placeholder)
         }
         .environmentObject(store)

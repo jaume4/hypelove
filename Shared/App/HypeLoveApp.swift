@@ -37,7 +37,7 @@ struct HypeLoveApp: App {
                     .tag(HomeTab.home)
                     
                     NavigationView {
-                        PopularView(viewModel: PopularViewModel(store: tracksStore, mode: .now))
+                        PopularView(viewModel: PopularViewModel(store: tracksStore, mode: .now, bindModeChange: true))
                     }
                     .tabItem {
                         Image(systemName: "chart.bar.fill")

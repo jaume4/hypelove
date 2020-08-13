@@ -19,16 +19,21 @@ final class PopularViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     private var modeCancellable: AnyCancellable?
     
-    init(store: TracksDataStore, mode: PopularMode) {
+    init(store: TracksDataStore, mode: PopularMode, bindModeChange: Bool) {
         self.store = store
         self.trackStore = store.store(for: mode)
         
-        
-        modeCancellable = store.$popularMode.sink { [weak self] in
-            self?.bind(mode: $0)
+        if bindModeChange {
+            modeCancellable = store.$popularMode.removeDuplicates().sink { [weak self] in
+                self?.bind(mode: $0)
+            }
         }
         
         bind(mode: mode)
+    }
+    
+    func requestTracksIfEmpty() {
+        trackStore.requestTracksIfEmpty()
     }
     
     func requestTracks() {
@@ -41,7 +46,7 @@ final class PopularViewModel: ObservableObject {
     
     private func bind(mode: PopularMode) {
         
-        let trackStore = store.store(for: mode)
+        trackStore = store.store(for: mode)
 
         cancellables.removeAll()
         

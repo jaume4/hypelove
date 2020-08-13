@@ -44,6 +44,9 @@ struct PopularView: View {
             }
             
         }
+        .onChange(of: viewModel.store.popularMode) { _ in
+            viewModel.requestTracksIfEmpty()
+        }
         .navigationTitle(viewModel.store.popularMode.title)
         .navigationBarItems(trailing:
                                 HStack(spacing: 25) {
@@ -68,7 +71,7 @@ struct PopularView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            PopularView(viewModel: PopularViewModel(store: store, mode: .now))
+            PopularView(viewModel: PopularViewModel(store: store, mode: .now, bindModeChange: true))
         }
         .accentColor(.buttonMain)
         .environmentObject(userState)
@@ -76,7 +79,7 @@ struct PopularView_Previews: PreviewProvider {
         .environmentObject(TracksDataStore())
         
         NavigationView {
-            PopularView(viewModel: PopularViewModel(store: store, mode: .now))
+            PopularView(viewModel: PopularViewModel(store: store, mode: .now, bindModeChange: true))
         }
         .redacted(reason: .placeholder)
         .accentColor(.buttonMain)
