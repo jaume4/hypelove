@@ -1,5 +1,5 @@
 //
-//  TrackListRequest.swift
+//  PopularListRequest.swift
 //  HypeLove
 //
 //  Created by Jaume on 08/08/2020.
@@ -23,9 +23,9 @@ enum PopularMode: String, Hashable {
     }
 }
 
-struct TrackListRequest: ApiRequest {
+struct PopularListRequest: ApiRequest {
     
-    typealias Response = [TrackListResponseElement]
+    typealias Response = [PopularListResponseElement]
     
     let endPoint = "popular"
     let method = HTTPMethod.get
@@ -42,7 +42,7 @@ struct TrackListRequest: ApiRequest {
 }
 
 
-struct TrackListResponseElement: Codable {
+struct PopularListResponseElement: Codable {
     let itemid, artist, title: String
     let dateposted: Date
     let siteid: Int
@@ -53,7 +53,7 @@ struct TrackListResponseElement: Codable {
     let thumbURLMedium: URL?
     let thumbURLLarge: URL
     let time: Int
-    let trackListResponseDescription: String
+    let description: String
     let itunesLink: String
     let lovedDate: Date?
 
@@ -64,8 +64,7 @@ struct TrackListResponseElement: Codable {
         case thumbURL = "thumb_url"
         case thumbURLMedium = "thumb_url_medium"
         case thumbURLLarge = "thumb_url_large"
-        case time
-        case trackListResponseDescription = "description"
+        case time, description
         case itunesLink = "itunes_link"
         case lovedDate = "ts_loved_me"
     }

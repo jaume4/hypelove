@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TrackCarrouselView: View {
     
-    @ObservedObject var viewModel: TrackViewerModel
+    @StateObject var viewModel: PopularViewModel
     @EnvironmentObject var dataStore: TracksDataStore
     
     var body: some View {
@@ -17,7 +17,7 @@ struct TrackCarrouselView: View {
             LazyHGrid(rows: [GridItem(.flexible())]) {
                 ForEach(viewModel.tracks.prefix(10)) { track in
                     TrackCarrouselElementView(track: track)
-                        .redacted(reason: viewModel.placholder ? .placeholder : [])
+                        .redacted(reason: viewModel.placeholder ? .placeholder : [])
                 }
             }
         }
@@ -31,8 +31,8 @@ struct TrackCarrouselView_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack {
-            TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .now), userState: userState))
-            TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .now), userState: userState))
+            TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .now))
+            TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .now))
                 .redacted(reason: .placeholder)
         }
         .environmentObject(store)

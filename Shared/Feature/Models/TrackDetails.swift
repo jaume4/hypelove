@@ -18,7 +18,7 @@ struct TrackDetails: Identifiable, Equatable, Hashable {
     let lovedDate: Date?
     let imageURL: URL
     
-    init(_ track: TrackListResponseElement) {
+    init(_ track: PopularListResponseElement) {
         let colorString = track.thumbURL.lastPathComponent.replacingOccurrences(of: ".png", with: "")
         let color = Color(hex: colorString) ?? .black
         let duration = MinuteSecondsFormatter.format(track.time)

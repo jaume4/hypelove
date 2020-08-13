@@ -8,11 +8,11 @@
 import Foundation
 import Combine
 
-final class TrackViewerModel: ObservableObject {
+final class PopularViewModel: ObservableObject {
     @Published var tracks: [TrackDetails] = []
-    @Published var placholder: Bool = true
+    @Published var placeholder: Bool = true
     @Published var loading: Bool = false
-    @Published var error: NetworkError<TrackListRequest.CustomError>? = nil
+    @Published var error: NetworkError<PopularListRequest.CustomError>? = nil
     @Published var mode: PopularMode = .now
     
     var store: TracksDownloader
@@ -21,7 +21,7 @@ final class TrackViewerModel: ObservableObject {
         self.store = store
 
         store.$tracks.assign(to: &$tracks)
-        store.$placeholderTracks.assign(to: &$placholder)
+        store.$placeholderTracks.assign(to: &$placeholder)
         store.$error.assign(to: &$error)
         store.$tracksCancellable.map{ $0 != nil }.assign(to: &$loading)
         userState.$popularMode.assign(to: &$mode)
@@ -31,7 +31,7 @@ final class TrackViewerModel: ObservableObject {
         self.store = store
         
         store.$tracks.assign(to: &$tracks)
-        store.$placeholderTracks.assign(to: &$placholder)
+        store.$placeholderTracks.assign(to: &$placeholder)
         store.$error.assign(to: &$error)
         store.$tracksCancellable.map{ $0 != nil }.assign(to: &$loading)
     }

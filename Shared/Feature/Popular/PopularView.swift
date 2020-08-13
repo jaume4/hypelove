@@ -13,14 +13,18 @@ struct PopularView: View {
     @EnvironmentObject var userState: UserState
     @EnvironmentObject var playingState: PlayingState
     @EnvironmentObject var dataStore: TracksDataStore
-    @ObservedObject var viewModel: TrackViewerModel
+    @ObservedObject var viewModel: PopularViewModel
+    
+    init(viewModel: PopularViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         ZStack(alignment: .bottom) {
             
             ScrollView {
                 
-                Picker("", selection: Binding(get: {userState.popularMode}, set: {userState.popularMode = $0})) {
+                Picker("", selection: $viewModel.mode) {
                     Text("Now").tag(PopularMode.now)
                     Text("Last week").tag(PopularMode.lastWeek)
                     Text("Remixes").tag(PopularMode.remix)
@@ -29,7 +33,7 @@ struct PopularView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
                 
-                //Tracks view
+                //Tracks view. First tracks are populated with placeholder tracks, redacted if the downloader has marked them as placeholders
                 LazyVGrid(columns: [GridItem(.flexible())]) {
                     ForEach(viewModel.tracks) { track in
                         TrackView(track: .constant(track), showPlayingBackground: true)
@@ -39,14 +43,15 @@ struct PopularView: View {
                             //If this is the last track, request more tracks
                             .onAppear {
                                 if track == viewModel.tracks.last {
-                                    viewModel.store.requestTracks()
+                                    viewModel.requestTracks()
                                 }
                             }
                     }
                 }
+                .redacted(reason: viewModel.placeholder ? .placeholder : [])
                 
-                //Placeholder tracks
-                if viewModel.loading {
+                //Placeholder for loading tracks, only shown after initial loading on new tracks space
+                if !viewModel.placeholder, viewModel.loading {
                     LazyVGrid(columns: [GridItem(.flexible())]) {
                         ForEach(TrackDetails.placeholderTracks) { track in
                             TrackView(track: .constant(track), showPlayingBackground: false)
@@ -57,8 +62,8 @@ struct PopularView: View {
                 
                 //Error button
                 ErrorButton(error: viewModel.error, actionDescription: ", tap to retry.") {
-                    viewModel.store.resetError()
-                    viewModel.store.requestTracks()
+                    viewModel.resetError()
+                    viewModel.requestTracks()
                 }
                 
                 // Space for allowing seeing last trask: NowPlaying 50 + 10
@@ -72,14 +77,6 @@ struct PopularView: View {
                     .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .top)))
                     .animation(.easeInOut(duration: 0.2))
             }
-        }
-        .onAppear {
-            if viewModel.tracks.isEmpty {
-                viewModel.store.requestTracks()
-            }
-        }
-        .onChange(of: viewModel.mode) {
-            viewModel.replace(store: dataStore.store(for: $0))
         }
         .navigationTitle(viewModel.mode.title)
         .navigationBarItems(trailing:
@@ -104,7 +101,7 @@ struct PopularView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            PopularView(viewModel: TrackViewerModel(store: store.store(for: .now), userState: userState))
+            PopularView(viewModel: PopularViewModel(store: store, mode: .now))
         }
         .accentColor(.buttonMain)
         .environmentObject(userState)
@@ -112,7 +109,7 @@ struct PopularView_Previews: PreviewProvider {
         .environmentObject(TracksDataStore())
         
         NavigationView {
-            PopularView(viewModel: TrackViewerModel(store: store.store(for: .now), userState: userState))
+            PopularView(viewModel: PopularViewModel(store: store, mode: .now))
         }
         .redacted(reason: .placeholder)
         .accentColor(.buttonMain)

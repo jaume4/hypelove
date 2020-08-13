@@ -11,21 +11,21 @@ import Combine
 final class TracksDownloader: ObservableObject {
     
     @Published private(set) var tracks: [TrackDetails] = Array(TrackDetails.placeholderTracks.prefix(10))
-    @Published private(set) var error: NetworkError<TrackListRequest.CustomError>?
+    @Published private(set) var error: NetworkError<PopularListRequest.CustomError>?
     @Published private(set) var tracksCancellable: AnyCancellable?
     @Published private(set) var placeholderTracks = true
     
     private var currentPage = 0
-    let trackListMode: PopularMode
+    let popularListMode: PopularMode
     
-    init(trackListMode: PopularMode) {
-        self.trackListMode = trackListMode
+    init(popularListMode: PopularMode) {
+        self.popularListMode = popularListMode
         requestTracks()
     }
     
     func requestTracks() {
         guard tracksCancellable == nil && error == nil else { return }
-        let request = TrackListRequest(page: currentPage + 1, mode: trackListMode)
+        let request = PopularListRequest(page: currentPage + 1, mode: popularListMode)
         
         tracksCancellable = NetworkClient.shared.send(request).sink(receiveCompletion: { completion in
             

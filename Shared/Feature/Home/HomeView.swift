@@ -27,10 +27,10 @@ struct HomeView: View {
                     .font(Font.title2.bold())
                 }
                 .modifier(MakeButton {
-                    userState.popularMode = .now
+                    store.popularMode = .now
                     userState.selectedTab = .popular
                 })
-                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .now), userState: userState))
+                TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .now))
                 
                 VStack(alignment: .leading) {
                     HStack {
@@ -44,10 +44,10 @@ struct HomeView: View {
                     .font(Font.title2.bold())
                 }
                 .modifier(MakeButton {
-                    userState.popularMode = .lastWeek
+                    store.popularMode = .lastWeek
                     userState.selectedTab = .popular
                 })
-                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .lastWeek), userState: userState))
+                TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .lastWeek))
                 
                 VStack(alignment: .leading) {
                     HStack {
@@ -59,7 +59,7 @@ struct HomeView: View {
                     }
                 }
                 
-                TrackCarrouselView(viewModel: TrackViewerModel(store: store.store(for: .remix), userState: userState))
+                TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .remix))
                 
                 VStack(spacing: 15) {
                     Button("New") {
