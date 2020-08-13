@@ -24,7 +24,7 @@ final class UserState: ObservableObject {
         
         setupCancellables()
         
-        if let savedToken = KeychainService.getSavedToken(userName: savedUserName) {
+        if !savedUserName.isEmpty, let savedToken = KeychainService.getSavedToken(userName: savedUserName) {
             validToken = true
             set(token: savedToken)
         }
@@ -44,8 +44,9 @@ final class UserState: ObservableObject {
         NetworkClient.shared.$token
             .map { $0 != nil }
             .receive(on: DispatchQueue.main)
-            .assign(to: \.validToken, on: self)
-            .store(in: &cancellables)
+            .assign(to: &$validToken)
+        
+        userName = savedUserName
         
         $userName
             .receive(on: DispatchQueue.main)

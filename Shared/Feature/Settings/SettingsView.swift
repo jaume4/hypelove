@@ -10,16 +10,18 @@ import SwiftUI
 final class SettingsViewModel: ObservableObject {
     
     @Published var userName: String = ""
+    private let userState: UserState
     
     init(userState: UserState) {
+        self.userState = userState
         userState.$userName.assign(to: &$userName)
     }
     
     func deleteData() {
         NetworkClient.shared.token = nil
         KeychainService.deleteData(userName: userName)
+        userState.userName = ""
     }
-    
 }
 
 struct SettingsView: View {
@@ -42,7 +44,7 @@ struct SettingsView: View {
             if userState.validToken {
                 
                 HStack {
-                    Text("Jaume")
+                    Text(userState.userName)
                         .font(Font.body.bold())
                     Spacer()
                     Button("Log out") {

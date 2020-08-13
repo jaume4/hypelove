@@ -34,10 +34,14 @@ struct LoginView: View {
     @StateObject var viewModel: LoginViewModel
     @EnvironmentObject var userState: UserState
     @Environment(\.presentationMode) var presentationMode
+    @State var userName = ""
     @Namespace var loginNameSpace
     let loginButtonID = "loginButton"
     var loginDisabled: Bool {
-        viewModel.loginCancellable != nil || viewModel.password.isEmpty || userState.userName.isEmpty
+        viewModel.password.isEmpty || userState.userName.isEmpty
+    }
+    var loading: Bool {
+        viewModel.loginCancellable != nil
     }
     
     var body: some View {
@@ -45,7 +49,7 @@ struct LoginView: View {
             Color.clear.edgesIgnoringSafeArea(.all)
                 .modifier(OnTapDismissKeyboard())
             VStack(spacing: 20) {
-                TextField("Username", text: $userState.userName)
+                TextField("Username", text: $viewModel.userName)
                     .textContentType(.username)
                     .autocapitalization(.none)
                     .modifier(HypeTextfield())
@@ -54,7 +58,7 @@ struct LoginView: View {
                     .modifier(HypeTextfield())
                 Button("Login", action: viewModel.doLogin)
                     .disabled(loginDisabled)
-                    .buttonStyle(HypeButton(enabled: !loginDisabled, loading: viewModel.loginCancellable != nil))
+                    .buttonStyle(HypeButton(enabled: !loginDisabled, loading: loading))
             }
             .padding()
             .matchedGeometryEffect(id: loginButtonID, in: loginNameSpace, properties: [.position], anchor: .bottom)
