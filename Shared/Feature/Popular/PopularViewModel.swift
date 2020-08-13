@@ -13,13 +13,7 @@ final class PopularViewModel: ObservableObject {
     @Published var placeholder: Bool = true
     @Published var loading: Bool = false
     @Published var error: NetworkError<PopularListRequest.CustomError>? = nil
-    @Published var mode: PopularMode {
-        didSet {
-            store.popularMode = mode
-        }
-    }
-    
-    private let store: TracksDataStore
+    @Published var store: TracksDataStore
     private var trackStore: TracksDownloader
     private var cancellables: Set<AnyCancellable> = []
     private var modeCancellable: AnyCancellable?
@@ -27,9 +21,9 @@ final class PopularViewModel: ObservableObject {
     init(store: TracksDataStore, mode: PopularMode) {
         self.store = store
         self.trackStore = store.store(for: mode)
-        self.mode = store.popularMode
         
-        modeCancellable = $mode.sink { [weak self] in
+        
+        modeCancellable = store.$popularMode.sink { [weak self] in
             self?.bind(mode: $0)
         }
         

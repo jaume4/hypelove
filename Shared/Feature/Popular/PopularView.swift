@@ -13,18 +13,14 @@ struct PopularView: View {
     @EnvironmentObject var userState: UserState
     @EnvironmentObject var playingState: PlayingState
     @EnvironmentObject var dataStore: TracksDataStore
-    @ObservedObject var viewModel: PopularViewModel
-    
-    init(viewModel: PopularViewModel) {
-        self.viewModel = viewModel
-    }
+    @StateObject var viewModel: PopularViewModel
     
     var body: some View {
         ZStack(alignment: .bottom) {
             
             ScrollView {
                 
-                Picker("", selection: $viewModel.mode) {
+                Picker("", selection: $viewModel.store.popularMode) {
                     Text("Now").tag(PopularMode.now)
                     Text("Last week").tag(PopularMode.lastWeek)
                     Text("Remixes").tag(PopularMode.remix)
@@ -78,7 +74,7 @@ struct PopularView: View {
                     .animation(.easeInOut(duration: 0.2))
             }
         }
-        .navigationTitle(viewModel.mode.title)
+        .navigationTitle(viewModel.store.popularMode.title)
         .navigationBarItems(trailing:
                                 HStack(spacing: 25) {
                                     Button(action: {}, label: {

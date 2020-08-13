@@ -31,7 +31,7 @@ struct LoginViewError: View {
 
 struct LoginView: View {
     
-    @StateObject var viewModel: LoginViewModel
+    @ObservedObject var viewModel: LoginViewModel
     @EnvironmentObject var userState: UserState
     @Environment(\.presentationMode) var presentationMode
     @Namespace var loginNameSpace

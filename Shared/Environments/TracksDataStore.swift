@@ -15,7 +15,7 @@ final class TracksDataStore: ObservableObject {
     lazy var noRemix = TracksDownloader(popularListMode: .noRemix)
     lazy var remix = TracksDownloader(popularListMode: .remix)
     
-    var popularMode = PopularMode.now
+    @Published var popularMode = PopularMode.now
     
     func store(for mode: PopularMode) -> TracksDownloader {
         switch mode {

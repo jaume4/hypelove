@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TrackCarrouselView: View {
     
-    @StateObject var viewModel: PopularViewModel
+    @ObservedObject var viewModel: PopularViewModel
     @EnvironmentObject var dataStore: TracksDataStore
     
     var body: some View {

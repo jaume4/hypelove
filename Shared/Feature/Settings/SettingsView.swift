@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @StateObject var viewModel: SettingsViewModel
+    @ObservedObject var viewModel: SettingsViewModel
     @EnvironmentObject var userState: UserState
     @Environment(\.presentationMode) var presentationMode
     @State var presentingLogin = false
