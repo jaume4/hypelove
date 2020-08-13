@@ -29,42 +29,15 @@ struct PopularView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
                 
-                //Tracks view. First tracks are populated with placeholder tracks, redacted if the downloader has marked them as placeholders
-                LazyVGrid(columns: [GridItem(.flexible())]) {
-                    ForEach(viewModel.tracks) { track in
-                        TrackView(track: .constant(track), showPlayingBackground: true)
-                            .modifier(MakeButton {
-                                playingState.play(track: track)
-                            })
-                            //If this is the last track, request more tracks
-                            .onAppear {
-                                if track == viewModel.tracks.last {
-                                    viewModel.requestTracks()
-                                }
-                            }
-                    }
-                }
-                .redacted(reason: viewModel.placeholder ? .placeholder : [])
+                TrackListView(tracks: $viewModel.tracks,
+                              loading: $viewModel.loading,
+                              placeHolderTracks: $viewModel.placeholder,
+                              error: $viewModel.error,
+                              requestTracks: viewModel.requestTracks,
+                              resetError: viewModel.resetError)
                 
-                //Placeholder for loading tracks, only shown after initial loading on new tracks space
-                if !viewModel.placeholder, viewModel.loading {
-                    LazyVGrid(columns: [GridItem(.flexible())]) {
-                        ForEach(TrackDetails.placeholderTracks) { track in
-                            TrackView(track: .constant(track), showPlayingBackground: false)
-                        }
-                    }
-                    .redacted(reason: .placeholder)
-                }
                 
-                //Error button
-                ErrorButton(error: viewModel.error, actionDescription: ", tap to retry.") {
-                    viewModel.resetError()
-                    viewModel.requestTracks()
-                }
                 
-                // Space for allowing seeing last trask: NowPlaying 50 + 10
-                Spacer()
-                    .frame(height: 60)
             }
             
             //Now Playing on top of ZStack
@@ -73,6 +46,7 @@ struct PopularView: View {
                     .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .top)))
                     .animation(.easeInOut(duration: 0.2))
             }
+            
         }
         .navigationTitle(viewModel.store.popularMode.title)
         .navigationBarItems(trailing:
@@ -85,6 +59,7 @@ struct PopularView: View {
                                     })
                                 }
                                 .unredacted()
+                            
         )
     }
 }

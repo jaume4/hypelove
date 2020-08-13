@@ -16,8 +16,8 @@ struct TrackView: View {
     
     var body: some View {
         ZStack {
-            if playingState.currentTrack == track && showPlayingBackground {
-                Color(.fill).layoutPriority(-1)
+            if redactionReasons.isEmpty, playingState.currentTrack == track && showPlayingBackground {
+                Color(.secondarySystemFill).layoutPriority(-1)
             }
             HStack {
                 Spacer(minLength: 5)

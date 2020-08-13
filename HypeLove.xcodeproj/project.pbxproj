@@ -69,6 +69,12 @@
 		1FA51CCD24E1C26F00DECA7A /* MakeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CCB24E1C26F00DECA7A /* MakeButton.swift */; };
 		1FC2F39124DD6246006C78A8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Color.swift */; };
 		1FC2F39224DD6246006C78A8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Color.swift */; };
+		1FE8A86724E58DBF00B0529C /* FavoritesListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A86624E58DBF00B0529C /* FavoritesListRequest.swift */; };
+		1FE8A86824E58DBF00B0529C /* FavoritesListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A86624E58DBF00B0529C /* FavoritesListRequest.swift */; };
+		1FE8A86A24E58E2500B0529C /* TrackListResponseElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A86924E58E2500B0529C /* TrackListResponseElement.swift */; };
+		1FE8A86B24E58E2500B0529C /* TrackListResponseElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A86924E58E2500B0529C /* TrackListResponseElement.swift */; };
+		1FE8A86D24E5955D00B0529C /* TrackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A86C24E5955D00B0529C /* TrackListView.swift */; };
+		1FE8A86E24E5955D00B0529C /* TrackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A86C24E5955D00B0529C /* TrackListView.swift */; };
 		1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
 		1FEFE54224DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
 		1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */; };
@@ -129,6 +135,9 @@
 		1FA51CC824E1B8F500DECA7A /* UITabBarAppareance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarAppareance.swift; sourceTree = "<group>"; };
 		1FA51CCB24E1C26F00DECA7A /* MakeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeButton.swift; sourceTree = "<group>"; };
 		1FC2F39024DD6246006C78A8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		1FE8A86624E58DBF00B0529C /* FavoritesListRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesListRequest.swift; sourceTree = "<group>"; };
+		1FE8A86924E58E2500B0529C /* TrackListResponseElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListResponseElement.swift; sourceTree = "<group>"; };
+		1FE8A86C24E5955D00B0529C /* TrackListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListView.swift; sourceTree = "<group>"; };
 		1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		1FEFE54624DEAA1D002DEEB8 /* PopularListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularListRequest.swift; sourceTree = "<group>"; };
@@ -164,6 +173,7 @@
 			children = (
 				1FA51CC724E1B1DC00DECA7A /* Representables */,
 				1F069A8424E04B270055BC3F /* Playingindicator.swift */,
+				1FE8A86C24E5955D00B0529C /* TrackListView.swift */,
 				1FEFE57224DF1B06002DEEB8 /* TrackView.swift */,
 				1FFFE14A24E4836F00A914A7 /* AnimatableGradient.swift */,
 				1F72300224E2A64D00D3FFA5 /* ErrorButton.swift */,
@@ -265,6 +275,8 @@
 			children = (
 				1F49747824DC1F350085F599 /* LoginRequest.swift */,
 				1FEFE54624DEAA1D002DEEB8 /* PopularListRequest.swift */,
+				1FE8A86624E58DBF00B0529C /* FavoritesListRequest.swift */,
+				1FE8A86924E58E2500B0529C /* TrackListResponseElement.swift */,
 				1F00DE5B24E3361E008A9843 /* ImageRequest.swift */,
 			);
 			path = Requests;
@@ -470,11 +482,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FEFE54724DEAA1D002DEEB8 /* PopularListRequest.swift in Sources */,
+				1FE8A86A24E58E2500B0529C /* TrackListResponseElement.swift in Sources */,
+				1FE8A86D24E5955D00B0529C /* TrackListView.swift in Sources */,
 				1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F00DE5F24E3DD31008A9843 /* TrackCarrouselElementView.swift in Sources */,
 				1F083D5D24E150F10033DA27 /* NowPlayingView.swift in Sources */,
 				1F00DE2824E305DD008A9843 /* TrackCarrouselView.swift in Sources */,
+				1FE8A86724E58DBF00B0529C /* FavoritesListRequest.swift in Sources */,
 				1FA51CCC24E1C26F00DECA7A /* MakeButton.swift in Sources */,
 				1F83325424DC246E0054DD8D /* UserState.swift in Sources */,
 				1F00DE5C24E3361E008A9843 /* ImageRequest.swift in Sources */,
@@ -517,11 +532,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FEFE54824DEAA1D002DEEB8 /* PopularListRequest.swift in Sources */,
+				1FE8A86B24E58E2500B0529C /* TrackListResponseElement.swift in Sources */,
+				1FE8A86E24E5955D00B0529C /* TrackListView.swift in Sources */,
 				1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F00DE6024E3DD31008A9843 /* TrackCarrouselElementView.swift in Sources */,
 				1F083D5E24E150F10033DA27 /* NowPlayingView.swift in Sources */,
 				1F00DE2924E305DD008A9843 /* TrackCarrouselView.swift in Sources */,
+				1FE8A86824E58DBF00B0529C /* FavoritesListRequest.swift in Sources */,
 				1FA51CCD24E1C26F00DECA7A /* MakeButton.swift in Sources */,
 				1F83325524DC246E0054DD8D /* UserState.swift in Sources */,
 				1F00DE5D24E3361E008A9843 /* ImageRequest.swift in Sources */,
