@@ -13,8 +13,9 @@ final class ImageDownloader: ObservableObject {
     @Published var image: Image?
     
     func download(_ url: URL) {
-        let request = ImageRequest(url: url)
-        NetworkClient.shared.download(request)
+        let request = DownloadImageRequest(url: url)
+        NetworkClient.shared.send(request)
+            .replaceError(with: nil)
             .assign(to: &$image)
     }
 }

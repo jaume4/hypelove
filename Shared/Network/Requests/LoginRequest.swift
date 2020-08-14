@@ -13,7 +13,7 @@ enum LoginError: String {
     case wrongUsername = "Wrong username"
 }
 
-struct LoginRequest: NetworkFormRequest {
+struct LoginRequest: NetworkFormRequest & NetworkRequest {
     
     typealias Response = LoginResponse
     typealias CustomError = LoginError

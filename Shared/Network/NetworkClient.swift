@@ -16,11 +16,11 @@ final class NetworkClient {
     
     static let shared = NetworkClient()
     
-    @AppStorage("deviceID") private var deviceID: String = ""
+    @AppStorage("deviceID") var deviceID: String = ""
     let host = "api.hypem.com"
 //    let host = "192.168.1.2"
-    private let version = "v2"
-    private let session: URLSession
+    let version = "v2"
+    let session: URLSession
     private let downloadSession: URLSession
     
     let decoder = JSONDecoder()
@@ -56,36 +56,15 @@ final class NetworkClient {
         #endif
     }
 
-    //MARK: - URL generator
-    private func makeURL<T: ApiRequest>(_ request: T) -> URL {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = host
-        components.path = "/" + version + "/" + request.endPoint
-        components.queryItems = request.urlParams.map(URLQueryItem.init)
-        if request.authNeeded {
-            components.queryItems?.append(URLQueryItem(name: "hm_token", value: token))
-            components.queryItems?.append(URLQueryItem(name: "key", value: deviceID))
-        }
-        return components.url!
-    }
-    
-    private func makeBaseURLRequest<T: ApiRequest>(_ request: T) -> URLRequest {
-        var urlRequest = URLRequest(url: makeURL(request))
+    private func makeBaseURLRequest<T: NetworkRequest>(_ request: T) -> URLRequest {
+        var urlRequest = URLRequest(url: request.url)
         urlRequest.httpMethod = request.method.rawValue
         urlRequest.setValue(userAgent, forHTTPHeaderField: "User-Agent")
         return urlRequest
     }
     
     //MARK: - Exposed send request methods
-    func download(_ request: ImageRequest) -> AnyPublisher<Image?, Never> {
-        var urlRequest = URLRequest(url: request.url)
-        urlRequest.httpMethod = request.method.rawValue
-        urlRequest.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-        return download(urlRequest: urlRequest)
-    }
-    
-    func send<T: ApiRequest>(_ request: T) -> RequestPublisher<T> {
+    func send<T: NetworkRequest>(_ request: T) -> RequestPublisher<T> {
         let urlRequest = makeBaseURLRequest(request)
         return send(request, urlRequest: urlRequest)
     }
@@ -110,35 +89,23 @@ final class NetworkClient {
     
     //MARK: - Request handling and sending
     
-    /// Download image requests. Does not retry.
-    private func download(urlRequest: URLRequest) -> AnyPublisher<Image?, Never> {
-        return downloadSession.dataTaskPublisher(for: urlRequest)
-            .share()
-            .receive(on: DispatchQueue.global())
-            .subscribe(on: DispatchQueue.global())
-            .replaceError(with: (Data(), URLResponse()))
-            .map { data, _ -> UIImage? in
-                UIImage(data: data)
-            }
-            .map { (image: UIImage?) -> Image? in
-                image.flatMap { Image(uiImage: $0) }
-            }
-//            .delay(for: .seconds(2), scheduler: RunLoop.main)
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-    }
-    
     /// Sends any NetworkRequest and retries it if an error is given and [shouldRetry](x-source-tag://ShouldRetry) returns true
-    private func send<T: ApiRequest>(_ request: T, urlRequest: URLRequest) -> RequestPublisher<T> {
+    private func send<T: NetworkRequest>(_ request: T, urlRequest: URLRequest) -> RequestPublisher<T> {
         
-        if request.authNeeded, token == nil {
+        if let request = request as? ApiRequest, request.authNeeded, token == nil {
             return Fail(error: NetworkError<T.CustomError>.notAuthorized)
                 .receive(on: DispatchQueue.main)
                 .eraseToAnyPublisher()
         }
         
         var retrying = false
-        let requestPublisher = session.dataTaskPublisher(for: urlRequest)
+        let requestPublisher: URLSession.DataTaskPublisher
+        
+        if request.allowCachedResponse {
+            requestPublisher = downloadSession.dataTaskPublisher(for: urlRequest)
+        } else {
+            requestPublisher = session.dataTaskPublisher(for: urlRequest)
+        }
         
         return requestPublisher
             .receive(on: DispatchQueue.global())
@@ -165,7 +132,7 @@ final class NetworkClient {
     /// Retries the given request attemting to login first
     /// - Parameter request: Request to retry
     /// - Returns: Future that fullfills after login attempt is finished and request is resent, or on login error
-    private func resendRequest<T: ApiRequest>(_ request: T) -> RequestPublisher<T> {
+    private func resendRequest<T: NetworkRequest>(_ request: T) -> RequestPublisher<T> {
         
         let promise = Future<T.Response, NetworkError<T.CustomError>>  { promise in
             
@@ -251,7 +218,8 @@ final class NetworkClient {
     
     /// Logic for retrying api requests. Login request or custom errors are not retried, not authorized and everything else gets retried.
     /// - Tag: ShouldRetry
-    private func shouldRetry<T: ApiRequest>(request: T, error: NetworkError<T.CustomError>) -> Bool {
+    private func shouldRetry<T: NetworkRequest>(request: T, error: NetworkError<T.CustomError>) -> Bool {
+        guard let request = request as? ApiRequest else { return false }
         switch error {
         case _ where request is LoginRequest: return false
         case .notAuthorized: return request.authNeeded

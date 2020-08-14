@@ -16,6 +16,7 @@ enum HTTPMethod: String {
 
 //MARK: - Request types
 
+//Base request
 protocol NetworkRequest {
     associatedtype Response
     associatedtype CustomError: RawRepresentable = NoCustomError where CustomError.RawValue == String
@@ -24,9 +25,11 @@ protocol NetworkRequest {
     var controlledErrorCodes: Set<Int> { get }
     func transformResponse(data: Data, response: HTTPURLResponse) throws -> Response
     func processError(code: Int, data: Data) -> NetworkError<CustomError>?
+    var url: URL { get }
+    var allowCachedResponse: Bool { get }
 }
 
-protocol ApiRequest: NetworkRequest {
+protocol ApiRequest {
     var endPoint: String { get }
     var authNeeded: Bool { get }
 }
@@ -43,6 +46,7 @@ protocol NetworkFormRequest: ApiRequest {
 //MARK: - NetworkRequest extensions
 
 extension NetworkRequest {
+    var allowCachedResponse: Bool { false }
     var controlledErrorCodes: Set<Int> { [] }
     var urlParams: [String: String] { [:] }
     
@@ -70,5 +74,24 @@ extension NetworkRequest {
 extension NetworkRequest where Response: Decodable {
     func transformResponse(data: Data, response: HTTPURLResponse) throws -> Response {
         return try NetworkClient.shared.decoder.decode(Response.self, from: data)
+    }
+}
+
+//MARK: - Api request url generator
+
+extension ApiRequest where Self: NetworkRequest {
+    var url: URL {
+        
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = NetworkClient.shared.host
+        components.path = "/" + NetworkClient.shared.version + "/" + endPoint
+        components.queryItems = urlParams.map(URLQueryItem.init)
+        if authNeeded {
+            components.queryItems?.append(URLQueryItem(name: "hm_token", value: NetworkClient.shared.token))
+            components.queryItems?.append(URLQueryItem(name: "key", value: NetworkClient.shared.deviceID))
+        }
+        return components.url!
+        
     }
 }

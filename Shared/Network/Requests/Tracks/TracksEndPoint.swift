@@ -30,4 +30,14 @@ enum TracksEndPoint {
         }
     }
     
+    var title: String {
+        switch self {
+        
+        case .favorites: return "Favorites"
+        case .history: return "History"
+        case .feed: return "Feed"
+        case .popular(let popularMode): return popularMode.title
+        }
+    }
+    
 }

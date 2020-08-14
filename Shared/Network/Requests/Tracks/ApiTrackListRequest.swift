@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ApiTrackListRequest: ApiRequest {
+protocol ApiTrackListRequest: ApiRequest & NetworkRequest {
     init(endPoint: TracksEndPoint, page: Int)
 }
 
