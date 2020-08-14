@@ -28,13 +28,6 @@ struct FavoritesView: View {
             }
             .modifier(ReplaceByError(active: viewModel.error == .notAuthorized, error: viewModel.error, actionDescription: ", tap to open settings.", action: { userState.presentingSettings.toggle() }))
             
-            //Now Playing on top of ZStack
-            if playingState.currentTrack != nil {
-                NowPlayingView()
-                    .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .top)))
-                    .animation(.easeInOut(duration: 0.2))
-            }
-            
         }
         .onChange(of: userState.selectedTab) { tab in
             guard tab == .favorites else { return }

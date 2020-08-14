@@ -108,6 +108,8 @@ struct HomeView: View {
                                     }
                                     .unredacted()
             )
+            
+            Spacer(minLength: UIScreen.main.bounds.height / 5)
         }
     }
 }

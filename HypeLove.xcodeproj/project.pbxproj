@@ -89,6 +89,10 @@
 		1FEC8CB424E6928A004D34DD /* PopularMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CB224E6928A004D34DD /* PopularMode.swift */; };
 		1FEC8CB724E692D3004D34DD /* ApiTrackListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CB624E692D3004D34DD /* ApiTrackListRequest.swift */; };
 		1FEC8CB824E692D3004D34DD /* ApiTrackListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CB624E692D3004D34DD /* ApiTrackListRequest.swift */; };
+		1FEC8CBD24E6A42B004D34DD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CBC24E6A42B004D34DD /* MainView.swift */; };
+		1FEC8CBE24E6A42B004D34DD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CBC24E6A42B004D34DD /* MainView.swift */; };
+		1FEC8CC024E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CBF24E6BD3D004D34DD /* PlayerBlurBar.swift */; };
+		1FEC8CC124E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CBF24E6BD3D004D34DD /* PlayerBlurBar.swift */; };
 		1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
 		1FEFE54224DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
 		1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */; };
@@ -157,6 +161,8 @@
 		1FEC8CAF24E6924D004D34DD /* TracksEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksEndPoint.swift; sourceTree = "<group>"; };
 		1FEC8CB224E6928A004D34DD /* PopularMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMode.swift; sourceTree = "<group>"; };
 		1FEC8CB624E692D3004D34DD /* ApiTrackListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTrackListRequest.swift; sourceTree = "<group>"; };
+		1FEC8CBC24E6A42B004D34DD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		1FEC8CBF24E6BD3D004D34DD /* PlayerBlurBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBlurBar.swift; sourceTree = "<group>"; };
 		1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		1FEFE57224DF1B06002DEEB8 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
@@ -273,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */,
+				1FEC8CBC24E6A42B004D34DD /* MainView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -346,6 +353,7 @@
 				1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */,
 				1F6F73BB24DFEF0A00A9186A /* HypeButtons.swift */,
 				1FA51CCB24E1C26F00DECA7A /* MakeButton.swift */,
+				1FEC8CBF24E6BD3D004D34DD /* PlayerBlurBar.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -525,6 +533,7 @@
 				1FE8A87124E59ED800B0529C /* FavoritesView.swift in Sources */,
 				1FE8A86D24E5955D00B0529C /* TrackListView.swift in Sources */,
 				1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
+				1FEC8CC024E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */,
 				1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F00DE5F24E3DD31008A9843 /* TrackCarrouselElementView.swift in Sources */,
 				1F083D5D24E150F10033DA27 /* NowPlayingView.swift in Sources */,
@@ -548,6 +557,7 @@
 				1FEC8CB324E6928A004D34DD /* PopularMode.swift in Sources */,
 				1F083D6024E1517E0033DA27 /* PlayingState.swift in Sources */,
 				1F00DE6B24E3FF3A008A9843 /* PopularViewModel.swift in Sources */,
+				1FEC8CBD24E6A42B004D34DD /* MainView.swift in Sources */,
 				1FEC8CB024E6924D004D34DD /* TracksEndPoint.swift in Sources */,
 				1F00DE6524E3EC20008A9843 /* TracksDownloader.swift in Sources */,
 				1FA1F6DA24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
@@ -581,6 +591,7 @@
 				1FE8A87224E59ED800B0529C /* FavoritesView.swift in Sources */,
 				1FE8A86E24E5955D00B0529C /* TrackListView.swift in Sources */,
 				1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
+				1FEC8CC124E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */,
 				1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F00DE6024E3DD31008A9843 /* TrackCarrouselElementView.swift in Sources */,
 				1F083D5E24E150F10033DA27 /* NowPlayingView.swift in Sources */,
@@ -604,6 +615,7 @@
 				1FEC8CB424E6928A004D34DD /* PopularMode.swift in Sources */,
 				1F083D6124E1517E0033DA27 /* PlayingState.swift in Sources */,
 				1F00DE6C24E3FF3A008A9843 /* PopularViewModel.swift in Sources */,
+				1FEC8CBE24E6A42B004D34DD /* MainView.swift in Sources */,
 				1FEC8CB124E6924D004D34DD /* TracksEndPoint.swift in Sources */,
 				1F00DE6624E3EC20008A9843 /* TracksDownloader.swift in Sources */,
 				1FA1F6DB24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,

@@ -47,7 +47,7 @@ struct TrackListView<T: RawRepresentable>: View where T.RawValue == String {
         //Placeholder for loading tracks, only shown after initial loading on new tracks space
         if !placeHolderTracks, loading {
             LazyVGrid(columns: [GridItem(.flexible())]) {
-                ForEach(TrackDetails.placeholderTracks) { track in
+                ForEach(TrackDetails.placeholderTracks.prefix(10)) { track in
                     TrackView(track: .constant(track), showPlayingBackground: false)
                 }
             }
@@ -64,7 +64,6 @@ struct TrackListView<T: RawRepresentable>: View where T.RawValue == String {
         }
         
         // Space for allowing seeing last trask: NowPlaying 50 + 10
-        Spacer()
-            .frame(height: 60)
+        Spacer(minLength: UIScreen.main.bounds.height / 5)
     }
 }

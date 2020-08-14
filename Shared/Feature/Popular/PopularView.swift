@@ -40,13 +40,6 @@ struct PopularView: View {
                 }
             }
             
-            //Now Playing on top of ZStack
-            if playingState.currentTrack != nil {
-                NowPlayingView()
-                    .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .top)))
-                    .animation(.easeInOut(duration: 0.2))
-            }
-            
         }
         .onChange(of: viewModel.store.popularMode) { _ in
             viewModel.requestTracksIfEmpty()

@@ -18,26 +18,26 @@ extension UITabBar {
         let appearence = UITabBar.appearance()
         appearence.backgroundImage = UIImage()
         appearence.isTranslucent = true
-        UITabBar.blurView.frame = UIScreen.main.bounds
+//        UITabBar.blurView.frame = UIScreen.main.bounds
         UITabBar.blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        appearence.insertSubview(UITabBar.blurView, at: 1)
+//        appearence.insertSubview(UITabBar.blurView, at: 1)
         
-        exchangeImplementations()
+//        exchangeImplementations()
     }
     
-    static func exchangeImplementations() {
-        
-        guard !exchangedImplementations else { return }
-        exchangedImplementations = true
-        
-        guard let original = class_getInstanceMethod(UITabBar.self, #selector(UITabBar.traitCollectionDidChange(_:))) else { return }
-        guard let new = class_getInstanceMethod(UITabBar.self, #selector(UITabBar.swizzledTraitCollectionDidChange(_:))) else { return }
-        method_exchangeImplementations(original, new)
-    }
-    
-    @objc
-    func swizzledTraitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        swizzledTraitCollectionDidChange(previousTraitCollection)
-        UITabBar.blurView.effect = UIBlurEffect(style: traitCollection.userInterfaceStyle == .dark ? .dark : .light)
-    }
+//    static func exchangeImplementations() {
+//
+//        guard !exchangedImplementations else { return }
+//        exchangedImplementations = true
+//
+//        guard let original = class_getInstanceMethod(UITabBar.self, #selector(UITabBar.traitCollectionDidChange(_:))) else { return }
+//        guard let new = class_getInstanceMethod(UITabBar.self, #selector(UITabBar.swizzledTraitCollectionDidChange(_:))) else { return }
+//        method_exchangeImplementations(original, new)
+//    }
+//
+//    @objc
+//    func swizzledTraitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        swizzledTraitCollectionDidChange(previousTraitCollection)
+//        UITabBar.blurView.effect = UIBlurEffect(style: traitCollection.userInterfaceStyle == .dark ? .dark : .light)
+//    }
 }
