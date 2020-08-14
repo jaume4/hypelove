@@ -20,6 +20,14 @@ struct TrackCarrouselView: View {
                         .redacted(reason: viewModel.placeholder ? .placeholder : [])
                 }
             }
+            .modifier(ReplaceByError(active: viewModel.placeholder,
+                                     error: viewModel.error,
+                                     actionDescription: ", tap to retry.",
+                                     action: {
+                                        viewModel.resetError()
+                                        viewModel.requestTracks()
+                                     }
+            ))
         }
     }
 }

@@ -12,6 +12,7 @@ struct ErrorButton<T: RawRepresentable>: View where T.RawValue == String {
     let error: NetworkError<T>
     let actionDescription: String
     let action: () -> ()
+    @Environment(\.parentGeometry) var geometry: GeometryProxy?
     
     var label: String {
         var errorDescription: String
@@ -34,6 +35,8 @@ struct ErrorButton<T: RawRepresentable>: View where T.RawValue == String {
         Button(label, action: action)
             .buttonStyle(HypeSecondaryButton())
             .padding()
+            .frame(height: geometry?.size.height)
+            .unredacted()
     }
     
 }

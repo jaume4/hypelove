@@ -17,23 +17,27 @@ struct PopularView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             
-            ScrollView {
-                
-                Picker("", selection: $viewModel.store.popularMode) {
-                    Text("Now").tag(PopularMode.now)
-                    Text("Last week").tag(PopularMode.lastWeek)
-                    Text("Remixes").tag(PopularMode.remix)
-                    Text("No remixes").tag(PopularMode.noRemix)
+            GeometryReader { proxy in
+            
+                ScrollView {
+                    
+                    Picker("", selection: $viewModel.store.popularMode) {
+                        Text("Now").tag(PopularMode.now)
+                        Text("Last week").tag(PopularMode.lastWeek)
+                        Text("Remixes").tag(PopularMode.remix)
+                        Text("No remixes").tag(PopularMode.noRemix)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding()
+                    
+                    TrackListView(tracks: $viewModel.tracks,
+                                  loading: $viewModel.loading,
+                                  placeHolderTracks: $viewModel.placeholder,
+                                  error: $viewModel.error,
+                                  requestTracks: viewModel.requestTracks,
+                                  resetError: viewModel.resetError)
+                        .parentGeometry(proxy)
                 }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
-                
-                TrackListView(tracks: $viewModel.tracks,
-                              loading: $viewModel.loading,
-                              placeHolderTracks: $viewModel.placeholder,
-                              error: $viewModel.error,
-                              requestTracks: viewModel.requestTracks,
-                              resetError: viewModel.resetError)
             }
             
             //Now Playing on top of ZStack

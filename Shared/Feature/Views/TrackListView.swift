@@ -35,6 +35,14 @@ struct TrackListView<T: RawRepresentable>: View where T.RawValue == String {
             }
         }
         .redacted(reason: placeHolderTracks ? .placeholder : [])
+        .modifier(ReplaceByError(active: placeHolderTracks,
+                                 error: error,
+                                 actionDescription: ", tap to retry.",
+                                 action: {
+                                    resetError()
+                                    requestTracks()
+                                 }
+        ))
         
         //Placeholder for loading tracks, only shown after initial loading on new tracks space
         if !placeHolderTracks, loading {
@@ -47,9 +55,12 @@ struct TrackListView<T: RawRepresentable>: View where T.RawValue == String {
         }
         
         //Error button
-        ErrorButton(error: error, actionDescription: ", tap to retry.") {
-            resetError()
-            requestTracks()
+        if !placeHolderTracks {
+            ErrorButton(error: error, actionDescription: ", tap to retry.") {
+                resetError()
+                requestTracks()
+            }
+            .parentGeometry(nil)
         }
         
         // Space for allowing seeing last trask: NowPlaying 50 + 10

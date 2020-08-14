@@ -81,6 +81,10 @@
 		1FE8A87524E59EDF00B0529C /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87324E59EDF00B0529C /* FavoritesViewModel.swift */; };
 		1FE8A87724E5B30100B0529C /* Publisher+WeakAssign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87624E5B30100B0529C /* Publisher+WeakAssign.swift */; };
 		1FE8A87824E5B30100B0529C /* Publisher+WeakAssign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87624E5B30100B0529C /* Publisher+WeakAssign.swift */; };
+		1FEC8CA424E66EC7004D34DD /* ParentGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CA324E66EC7004D34DD /* ParentGeometry.swift */; };
+		1FEC8CA524E66EC7004D34DD /* ParentGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CA324E66EC7004D34DD /* ParentGeometry.swift */; };
+		1FEC8CA724E67788004D34DD /* ReplaceByErrorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CA624E67788004D34DD /* ReplaceByErrorButton.swift */; };
+		1FEC8CA824E67788004D34DD /* ReplaceByErrorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CA624E67788004D34DD /* ReplaceByErrorButton.swift */; };
 		1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
 		1FEFE54224DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
 		1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */; };
@@ -147,6 +151,8 @@
 		1FE8A87024E59ED800B0529C /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		1FE8A87324E59EDF00B0529C /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		1FE8A87624E5B30100B0529C /* Publisher+WeakAssign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+WeakAssign.swift"; sourceTree = "<group>"; };
+		1FEC8CA324E66EC7004D34DD /* ParentGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentGeometry.swift; sourceTree = "<group>"; };
+		1FEC8CA624E67788004D34DD /* ReplaceByErrorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceByErrorButton.swift; sourceTree = "<group>"; };
 		1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		1FEFE54624DEAA1D002DEEB8 /* PopularListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularListRequest.swift; sourceTree = "<group>"; };
@@ -356,6 +362,8 @@
 			isa = PBXGroup;
 			children = (
 				1FC2F39024DD6246006C78A8 /* Color.swift */,
+				1FEC8CA324E66EC7004D34DD /* ParentGeometry.swift */,
+				1FEC8CA624E67788004D34DD /* ReplaceByErrorButton.swift */,
 				1FE8A87624E5B30100B0529C /* Publisher+WeakAssign.swift */,
 			);
 			path = Extensions;
@@ -520,6 +528,7 @@
 				1FA51CC924E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */,
 				1F083D6424E153250033DA27 /* TrackDetails.swift in Sources */,
 				1F49747124DC1F1F0085F599 /* Keychain.swift in Sources */,
+				1FEC8CA424E66EC7004D34DD /* ParentGeometry.swift in Sources */,
 				1FFFE14E24E53EFD00A914A7 /* SettingsViewModel.swift in Sources */,
 				1FFFE14424E4545C00A914A7 /* UISegmentedControl.swift in Sources */,
 				1FEFE57324DF1B06002DEEB8 /* TrackView.swift in Sources */,
@@ -534,6 +543,7 @@
 				1FA51CC324E1A8D400DECA7A /* VisualEffectBlur-iOS.swift in Sources */,
 				1FEFE57724DFD15C002DEEB8 /* MinuteSecondSFormatter.swift in Sources */,
 				1F49748724DC1F540085F599 /* PopularView.swift in Sources */,
+				1FEC8CA724E67788004D34DD /* ReplaceByErrorButton.swift in Sources */,
 				1F49748924DC1F540085F599 /* LoginView.swift in Sources */,
 				1F00DE6824E3EE4E008A9843 /* TracksDataStore.swift in Sources */,
 				1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */,
@@ -573,6 +583,7 @@
 				1FA51CCA24E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */,
 				1F083D6524E153250033DA27 /* TrackDetails.swift in Sources */,
 				1F49747324DC1F230085F599 /* Keychain.swift in Sources */,
+				1FEC8CA524E66EC7004D34DD /* ParentGeometry.swift in Sources */,
 				1FFFE14F24E53EFD00A914A7 /* SettingsViewModel.swift in Sources */,
 				1FFFE14524E4545C00A914A7 /* UISegmentedControl.swift in Sources */,
 				1FEFE57424DF1B06002DEEB8 /* TrackView.swift in Sources */,
@@ -587,6 +598,7 @@
 				1FEFE57824DFD15C002DEEB8 /* MinuteSecondSFormatter.swift in Sources */,
 				1F49748824DC1F540085F599 /* PopularView.swift in Sources */,
 				1F49748A24DC1F540085F599 /* LoginView.swift in Sources */,
+				1FEC8CA824E67788004D34DD /* ReplaceByErrorButton.swift in Sources */,
 				1FEFE54224DE9DD6002DEEB8 /* NetworkError.swift in Sources */,
 				1F00DE6924E3EE4E008A9843 /* TracksDataStore.swift in Sources */,
 				1FA51CC624E1A8D400DECA7A /* VisualEffectBlur-Mac.swift in Sources */,
