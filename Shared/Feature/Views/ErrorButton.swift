@@ -17,6 +17,7 @@ struct ErrorButton<T: RawRepresentable>: View where T.RawValue == String {
     var label: String {
         var errorDescription: String
         switch error {
+        case .notAuthorized: errorDescription = "Log in to see this content"
         case .custom(let error): errorDescription =  "\(error.rawValue)"
         case .noConnection: errorDescription =  "No connection"
         default: errorDescription = "Something went wrong"

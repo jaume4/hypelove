@@ -1,11 +1,42 @@
 //
-//  TrackListResponseElement.swift
+//  TrackListRequest.swift
 //  HypeLove
 //
-//  Created by Jaume on 13/08/2020.
+//  Created by Jaume on 14/08/2020.
 //
 
 import Foundation
+
+struct TrackListRequest: ApiTrackListRequest {
+    
+    typealias Response = [TrackListResponseElement]
+    typealias CustomError = TrackListResponseError
+    
+    let endPointType: TracksEndPoint
+    let method = HTTPMethod.get
+    var endPoint: String {
+        endPointType.endPoint
+    }
+    let urlParams: [String : String]
+    var authNeeded: Bool {
+        return endPointType.authNeeded
+    }
+    
+    init(endPoint: TracksEndPoint, page: Int) {
+        self.endPointType = endPoint
+        var params = ["page": "\(page)"]
+        
+        switch endPoint {
+        case .popular(let mode):
+            if !mode.rawValue.isEmpty {
+                params["mode"] = mode.rawValue
+            }
+        default: break
+        }
+        
+        urlParams = params
+    }
+}
 
 struct TrackListResponseElement: Decodable {
     let itemid, artist, title: String

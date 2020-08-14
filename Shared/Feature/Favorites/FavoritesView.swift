@@ -24,7 +24,9 @@ struct FavoritesView: View {
                               error: $viewModel.error,
                               requestTracks: viewModel.requestTracks,
                               resetError: viewModel.resetError)
+                    .padding([.top], 10)
             }
+            .modifier(ReplaceByError(active: viewModel.error == .notAuthorized, error: viewModel.error, actionDescription: ", tap to open settings.", action: { userState.presentingSettings.toggle() }))
             
             //Now Playing on top of ZStack
             if playingState.currentTrack != nil {

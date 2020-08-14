@@ -12,10 +12,10 @@ final class PopularViewModel: ObservableObject {
     @Published var tracks: [TrackDetails] = []
     @Published var placeholder: Bool = true
     @Published var loading: Bool = false
-    @Published var error: NetworkError<PopularListRequest.CustomError>? = nil
+    @Published var error: NetworkError<TrackListRequest.CustomError>? = nil
     @Published var store: TracksDataStore
     
-    private var trackStore: TracksDownloader<PopularListRequest>
+    private var trackStore: TracksDownloader<TrackListRequest>
     private var cancellables: Set<AnyCancellable> = []
     private var modeCancellable: AnyCancellable?
     

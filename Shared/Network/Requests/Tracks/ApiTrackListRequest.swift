@@ -1,5 +1,5 @@
 //
-//  TrackList.swift
+//  ApiTrackListRequest.swift
 //  HypeLove
 //
 //  Created by Jaume on 14/08/2020.
@@ -7,9 +7,11 @@
 
 import Foundation
 
-protocol TrackListRequest: ApiRequest {}
+protocol ApiTrackListRequest: ApiRequest {
+    init(endPoint: TracksEndPoint, page: Int)
+}
 
-extension TrackListRequest where Self.CustomError == TrackListResponseError {
+extension ApiTrackListRequest where Self.CustomError == TrackListResponseError {
     
     var controlledErrorCodes: Set<Int> { [404] }
     func processError(code: Int, data: Data) -> NetworkError<TrackListResponseError>? {
@@ -17,6 +19,16 @@ extension TrackListRequest where Self.CustomError == TrackListResponseError {
             return .custom(.noMoreTracks)
         } else {
             return Self.processError(controlledErrorCodes, code, data)
+        }
+    }
+    
+}
+
+extension ApiTrackListRequest {
+    
+    static func requestMaker(endPoint: TracksEndPoint) -> ((Int) -> Self) {
+        return { page in
+            Self.init(endPoint: endPoint, page: page)
         }
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class TracksDownloader<Request>: ObservableObject where Request: ApiRequest, Request.Response == [TrackListResponseElement] {
+final class TracksDownloader<Request: ApiTrackListRequest>: ObservableObject where Request.Response == [TrackListResponseElement] {
     
     @Published private(set) var tracks: [TrackDetails] = Array(TrackDetails.placeholderTracks.prefix(10))
     @Published private(set) var error: NetworkError<Request.CustomError>?
@@ -18,8 +18,8 @@ final class TracksDownloader<Request>: ObservableObject where Request: ApiReques
     private var currentPage = 0
     let makeRequest: (Int) -> Request
     
-    init(requestMaker: @escaping (Int) -> Request) {
-        makeRequest = requestMaker
+    init(endPoint: TracksEndPoint) {
+        makeRequest = Request.requestMaker(endPoint: endPoint)
     }
     
     func requestTracksIfEmpty() {

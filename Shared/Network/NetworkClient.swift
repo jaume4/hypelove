@@ -131,6 +131,12 @@ final class NetworkClient {
     /// Sends any NetworkRequest and retries it if an error is given and [shouldRetry](x-source-tag://ShouldRetry) returns true
     private func send<T: ApiRequest>(_ request: T, urlRequest: URLRequest) -> RequestPublisher<T> {
         
+        if request.authNeeded, token == nil {
+            return Fail(error: NetworkError<T.CustomError>.notAuthorized)
+                .receive(on: DispatchQueue.main)
+                .eraseToAnyPublisher()
+        }
+        
         var retrying = false
         let requestPublisher = session.dataTaskPublisher(for: urlRequest)
         

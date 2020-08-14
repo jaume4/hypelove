@@ -12,12 +12,12 @@ final class FavoritesViewModel: ObservableObject {
     @Published var tracks: [TrackDetails] = []
     @Published var placeholder: Bool = true
     @Published var loading: Bool = false
-    @Published var error: NetworkError<TrackListResponseError>? = nil
+    @Published var error: NetworkError<TrackListRequest.CustomError>? = nil
     
-    private var trackStore: TracksDownloader<FavoritesListRequest>
+    private var trackStore: TracksDownloader<TrackListRequest>
     private var cancellables: Set<AnyCancellable> = []
     
-    init(store: TracksDownloader<FavoritesListRequest>) {
+    init(store: TracksDownloader<TrackListRequest>) {
         self.trackStore = store
         bind()
     }
