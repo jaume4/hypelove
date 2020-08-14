@@ -71,10 +71,10 @@
 		1FC2F39224DD6246006C78A8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Color.swift */; };
 		1FE8A86D24E5955D00B0529C /* TrackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A86C24E5955D00B0529C /* TrackListView.swift */; };
 		1FE8A86E24E5955D00B0529C /* TrackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A86C24E5955D00B0529C /* TrackListView.swift */; };
-		1FE8A87124E59ED800B0529C /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87024E59ED800B0529C /* FavoritesView.swift */; };
-		1FE8A87224E59ED800B0529C /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87024E59ED800B0529C /* FavoritesView.swift */; };
-		1FE8A87424E59EDF00B0529C /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87324E59EDF00B0529C /* FavoritesViewModel.swift */; };
-		1FE8A87524E59EDF00B0529C /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87324E59EDF00B0529C /* FavoritesViewModel.swift */; };
+		1FE8A87124E59ED800B0529C /* SimpleTrackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87024E59ED800B0529C /* SimpleTrackListView.swift */; };
+		1FE8A87224E59ED800B0529C /* SimpleTrackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87024E59ED800B0529C /* SimpleTrackListView.swift */; };
+		1FE8A87424E59EDF00B0529C /* SimpleTrackListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87324E59EDF00B0529C /* SimpleTrackListViewModel.swift */; };
+		1FE8A87524E59EDF00B0529C /* SimpleTrackListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87324E59EDF00B0529C /* SimpleTrackListViewModel.swift */; };
 		1FE8A87724E5B30100B0529C /* Publisher+WeakAssign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87624E5B30100B0529C /* Publisher+WeakAssign.swift */; };
 		1FE8A87824E5B30100B0529C /* Publisher+WeakAssign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87624E5B30100B0529C /* Publisher+WeakAssign.swift */; };
 		1FEC8CA424E66EC7004D34DD /* ParentGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CA324E66EC7004D34DD /* ParentGeometry.swift */; };
@@ -152,8 +152,8 @@
 		1FA51CCB24E1C26F00DECA7A /* MakeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeButton.swift; sourceTree = "<group>"; };
 		1FC2F39024DD6246006C78A8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		1FE8A86C24E5955D00B0529C /* TrackListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListView.swift; sourceTree = "<group>"; };
-		1FE8A87024E59ED800B0529C /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
-		1FE8A87324E59EDF00B0529C /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		1FE8A87024E59ED800B0529C /* SimpleTrackListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTrackListView.swift; sourceTree = "<group>"; };
+		1FE8A87324E59EDF00B0529C /* SimpleTrackListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTrackListViewModel.swift; sourceTree = "<group>"; };
 		1FE8A87624E5B30100B0529C /* Publisher+WeakAssign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+WeakAssign.swift"; sourceTree = "<group>"; };
 		1FEC8CA324E66EC7004D34DD /* ParentGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentGeometry.swift; sourceTree = "<group>"; };
 		1FEC8CA624E67788004D34DD /* ReplaceByErrorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceByErrorButton.swift; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 				1F083D6224E1530A0033DA27 /* Models */,
 				1F069A8324E04B1A0055BC3F /* Views */,
 				1FEFE57924DFE41B002DEEB8 /* Home */,
-				1FE8A86F24E59E2E00B0529C /* Favorites */,
+				1FE8A86F24E59E2E00B0529C /* SimpleTrackListView */,
 				1F49748124DC1F540085F599 /* Popular */,
 				1FFFE14624E46C4200A914A7 /* Settings */,
 			);
@@ -378,13 +378,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		1FE8A86F24E59E2E00B0529C /* Favorites */ = {
+		1FE8A86F24E59E2E00B0529C /* SimpleTrackListView */ = {
 			isa = PBXGroup;
 			children = (
-				1FE8A87024E59ED800B0529C /* FavoritesView.swift */,
-				1FE8A87324E59EDF00B0529C /* FavoritesViewModel.swift */,
+				1FE8A87024E59ED800B0529C /* SimpleTrackListView.swift */,
+				1FE8A87324E59EDF00B0529C /* SimpleTrackListViewModel.swift */,
 			);
-			path = Favorites;
+			path = SimpleTrackListView;
 			sourceTree = "<group>";
 		};
 		1FEC8CB524E69293004D34DD /* Tracks */ = {
@@ -530,7 +530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FEC8CB724E692D3004D34DD /* ApiTrackListRequest.swift in Sources */,
-				1FE8A87124E59ED800B0529C /* FavoritesView.swift in Sources */,
+				1FE8A87124E59ED800B0529C /* SimpleTrackListView.swift in Sources */,
 				1FE8A86D24E5955D00B0529C /* TrackListView.swift in Sources */,
 				1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1FEC8CC024E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */,
@@ -570,7 +570,7 @@
 				1F49748924DC1F540085F599 /* LoginView.swift in Sources */,
 				1F00DE6824E3EE4E008A9843 /* TracksDataStore.swift in Sources */,
 				1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */,
-				1FE8A87524E59EDF00B0529C /* FavoritesViewModel.swift in Sources */,
+				1FE8A87524E59EDF00B0529C /* SimpleTrackListViewModel.swift in Sources */,
 				1FE8A87724E5B30100B0529C /* Publisher+WeakAssign.swift in Sources */,
 				1FA51CBF24E1979D00DECA7A /* AppInfo.swift in Sources */,
 				1F00DE6224E3E958008A9843 /* ImageDownloader.swift in Sources */,
@@ -588,7 +588,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FEC8CB824E692D3004D34DD /* ApiTrackListRequest.swift in Sources */,
-				1FE8A87224E59ED800B0529C /* FavoritesView.swift in Sources */,
+				1FE8A87224E59ED800B0529C /* SimpleTrackListView.swift in Sources */,
 				1FE8A86E24E5955D00B0529C /* TrackListView.swift in Sources */,
 				1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
 				1FEC8CC124E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */,
@@ -628,7 +628,7 @@
 				1FEFE54224DE9DD6002DEEB8 /* NetworkError.swift in Sources */,
 				1F00DE6924E3EE4E008A9843 /* TracksDataStore.swift in Sources */,
 				1FA51CC624E1A8D400DECA7A /* VisualEffectBlur-Mac.swift in Sources */,
-				1FE8A87424E59EDF00B0529C /* FavoritesViewModel.swift in Sources */,
+				1FE8A87424E59EDF00B0529C /* SimpleTrackListViewModel.swift in Sources */,
 				1FE8A87824E5B30100B0529C /* Publisher+WeakAssign.swift in Sources */,
 				1FA51CC024E1979D00DECA7A /* AppInfo.swift in Sources */,
 				1F00DE6324E3E958008A9843 /* ImageDownloader.swift in Sources */,

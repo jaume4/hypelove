@@ -1,5 +1,5 @@
 //
-//  FavoritesViewModel.swift
+//  SimpleTrackListViewModel.swift
 //  HypeLove
 //
 //  Created by Jaume on 12/08/2020.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class FavoritesViewModel: ObservableObject {
+final class SimpleTrackListViewModel: ObservableObject {
     @Published var tracks: [TrackDetails] = []
     @Published var placeholder: Bool = true
     @Published var loading: Bool = false
@@ -32,6 +32,10 @@ final class FavoritesViewModel: ObservableObject {
     
     func resetError() {
         trackStore.resetError()
+    }
+    
+    func resetTracks() {
+        trackStore.resetTracks()
     }
     
     private func bind() {

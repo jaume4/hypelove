@@ -50,6 +50,14 @@ final class TracksDownloader<Request: ApiTrackListRequest>: ObservableObject whe
         })
     }
     
+    func resetTracks() {
+        tracksCancellable?.cancel()
+        currentPage = 0
+        resetError()
+        placeholderTracks = true
+        tracks = Array(TrackDetails.placeholderTracks.prefix(10))
+    }
+    
     func resetError() {
         error = nil
     }
