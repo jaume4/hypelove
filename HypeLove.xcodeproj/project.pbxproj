@@ -85,6 +85,8 @@
 		1FEC8CA524E66EC7004D34DD /* ParentGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CA324E66EC7004D34DD /* ParentGeometry.swift */; };
 		1FEC8CA724E67788004D34DD /* ReplaceByErrorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CA624E67788004D34DD /* ReplaceByErrorButton.swift */; };
 		1FEC8CA824E67788004D34DD /* ReplaceByErrorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CA624E67788004D34DD /* ReplaceByErrorButton.swift */; };
+		1FEC8CAA24E68638004D34DD /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CA924E68638004D34DD /* TrackList.swift */; };
+		1FEC8CAB24E68638004D34DD /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CA924E68638004D34DD /* TrackList.swift */; };
 		1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
 		1FEFE54224DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
 		1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */; };
@@ -153,6 +155,7 @@
 		1FE8A87624E5B30100B0529C /* Publisher+WeakAssign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+WeakAssign.swift"; sourceTree = "<group>"; };
 		1FEC8CA324E66EC7004D34DD /* ParentGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentGeometry.swift; sourceTree = "<group>"; };
 		1FEC8CA624E67788004D34DD /* ReplaceByErrorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceByErrorButton.swift; sourceTree = "<group>"; };
+		1FEC8CA924E68638004D34DD /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
 		1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		1FEFE54624DEAA1D002DEEB8 /* PopularListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularListRequest.swift; sourceTree = "<group>"; };
@@ -289,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				1F49747824DC1F350085F599 /* LoginRequest.swift */,
+				1FEC8CA924E68638004D34DD /* TrackList.swift */,
 				1FEFE54624DEAA1D002DEEB8 /* PopularListRequest.swift */,
 				1FE8A86624E58DBF00B0529C /* FavoritesListRequest.swift */,
 				1FE8A86924E58E2500B0529C /* TrackListResponseElement.swift */,
@@ -536,6 +540,7 @@
 				1F6F73BC24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1F083D6024E1517E0033DA27 /* PlayingState.swift in Sources */,
 				1F00DE6B24E3FF3A008A9843 /* PopularViewModel.swift in Sources */,
+				1FEC8CAA24E68638004D34DD /* TrackList.swift in Sources */,
 				1F00DE6524E3EC20008A9843 /* TracksDownloader.swift in Sources */,
 				1FA1F6DA24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
 				1FA1F6DD24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */,
@@ -591,6 +596,7 @@
 				1F6F73BD24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1F083D6124E1517E0033DA27 /* PlayingState.swift in Sources */,
 				1F00DE6C24E3FF3A008A9843 /* PopularViewModel.swift in Sources */,
+				1FEC8CAB24E68638004D34DD /* TrackList.swift in Sources */,
 				1F00DE6624E3EC20008A9843 /* TracksDownloader.swift in Sources */,
 				1FA1F6DB24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
 				1FA1F6DE24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */,

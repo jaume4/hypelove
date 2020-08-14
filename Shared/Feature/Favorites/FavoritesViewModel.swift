@@ -12,7 +12,7 @@ final class FavoritesViewModel: ObservableObject {
     @Published var tracks: [TrackDetails] = []
     @Published var placeholder: Bool = true
     @Published var loading: Bool = false
-    @Published var error: NetworkError<PopularListRequest.CustomError>? = nil
+    @Published var error: NetworkError<TrackListResponseError>? = nil
     
     private var trackStore: TracksDownloader<FavoritesListRequest>
     private var cancellables: Set<AnyCancellable> = []

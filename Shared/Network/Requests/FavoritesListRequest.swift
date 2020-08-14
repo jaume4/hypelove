@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct FavoritesListRequest: ApiRequest {
+struct FavoritesListRequest: TrackListRequest {
     
     typealias Response = [TrackListResponseElement]
+    typealias CustomError = TrackListResponseError
     
     let endPoint = "me/favorites"
     let method = HTTPMethod.get
@@ -17,6 +18,6 @@ struct FavoritesListRequest: ApiRequest {
     let authNeeded = true
     
     init(page: Int) {
-        urlParams = ["page": "\(page)", "count": "100"]
+        urlParams = ["page": "\(page)"]
     }
 }

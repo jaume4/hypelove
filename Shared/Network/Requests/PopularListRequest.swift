@@ -23,9 +23,10 @@ enum PopularMode: String, Hashable {
     }
 }
 
-struct PopularListRequest: ApiRequest {
+struct PopularListRequest: TrackListRequest {
     
     typealias Response = [TrackListResponseElement]
+    typealias CustomError = TrackListResponseError
     
     let endPoint = "popular"
     let method = HTTPMethod.get

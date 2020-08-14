@@ -47,6 +47,13 @@ extension NetworkRequest {
     var urlParams: [String: String] { [:] }
     
     func processError(code: Int, data: Data) -> NetworkError<CustomError>? {
+        Self.processError(controlledErrorCodes, code, data)
+    }
+}
+
+extension NetworkRequest {
+    
+    static func processError(_ controlledErrorCodes: Set<Int>, _ code: Int, _ data: Data) -> NetworkError<CustomError>? {
         
         //Check for custom error codes
         if controlledErrorCodes.contains(code),
