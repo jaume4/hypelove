@@ -6,26 +6,44 @@
 //
 
 import Foundation
+import Combine
+import AVFoundation
+import MediaPlayer
 
 enum PlayState {
     case play
     case pause
     case loading
+    case error
 }
 
 final class PlayingState: ObservableObject {
-    @Published var currentTrack: TrackDetails?
+    @Published var trackDownload: AnyCancellable?
     @Published var playing = false
+    @Published var state = PlayState.pause
+    @Published var error: NetworkError<DownloadTrackRequest.CustomError>?
+    @Published private(set) var currentTrack: TrackDetails?
+    private lazy var player = Player()
     
     func pause() {
         playing = false
     }
     
-    func play(track: TrackDetails) {
-        if currentTrack != track {
+    func play(track: TrackDetails?) {
+        if let track = track, currentTrack != track {
             currentTrack = track
             playing = true
+            player.play(tracks: [track])
+//            dowloadTrack(track)
         }
+    }
+    
+    func play(tracks: [TrackDetails]) {
+      
+            playing = true
+            player.play(tracks: tracks)
+//            dowloadTrack(track)
+        
     }
     
     func resume() {

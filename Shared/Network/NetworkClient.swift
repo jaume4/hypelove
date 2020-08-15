@@ -233,7 +233,7 @@ final class NetworkClient {
 //Trust mocking server
 final fileprivate class SessionDelegate: NSObject, URLSessionDelegate {
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        if challenge.protectionSpace.host == NetworkClient.shared.host {
+        if challenge.protectionSpace.host == "192.168.1.2" {
             completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
         } else {
             completionHandler(.performDefaultHandling, nil)

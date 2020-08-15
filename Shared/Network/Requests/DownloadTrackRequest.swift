@@ -7,17 +7,22 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
 
 struct DownloadTrackRequest: NetworkRequest {
     
-    typealias Response = Data
+    typealias Response = AVAudioPlayer
     
     let url: URL
     let method = HTTPMethod.get
     let allowCachedResponse = true
     
-    func transformResponse(data: Data, response: HTTPURLResponse) throws -> Data {
-        return data
+    init(track: TrackDetails) {
+        self.url = track.url
+    }
+    
+    func transformResponse(data: Data, response: HTTPURLResponse) throws -> AVAudioPlayer {
+        return try AVAudioPlayer(data: data)
     }
     
 }

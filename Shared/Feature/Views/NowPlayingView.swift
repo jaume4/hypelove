@@ -20,7 +20,7 @@ struct NowPlayingView: View {
     var body: some View {
         
         HStack {
-            TrackView(track: $playingState.currentTrack, showPlayingBackground: false)
+            TrackView(track: .constant(playingState.currentTrack), showPlayingBackground: false)
             
             Button(action: {
                 playingState.playing.toggle()

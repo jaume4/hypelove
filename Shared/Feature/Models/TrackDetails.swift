@@ -39,6 +39,12 @@ struct TrackDetails: Identifiable, Equatable, Hashable {
         //""")
     }
     
+    var url: URL {
+//        URL(string: "https://192.168.1.2/serve/public/1")!
+        URL(string: "https://corbi.co/test.mp3")!
+//        URL(string: "https://hypem.com/serve/public/\(id)")!
+    }
+    
     static func == (lhs: TrackDetails, rhs: TrackDetails) -> Bool {
         return lhs.id == rhs.id
     }

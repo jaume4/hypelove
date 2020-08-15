@@ -56,7 +56,7 @@ struct TrackCarrouselElementView: View {
         }
         .padding([.leading, .trailing], 15)
         .modifier(MakeButton {
-            playingState.currentTrack = track
+            playingState.play(track: track)
         })
         .onAppear {
             if redactionReasons.isEmpty, let url = track?.imageURL {
