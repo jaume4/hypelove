@@ -12,16 +12,25 @@ enum PlayerStatus {
 }
 
 struct NowPlayingView: View {
+    @EnvironmentObject var userState: UserState
     @EnvironmentObject var player: Player
     @Environment(\.colorScheme) var colorScheme
     @State var transition = false
     let playerPosition: Namespace.ID
+    
+    var drag: some Gesture {
+        DragGesture(minimumDistance: 50)
+            .onEnded { _ in
+                userState.presentPlayer()
+            }
+    }
     
     var body: some View {
         
         HStack {
             if let track = player.currentTrack {
                 TrackView(track: track, playing: track == player.currentTrack, showPlayingBackground: false)
+                    .modifier(MakeButton(action: { userState.presentPlayer() }))
             }
             
             Button(action: {
@@ -49,6 +58,8 @@ struct NowPlayingView: View {
         }
         .padding(.bottom, 5)
         .padding(.top, 10)
+        
+        .gesture(drag)
         
         .matchedGeometryEffect(id: PlayerStatus.shown, in: playerPosition, properties: .position, anchor: .top)
         .matchedGeometryEffect(id: PlayerStatus.hidden, in: playerPosition, properties: .position, anchor: transition ? .bottom : .top, isSource: false)

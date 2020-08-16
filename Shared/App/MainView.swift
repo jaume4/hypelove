@@ -13,7 +13,6 @@ struct MainView: View {
     @EnvironmentObject var player: Player
     @EnvironmentObject var tracksStore: TracksDataStore
     @Namespace private var playerPosition
-    @State private var currentAnchor = PlayerStatus.hidden
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -22,7 +21,7 @@ struct MainView: View {
                 NavigationView {
                     HomeView()
                         .matchedGeometryEffect(id: PlayerStatus.hidden, in: playerPosition, properties: .position, anchor: .bottom, isSource: true)
-                        .modifier(PlayerBlurBar(currentAnchor: $currentAnchor, playerPosition: playerPosition))
+                        .modifier(PlayerBlurBar(playerPosition: playerPosition))
                 }
                 .tabItem {
                     Image(systemName: "house.fill")
@@ -32,7 +31,7 @@ struct MainView: View {
                 
                 NavigationView {
                     PopularView(viewModel: PopularViewModel(store: tracksStore, mode: .now, bindModeChange: true))
-                        .modifier(PlayerBlurBar(currentAnchor: $currentAnchor, playerPosition: playerPosition))
+                        .modifier(PlayerBlurBar(playerPosition: playerPosition))
                 }
                 .tabItem {
                     Image(systemName: "chart.bar.fill")
@@ -42,7 +41,7 @@ struct MainView: View {
                 
                 NavigationView {
                     SimpleTrackListView(viewModel: SimpleTrackListViewModel(store: tracksStore.favorites), mode: .favorites)
-                        .modifier(PlayerBlurBar(currentAnchor: $currentAnchor, playerPosition: playerPosition))
+                        .modifier(PlayerBlurBar(playerPosition: playerPosition))
                 }
                 .tabItem {
                     Image(systemName: "heart.fill")
@@ -52,7 +51,7 @@ struct MainView: View {
                 
                 NavigationView {
                     SimpleTrackListView(viewModel: SimpleTrackListViewModel(store: tracksStore.history), mode: .history)
-                        .modifier(PlayerBlurBar(currentAnchor: $currentAnchor, playerPosition: playerPosition))
+                        .modifier(PlayerBlurBar(playerPosition: playerPosition))
                 }
                 .tabItem {
                     Image(systemName: "clock.fill")
@@ -71,14 +70,8 @@ struct MainView: View {
             }
         }
         
-        .onChange(of: player.currentTrack, perform: { value in
-            currentAnchor = value != nil ? .shown : .hidden
-        })
-        
-        .sheet(isPresented: $userState.presentingSettings) {
-            NavigationView {
-                SettingsView(viewModel: SettingsViewModel(userState: userState))
-            }
+        .sheet(isPresented: $userState.presentingModal) {
+            ModalPresenterView()
             .environmentObject(userState)
             .environmentObject(player)
         }

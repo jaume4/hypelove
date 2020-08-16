@@ -100,9 +100,8 @@ struct HomeView: View {
                                         Button(action: {}, label: {
                                             Image(systemName: "magnifyingglass")
                                         })
-                                        Button(action: {
-                                            userState.presentingSettings.toggle()
-                                        }, label: {
+                                        Button(action: userState.presentSettings,
+                                            label: {
                                             Image(systemName: "gear")
                                         })
                                     }

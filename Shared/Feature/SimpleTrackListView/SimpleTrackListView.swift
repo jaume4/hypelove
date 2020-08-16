@@ -32,10 +32,8 @@ struct SimpleTrackListView: View {
                 .modifier(ReplaceByError(active: viewModel.error == .notAuthorized,
                                          error: viewModel.error,
                                          actionDescription: ", tap to open settings.",
-                                         action: {
-                                            userState.presentingSettings.toggle()
-                                         }
-                ))
+                                         action: userState.presentSettings)
+                )
                 .parentGeometry(proxy)
             }
         }

@@ -57,6 +57,10 @@
 		1F83325524DC246E0054DD8D /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325324DC246E0054DD8D /* UserState.swift */; };
 		1F83325724DC50F00054DD8D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325624DC50F00054DD8D /* LoginViewModel.swift */; };
 		1F83325824DC50F00054DD8D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325624DC50F00054DD8D /* LoginViewModel.swift */; };
+		1F8F39E624E97FC500ACF92E /* FullPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8F39E524E97FC500ACF92E /* FullPlayerView.swift */; };
+		1F8F39E724E97FC500ACF92E /* FullPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8F39E524E97FC500ACF92E /* FullPlayerView.swift */; };
+		1F8F39E924E983A100ACF92E /* ModalPresenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8F39E824E983A100ACF92E /* ModalPresenterView.swift */; };
+		1F8F39EA24E983A100ACF92E /* ModalPresenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8F39E824E983A100ACF92E /* ModalPresenterView.swift */; };
 		1FA1F6DA24DC81A50095C0A2 /* HypeTexfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1F6D924DC81A50095C0A2 /* HypeTexfield.swift */; };
 		1FA1F6DB24DC81A50095C0A2 /* HypeTexfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1F6D924DC81A50095C0A2 /* HypeTexfield.swift */; };
 		1FA1F6DD24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */; };
@@ -148,6 +152,8 @@
 		1F78122B24E8803B008672A5 /* MetadataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataHandler.swift; sourceTree = "<group>"; };
 		1F83325324DC246E0054DD8D /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		1F83325624DC50F00054DD8D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		1F8F39E524E97FC500ACF92E /* FullPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPlayerView.swift; sourceTree = "<group>"; };
+		1F8F39E824E983A100ACF92E /* ModalPresenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresenterView.swift; sourceTree = "<group>"; };
 		1FA1F6D924DC81A50095C0A2 /* HypeTexfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeTexfield.swift; sourceTree = "<group>"; };
 		1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTapDismissKeyboard.swift; sourceTree = "<group>"; };
 		1FA51CBE24E1979D00DECA7A /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
@@ -204,10 +210,12 @@
 				1FA51CC724E1B1DC00DECA7A /* Representables */,
 				1F069A8424E04B270055BC3F /* Playingindicator.swift */,
 				1FE8A86C24E5955D00B0529C /* TrackListView.swift */,
+				1F8F39E824E983A100ACF92E /* ModalPresenterView.swift */,
 				1FEFE57224DF1B06002DEEB8 /* TrackView.swift */,
 				1FFFE14A24E4836F00A914A7 /* AnimatableGradient.swift */,
 				1F72300224E2A64D00D3FFA5 /* ErrorButton.swift */,
 				1F083D5C24E150F10033DA27 /* NowPlayingView.swift */,
+				1F8F39E524E97FC500ACF92E /* FullPlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -567,6 +575,7 @@
 				1FEC8CA424E66EC7004D34DD /* ParentGeometry.swift in Sources */,
 				1FFFE14E24E53EFD00A914A7 /* SettingsViewModel.swift in Sources */,
 				1FFFE14424E4545C00A914A7 /* UISegmentedControl.swift in Sources */,
+				1F8F39E624E97FC500ACF92E /* FullPlayerView.swift in Sources */,
 				1FEFE57324DF1B06002DEEB8 /* TrackView.swift in Sources */,
 				1F49747224DC1F1F0085F599 /* KeychainService.swift in Sources */,
 				1FEC8CAD24E68D9A004D34DD /* TrackListRequest.swift in Sources */,
@@ -592,6 +601,7 @@
 				1FA51CBF24E1979D00DECA7A /* AppInfo.swift in Sources */,
 				1F00DE6224E3E958008A9843 /* ImageDownloader.swift in Sources */,
 				1FFFE14B24E4836F00A914A7 /* AnimatableGradient.swift in Sources */,
+				1F8F39E924E983A100ACF92E /* ModalPresenterView.swift in Sources */,
 				1F49747924DC1F350085F599 /* NetworkClient.swift in Sources */,
 				1F83325724DC50F00054DD8D /* LoginViewModel.swift in Sources */,
 				1F72300324E2A64D00D3FFA5 /* ErrorButton.swift in Sources */,
@@ -627,6 +637,7 @@
 				1FEC8CA524E66EC7004D34DD /* ParentGeometry.swift in Sources */,
 				1FFFE14F24E53EFD00A914A7 /* SettingsViewModel.swift in Sources */,
 				1FFFE14524E4545C00A914A7 /* UISegmentedControl.swift in Sources */,
+				1F8F39E724E97FC500ACF92E /* FullPlayerView.swift in Sources */,
 				1FEFE57424DF1B06002DEEB8 /* TrackView.swift in Sources */,
 				1F49747424DC1F260085F599 /* KeychainService.swift in Sources */,
 				1FEC8CAE24E68D9A004D34DD /* TrackListRequest.swift in Sources */,
@@ -652,6 +663,7 @@
 				1FA51CC024E1979D00DECA7A /* AppInfo.swift in Sources */,
 				1F00DE6324E3E958008A9843 /* ImageDownloader.swift in Sources */,
 				1FFFE14C24E4836F00A914A7 /* AnimatableGradient.swift in Sources */,
+				1F8F39EA24E983A100ACF92E /* ModalPresenterView.swift in Sources */,
 				1F49747A24DC1F350085F599 /* NetworkClient.swift in Sources */,
 				1F83325824DC50F00054DD8D /* LoginViewModel.swift in Sources */,
 				1F72300424E2A64D00D3FFA5 /* ErrorButton.swift in Sources */,
