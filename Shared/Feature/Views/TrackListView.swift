@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TrackListView<T: RawRepresentable>: View where T.RawValue == String {
     
-    @EnvironmentObject var playingState: PlayingState
+    @EnvironmentObject var player: Player
     @Binding var tracks: [TrackDetails]
     @Binding var loading: Bool
     @Binding var placeHolderTracks: Bool
@@ -22,9 +22,9 @@ struct TrackListView<T: RawRepresentable>: View where T.RawValue == String {
         //Tracks view. First tracks are populated with placeholder tracks, redacted if the downloader has marked them as placeholders
         LazyVGrid(columns: [GridItem(.flexible())]) {
             ForEach(tracks) { track in
-                TrackView(track: .constant(track), showPlayingBackground: true)
+                TrackView(track: track, playing: track == player.currentTrack, showPlayingBackground: true)
                     .modifier(MakeButton {
-                        playingState.play(track: track)
+                        player.play(tracks: tracks, startIndex: tracks.firstIndex(of: track))
                     })
                     //If this is the last track, request more tracks
                     .onAppear {
@@ -48,7 +48,7 @@ struct TrackListView<T: RawRepresentable>: View where T.RawValue == String {
         if !placeHolderTracks, loading {
             LazyVGrid(columns: [GridItem(.flexible())]) {
                 ForEach(TrackDetails.placeholderTracks.prefix(10)) { track in
-                    TrackView(track: .constant(track), showPlayingBackground: false)
+                    TrackView(track: track, playing: track == player.currentTrack, showPlayingBackground: false)
                 }
             }
             .redacted(reason: .placeholder)

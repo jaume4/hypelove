@@ -25,8 +25,6 @@
 		1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F069A8424E04B270055BC3F /* Playingindicator.swift */; };
 		1F083D5D24E150F10033DA27 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D5C24E150F10033DA27 /* NowPlayingView.swift */; };
 		1F083D5E24E150F10033DA27 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D5C24E150F10033DA27 /* NowPlayingView.swift */; };
-		1F083D6024E1517E0033DA27 /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D5F24E1517E0033DA27 /* PlayingState.swift */; };
-		1F083D6124E1517E0033DA27 /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D5F24E1517E0033DA27 /* PlayingState.swift */; };
 		1F083D6424E153250033DA27 /* TrackDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D6324E153250033DA27 /* TrackDetails.swift */; };
 		1F083D6524E153250033DA27 /* TrackDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F083D6324E153250033DA27 /* TrackDetails.swift */; };
 		1F49745F24DC1EC10085F599 /* HypeLoveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */; };
@@ -129,7 +127,6 @@
 		1F00DE6A24E3FF3A008A9843 /* PopularViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewModel.swift; sourceTree = "<group>"; };
 		1F069A8424E04B270055BC3F /* Playingindicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playingindicator.swift; sourceTree = "<group>"; };
 		1F083D5C24E150F10033DA27 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
-		1F083D5F24E1517E0033DA27 /* PlayingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
 		1F083D6324E153250033DA27 /* TrackDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetails.swift; sourceTree = "<group>"; };
 		1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeLoveApp.swift; sourceTree = "<group>"; };
 		1F49744E24DC1EC10085F599 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -238,7 +235,6 @@
 		1F49744B24DC1EBF0085F599 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				1F7811AE24E7D12C008672A5 /* Player */,
 				1F49746E24DC1F0B0085F599 /* App */,
 				1FA1F6D824DC81970095C0A2 /* Modifiers */,
 				1F83325224DC245B0054DD8D /* Environments */,
@@ -359,8 +355,8 @@
 		1F83325224DC245B0054DD8D /* Environments */ = {
 			isa = PBXGroup;
 			children = (
+				1F7811AE24E7D12C008672A5 /* Player */,
 				1F83325324DC246E0054DD8D /* UserState.swift */,
-				1F083D5F24E1517E0033DA27 /* PlayingState.swift */,
 				1F00DE6724E3EE4E008A9843 /* TracksDataStore.swift */,
 			);
 			path = Environments;
@@ -576,7 +572,6 @@
 				1FEC8CAD24E68D9A004D34DD /* TrackListRequest.swift in Sources */,
 				1F6F73BC24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1FEC8CB324E6928A004D34DD /* PopularMode.swift in Sources */,
-				1F083D6024E1517E0033DA27 /* PlayingState.swift in Sources */,
 				1F00DE6B24E3FF3A008A9843 /* PopularViewModel.swift in Sources */,
 				1FEC8CBD24E6A42B004D34DD /* MainView.swift in Sources */,
 				1FEC8CB024E6924D004D34DD /* TracksEndPoint.swift in Sources */,
@@ -637,7 +632,6 @@
 				1FEC8CAE24E68D9A004D34DD /* TrackListRequest.swift in Sources */,
 				1F6F73BD24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1FEC8CB424E6928A004D34DD /* PopularMode.swift in Sources */,
-				1F083D6124E1517E0033DA27 /* PlayingState.swift in Sources */,
 				1F00DE6C24E3FF3A008A9843 /* PopularViewModel.swift in Sources */,
 				1FEC8CBE24E6A42B004D34DD /* MainView.swift in Sources */,
 				1FEC8CB124E6924D004D34DD /* TracksEndPoint.swift in Sources */,

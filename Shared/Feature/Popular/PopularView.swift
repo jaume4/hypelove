@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PopularView: View {
     @EnvironmentObject var userState: UserState
-    @EnvironmentObject var playingState: PlayingState
+    @EnvironmentObject var player: Player
     @EnvironmentObject var dataStore: TracksDataStore
     @StateObject var viewModel: PopularViewModel
     
@@ -72,7 +72,7 @@ struct PopularView_Previews: PreviewProvider {
         }
         .accentColor(.buttonMain)
         .environmentObject(userState)
-        .environmentObject(PlayingState.songPlaying)
+        .environmentObject(Player.songPlaying)
         .environmentObject(TracksDataStore())
         
         NavigationView {
@@ -81,7 +81,7 @@ struct PopularView_Previews: PreviewProvider {
         .redacted(reason: .placeholder)
         .accentColor(.buttonMain)
         .environmentObject(UserState())
-        .environmentObject(PlayingState.songPlaying)
+        .environmentObject(Player.songPlaying)
         .environmentObject(TracksDataStore())
     }
 }

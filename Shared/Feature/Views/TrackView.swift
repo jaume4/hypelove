@@ -9,14 +9,15 @@ import SwiftUI
 
 struct TrackView: View {
     
-    @Binding var track: TrackDetails!
-    @EnvironmentObject var playingState: PlayingState
+    let track: TrackDetails
+    @EnvironmentObject var player: Player
     @Environment(\.redactionReasons) var redactionReasons
+    @State var playing: Bool
     let showPlayingBackground: Bool
     
     var body: some View {
         ZStack {
-            if redactionReasons.isEmpty, playingState.currentTrack == track && showPlayingBackground {
+            if track == player.currentTrack, redactionReasons.isEmpty, showPlayingBackground {
                 Color(.secondarySystemFill).layoutPriority(-1)
             }
             HStack {
@@ -28,7 +29,7 @@ struct TrackView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .shadow(radius: 1)
                         //Player
-                        if showPlayingBackground && playingState.currentTrack?.id == track.id && playingState.playing {
+                        if track == player.currentTrack, showPlayingBackground, player.state == .playing {
                             PlayingIndicator()
                                 .padding(6)
                                 .foregroundColor(.white)
@@ -62,13 +63,13 @@ struct TrackView_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack {
-            TrackView(track: .constant(TrackDetails.placeholderTracks[0]), showPlayingBackground: true)
-            TrackView(track: .constant(TrackDetails.placeholderTracks[1]), showPlayingBackground: true)
-            TrackView(track: .constant(TrackDetails.placeholderTracks[2]), showPlayingBackground: true)
+            TrackView(track: TrackDetails.placeholderTracks[0], playing: true, showPlayingBackground: true)
+            TrackView(track: TrackDetails.placeholderTracks[1], playing: false, showPlayingBackground: true)
+            TrackView(track: TrackDetails.placeholderTracks[2], playing: false, showPlayingBackground: true)
                 .redacted(reason: .placeholder)
         }
         .previewLayout(PreviewLayout.fixed(width: 400, height: 400))
-        .environmentObject(PlayingState.songPlaying)
+        .environmentObject(Player.songPlaying)
     }
 }
 #endif

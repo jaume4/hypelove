@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var userState: UserState
-    @EnvironmentObject var playingState: PlayingState
+    @EnvironmentObject var player: Player
     @EnvironmentObject var tracksStore: TracksDataStore
     @Namespace private var playerPosition
     @State private var currentAnchor = PlayerStatus.hidden
@@ -63,7 +63,7 @@ struct MainView: View {
             }
             
             //Now Playing on top of ZStack
-            if playingState.currentTrack != nil {
+            if player.currentTrack != nil {
                 VStack {
                     Spacer()
                     NowPlayingView(playerPosition: playerPosition)
@@ -71,7 +71,7 @@ struct MainView: View {
             }
         }
         
-        .onChange(of: playingState.currentTrack, perform: { value in
+        .onChange(of: player.currentTrack, perform: { value in
             currentAnchor = value != nil ? .shown : .hidden
         })
         
@@ -80,7 +80,7 @@ struct MainView: View {
                 SettingsView(viewModel: SettingsViewModel(userState: userState))
             }
             .environmentObject(userState)
-            .environmentObject(playingState)
+            .environmentObject(player)
         }
     }
 }

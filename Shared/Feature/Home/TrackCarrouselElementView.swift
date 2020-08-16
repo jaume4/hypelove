@@ -12,7 +12,7 @@ struct TrackCarrouselElementView: View {
     
     @State var track: TrackDetails?
     @StateObject var imageDownloader = ImageDownloader()
-    @EnvironmentObject var playingState: PlayingState
+    @EnvironmentObject var player: Player
     @Environment(\.redactionReasons) var redactionReasons
     
     var body: some View {
@@ -55,9 +55,6 @@ struct TrackCarrouselElementView: View {
             Spacer(minLength: 0)
         }
         .padding([.leading, .trailing], 15)
-        .modifier(MakeButton {
-            playingState.play(track: track)
-        })
         .onAppear {
             if redactionReasons.isEmpty, let url = track?.imageURL {
                 imageDownloader.download(url)
@@ -79,7 +76,7 @@ struct TrackCarrouselElementView_Previews: PreviewProvider {
                 .redacted(reason: .placeholder)
         }
         .padding()
-        .environmentObject(PlayingState())
+        .environmentObject(Player())
         .previewLayout(.fixed(width: 700, height: 300))
     }
 }

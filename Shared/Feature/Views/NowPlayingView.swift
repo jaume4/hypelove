@@ -12,7 +12,7 @@ enum PlayerStatus {
 }
 
 struct NowPlayingView: View {
-    @EnvironmentObject var playingState: PlayingState
+    @EnvironmentObject var player: Player
     @Environment(\.colorScheme) var colorScheme
     @State var transition = false
     let playerPosition: Namespace.ID
@@ -20,12 +20,14 @@ struct NowPlayingView: View {
     var body: some View {
         
         HStack {
-            TrackView(track: .constant(playingState.currentTrack), showPlayingBackground: false)
+            if let track = player.currentTrack {
+                TrackView(track: track, playing: track == player.currentTrack, showPlayingBackground: false)
+            }
             
             Button(action: {
-                playingState.playing.toggle()
+                player.playPause()
             }, label: {
-                Image(systemName: playingState.playing ? "pause.fill" : "play.fill")
+                Image(systemName: player.state != .paused ? "pause.fill" : "play.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 25)
@@ -34,7 +36,7 @@ struct NowPlayingView: View {
             .accentColor(.primary)
             
             Button(action: {
-                playingState.next()
+                player.nextTrack()
             }, label: {
                 Image(systemName: "forward.fill")
                     .resizable()
@@ -79,13 +81,13 @@ struct NowPlayingView_Previews: PreviewProvider {
         VStack {
             Spacer()
             NowPlayingView(playerPosition: nameSpace)
-                .environmentObject(PlayingState.songPaused)
+                .environmentObject(Player.songPaused)
         }
         .previewLayout(PreviewLayout.fixed(width: 400, height: 100))
         VStack {
             Spacer()
             NowPlayingView(playerPosition: nameSpace)
-                .environmentObject(PlayingState.songPlaying)
+                .environmentObject(Player.songPlaying)
         }
         .previewLayout(PreviewLayout.fixed(width: 400, height: 100))
     }

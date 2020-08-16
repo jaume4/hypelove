@@ -11,6 +11,7 @@ struct TrackCarrouselView: View {
     
     @ObservedObject var viewModel: PopularViewModel
     @EnvironmentObject var dataStore: TracksDataStore
+    @EnvironmentObject var player: Player
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -18,6 +19,9 @@ struct TrackCarrouselView: View {
                 ForEach(viewModel.tracks.prefix(10)) { track in
                     TrackCarrouselElementView(track: track)
                         .redacted(reason: viewModel.placeholder ? .placeholder : [])
+                        .modifier(MakeButton {
+                            player.play(tracks: viewModel.tracks, startIndex: viewModel.tracks.firstIndex(of: track))
+                        })
                 }
             }
             .modifier(ReplaceByError(active: viewModel.placeholder,

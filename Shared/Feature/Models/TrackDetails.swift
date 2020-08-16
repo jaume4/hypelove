@@ -17,6 +17,7 @@ struct TrackDetails: Identifiable, Equatable, Hashable {
     let lovedCount: Int
     let lovedDate: Date?
     let imageURL: URL
+    let url: URL
     
     init(_ track: TrackListResponseElement) {
         let colorString = track.thumbURL.lastPathComponent.replacingOccurrences(of: ".png", with: "")
@@ -31,18 +32,10 @@ struct TrackDetails: Identifiable, Equatable, Hashable {
         self.lovedCount = track.lovedCount
         self.lovedDate = track.lovedDate
         self.imageURL = track.thumbURLLarge
+//        self.url = URL(string: "https://192.168.1.2/serve/public/1?\(id)")!
+//        self.url = URL(string: "https://corbi.co/test.mp3?\(id)")!
+        self.url = URL(string: "https://hypem.com/serve/public/\(id)")!
         
-        
-        
-        //                print("""
-        //TrackDetails(color: Color(hex: "\(colorString!)")!, title: "\(track.title)", artist: "\(track.artist)", duration: "\(MinuteSecondsFormatter.format(track.time))"),
-        //""")
-    }
-    
-    var url: URL {
-//        URL(string: "https://192.168.1.2/serve/public/1")!
-        URL(string: "https://corbi.co/test.mp3")!
-//        URL(string: "https://hypem.com/serve/public/\(id)")!
     }
     
     static func == (lhs: TrackDetails, rhs: TrackDetails) -> Bool {
@@ -108,5 +101,6 @@ struct TrackDetails: Identifiable, Equatable, Hashable {
         self.lovedCount = Int.random(in: 0...100)
         self.lovedDate = nil
         self.imageURL = URL(string: "https://via.placeholder.com/300x300.jpg/0000ff/ffffff?text=\(title.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)")!
+        self.url = URL(string: "https://hypem.com/serve/public/\(id)")!
     }
 }

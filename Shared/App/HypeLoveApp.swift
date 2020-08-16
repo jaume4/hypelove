@@ -14,7 +14,7 @@ enum HomeTab: Hashable {
 @main
 struct HypeLoveApp: App {
     @StateObject private var userState = UserState()
-    @StateObject private var playingState = PlayingState()
+    @StateObject private var player = Player()
     @StateObject private var tracksStore = TracksDataStore()
     
     init() {
@@ -26,7 +26,7 @@ struct HypeLoveApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(userState)
-                .environmentObject(playingState)
+                .environmentObject(player)
                 .environmentObject(tracksStore)
                 .accentColor(.buttonMain)
         }

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct PlayerBlurBar: ViewModifier {
-    @EnvironmentObject var playingState: PlayingState
+    @EnvironmentObject var player: Player
     @Binding var currentAnchor: PlayerStatus
     let playerPosition: Namespace.ID
     
@@ -18,9 +18,9 @@ struct PlayerBlurBar: ViewModifier {
             content
             VisualEffectBlur(blurStyle: .systemThickMaterial)
                 .edgesIgnoringSafeArea(.bottom)
-                .clipShape(RoundedRectangleCustomCorners(cornerRadius: playingState.currentTrack == nil ? 0 : 20, roundedCorners: [.topLeft, .topRight]))
+                .clipShape(RoundedRectangleCustomCorners(cornerRadius: player.currentTrack == nil ? 0 : 20, roundedCorners: [.topLeft, .topRight]))
                 .matchedGeometryEffect(id: currentAnchor, in: playerPosition, properties: .position, anchor: .top, isSource: false)
-                .animation(.easeInOut(duration: 0.2), value: playingState.currentTrack)
+                .animation(.easeInOut(duration: 0.2), value: player.currentTrack)
         }
     }
 }
