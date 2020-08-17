@@ -127,6 +127,7 @@ struct FullPlayerView: View {
     }
 }
 
+#if DEBUG
 struct FullPlayerView_Previews: PreviewProvider {
     static var previews: some View {
         
@@ -138,3 +139,4 @@ struct FullPlayerView_Previews: PreviewProvider {
             .preferredColorScheme(.dark)
     }
 }
+#endif

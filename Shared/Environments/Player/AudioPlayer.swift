@@ -74,7 +74,6 @@ final class Player: ObservableObject {
         playerItems.removeAll(keepingCapacity: true)
         playerItems = tracks.map(generateItem(track:))
         setupPlayer()
-        handlePlayerItemChange()
         play()
     }
     
@@ -90,7 +89,7 @@ final class Player: ObservableObject {
         let asset = AVURLAsset(url: track.url)
         tracksMetadata[track.url] = StaticMetadata(assetURL: track.url, title: track.title, artist: track.artist, artwork: nil)
         tracks[track.url] = track
-        let item = AVPlayerItem(asset:asset, automaticallyLoadedAssetKeys: ["availableMediaCharacteristicsWithMediaSelectionOptions"])
+        let item = AVPlayerItem(asset:asset)
         return item
     }
     
@@ -108,7 +107,7 @@ final class Player: ObservableObject {
     
     func setTimeUpdates(updating: Bool) {
         if updating {
-            timeObserver = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 3), queue: nil) { [unowned self] time in
+            timeObserver = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: nil) { [unowned self] time in
                 guard !player.currentTime().seconds.isNaN else { return }
                 self.trackPercent = player.currentTime().seconds / trackDuration
             }
@@ -126,13 +125,7 @@ final class Player: ObservableObject {
             .sink{ [unowned self] _ in
                 self.handlePlayerItemChange()
             }.store(in: &cancellables)
-        
-        player.publisher(for: \.rate)
-            .receive(on: DispatchQueue.main)
-            .sink{ [unowned self] _ in
-                self.handlePlaybackChange()
-            }.store(in: &cancellables)
-        
+//
         player.publisher(for: \.currentItem?.status)
             .receive(on: DispatchQueue.main)
             .sink{ [unowned self] _ in
@@ -279,13 +272,12 @@ final class Player: ObservableObject {
               let metadata = tracksMetadata[item.url],
               let track = tracks[item.url]
         else {
-            currentTrack = nil
             return
         }
         
         print("track: \(track.title)")
         currentTrack = track
-        trackDuration = item.duration.seconds
+        trackDuration = track.duration
 //        guard let currentItem = player.currentItem else { /*optOut();*/ return }
         MetadataHandler.setNowPlayingMetadata(metadata)
         

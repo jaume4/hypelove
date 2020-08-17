@@ -69,6 +69,7 @@ struct SimpleTrackListView: View {
     }
 }
 
+#if DEBUG
 struct FavoritesView_Previews: PreviewProvider {
     static let userState = UserState()
     static let store = TracksDataStore()
@@ -92,3 +93,4 @@ struct FavoritesView_Previews: PreviewProvider {
         .environmentObject(TracksDataStore())
     }
 }
+#endif
