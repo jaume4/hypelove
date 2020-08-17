@@ -48,7 +48,7 @@ struct TrackListResponseElement: Decodable {
     let thumbURL: URL
     let thumbURLMedium: URL?
     let thumbURLLarge: URL
-    let time: Int
+    let time: Double
     let description: String
     let itunesLink: String
     let lovedDate: Date?

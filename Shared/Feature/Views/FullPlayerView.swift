@@ -10,8 +10,7 @@ import SwiftUI
 struct FullPlayerView: View {
     
     @EnvironmentObject var player: Player
-    @State var progress: Double = 25
-    @State var volume: Double = 5
+    @Namespace var volumeSlider
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -40,11 +39,14 @@ struct FullPlayerView: View {
                 
                 //Progress
                 VStack {
-                    Slider(value: $progress, in: 0.0...30.0)
+        
+                    Slider(value: $player.trackPercent, in: 0...1) { editingBegan in
+                        player.userSeeking(begin: editingBegan)
+                    }
                     HStack {
-                        Text("0:00")
+                        Text(MinuteSecondsFormatter.format(player.trackPercent * player.trackDuration))
                         Spacer()
-                        Text("-3:41")
+                        Text("-" + MinuteSecondsFormatter.format((1.0 - player.trackPercent) * player.trackDuration))
                     }
                     .font(Font.callout.bold())
                 }
@@ -55,7 +57,7 @@ struct FullPlayerView: View {
                 HStack {
                     
                     Button(action: {
-                        print("love")
+                        player.likeTrack()
                     }, label: {
                         Image(systemName: true ? "heart.fill" : "heart")
                             .resizable()
@@ -81,7 +83,6 @@ struct FullPlayerView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 35)
-                        //                    .padding(.leading, 10)
                     })
                     
                     Button(action: {
@@ -109,9 +110,12 @@ struct FullPlayerView: View {
                 //Volume
                 VStack {
                     
+                    
                     HStack {
                         Image(systemName: "speaker.fill")
-                        Slider(value: $volume, in: 0.0...100.0)
+                        VolumeView()
+                            .frame(height: 30)
+                            .offset(x: 15, y: 6) //MPVolumeView is not aligned, apply offser
                         Image(systemName: "speaker.3.fill")
                     }
                 }

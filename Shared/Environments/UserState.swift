@@ -9,13 +9,18 @@ import Foundation
 import SwiftUI
 import Combine
 
+enum PresentedModal {
+    case settings, player
+}
+
 final class UserState: ObservableObject {
     @AppStorage("deviceID") private(set) var deviceID: String = ""
     @AppStorage("userName") private var savedUserName: String = ""
     @Published var validToken = false
     @Published var userName: String = ""
     @Published var selectedTab = HomeTab.home
-    @Published var presentingSettings = false
+    @Published var presentingModal = false
+    private(set) var modalToPresent: PresentedModal = .settings
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -37,6 +42,16 @@ final class UserState: ObservableObject {
             }
             deviceID = randomID
         }
+    }
+    
+    func presentSettings() {
+        modalToPresent = .settings
+        presentingModal = true
+    }
+    
+    func presentPlayer() {
+        modalToPresent = .player
+        presentingModal = true
     }
     
     private func setupCancellables() {

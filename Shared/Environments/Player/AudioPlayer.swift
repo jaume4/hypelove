@@ -34,6 +34,7 @@ enum PlayerInterruption {
 
 final class Player: ObservableObject {
     
+    private let audioSession = AVAudioSession.sharedInstance()
     private let player = AVQueuePlayer()
     private let commandCenter = MPRemoteCommandCenter.shared()
     private var tracksMetadata: [URL: StaticMetadata] = [:]
@@ -42,8 +43,13 @@ final class Player: ObservableObject {
     private var isInterrupted: Bool = false
     
     private var cancellables: Set<AnyCancellable> = []
+    private var timeObserver: Any?
     
+    @Published private(set) var trackDuration: Double = 1.0
+    @Published var trackPercent: Double = 0.0
     @Published var currentTrack: TrackDetails?
+
+    
     @Published var state = PlayerState.paused {
         didSet {
             print("changed state to \(state)")
@@ -72,6 +78,13 @@ final class Player: ObservableObject {
         play()
     }
     
+    func userSeeking(begin: Bool) {
+        if !begin {
+            seek(to: trackPercent * trackDuration)
+        }
+       setTimeUpdates(updating: !begin)
+    }
+    
     private func generateItem(track: TrackDetails) -> AVPlayerItem {
         
         let asset = AVURLAsset(url: track.url)
@@ -88,13 +101,25 @@ final class Player: ObservableObject {
         
         playerItems.forEach { player.insert($0, after: nil) }
         
-        let audioSession = AVAudioSession.sharedInstance()
-        
+        #warning("unwrap")
         try! audioSession.setCategory(.playback, mode: .default)
         try! audioSession.setActive(true)
     }
     
+    func setTimeUpdates(updating: Bool) {
+        if updating {
+            timeObserver = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 3), queue: nil) { [unowned self] time in
+                guard !player.currentTime().seconds.isNaN else { return }
+                self.trackPercent = player.currentTime().seconds / trackDuration
+            }
+        } else {
+            player.removeTimeObserver(timeObserver as Any)
+        }
+    }
+    
     func registerCancellables() {
+        
+        setTimeUpdates(updating: true)
         
         player.publisher(for: \.currentItem)
             .receive(on: DispatchQueue.main)
@@ -260,16 +285,17 @@ final class Player: ObservableObject {
         
         print("track: \(track.title)")
         currentTrack = track
+        trackDuration = item.duration.seconds
 //        guard let currentItem = player.currentItem else { /*optOut();*/ return }
         MetadataHandler.setNowPlayingMetadata(metadata)
         
     }
     
-    private func likeTrack() {
+    func likeTrack() {
         
     }
     
-    private func unlikeTrack() {
+    func unlikeTrack() {
         
     }
     
@@ -349,7 +375,7 @@ final class Player: ObservableObject {
             
             do {
                 
-                try AVAudioSession.sharedInstance().setActive(true)
+                try audioSession.setActive(true)
                 
                 var shouldResume = false
                 

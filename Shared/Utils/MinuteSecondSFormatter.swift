@@ -13,11 +13,12 @@ struct MinuteSecondsFormatter {
     static let formatter: DateComponentsFormatter = {
        let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.minute, .second]
+        formatter.zeroFormattingBehavior = .pad
         formatter.unitsStyle = .positional
         return formatter
     }()
     
-    static func format(_ time: Int) -> String {
-        return formatter.string(from: Double(time)) ?? "Unknown"
+    static func format(_ time: Double) -> String {
+        return formatter.string(from: time) ?? "Unknown"
     }
 }
