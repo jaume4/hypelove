@@ -21,8 +21,8 @@ struct PopularView: View {
                     Picker("", selection: $viewModel.store.popularMode) {
                         Text("Now").tag(PopularMode.now)
                         Text("Last week").tag(PopularMode.lastWeek)
-                        Text("Remixes").tag(PopularMode.remix)
-                        Text("No remixes").tag(PopularMode.noRemix)
+                        Text("Remix").tag(PopularMode.remix)
+                        Text("No remix").tag(PopularMode.noRemix)
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()

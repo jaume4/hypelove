@@ -21,7 +21,7 @@ struct TrackDetails: Identifiable, Equatable, Hashable {
     
     init(_ track: TrackListResponseElement) {
         let colorString = track.thumbURL.lastPathComponent.replacingOccurrences(of: ".png", with: "")
-        let color = Color(hex: colorString) ?? .black
+        let color = Color(hex: colorString) ?? Color.random
 
         self.id = track.itemid
         self.color = color

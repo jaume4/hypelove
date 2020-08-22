@@ -11,7 +11,7 @@ import AVKit
 
 extension AVPlayer {
     
-    struct TimePublisher: Publisher {
+    private struct TimePublisher: Publisher {
         
         typealias Output = Double
         typealias Failure = Never
@@ -50,7 +50,8 @@ extension AVPlayer {
         }
     }
     
-    func timePublisher() -> TimePublisher {
+    func timePublisher() -> AnyPublisher<Double, Never> {
         return TimePublisher(player: self)
+            .eraseToAnyPublisher()
     }
 }

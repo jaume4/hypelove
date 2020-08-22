@@ -78,8 +78,8 @@ enum PopularMode: String, Hashable {
         switch self {
         case .now: return "Popular now"
         case .lastWeek: return "Popular last week"
-        case .noRemix: return "No remix"
-        case .remix: return "Remix"
+        case .noRemix: return "Popular (no remixes)"
+        case .remix: return "Popular (remix only)"
         }
     }
 }

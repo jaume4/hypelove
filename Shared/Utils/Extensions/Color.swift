@@ -26,16 +26,11 @@ extension Color {
         let low = hex.lowercased()
         let lowCharacterSet = CharacterSet(charactersIn: low)
         guard lowCharacterSet.isSubset(of: String.hexCharacterSet) else { return nil }
-        let endIndex = hex.endIndex
-        let uintSequence = sequence(state: hex.startIndex) { index -> UInt8? in
-            guard index < endIndex else { return nil }
-            let chunkEndIndex = hex.index(index, offsetBy: 2, limitedBy: endIndex) ?? endIndex
-            defer { index = chunkEndIndex }
-            return UInt8(hex[index..<chunkEndIndex], radix: 16)
-
-        }
         
-        let values: [Double] = [UInt8].init(uintSequence).map{ Double($0) / 255 }
+        let values: [Double] = hex.chuncked(size: 2)
+            .compactMap { UInt8($0, radix: 16) }
+            .map{ Double($0) / 255 }
+        
         self.init(red: values[0], green: values[1], blue: values[2])
     }
     

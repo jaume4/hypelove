@@ -15,9 +15,7 @@ final class Animator: ObservableObject {
         
         Timer.publish(every: 1 / 4, on: RunLoop.main, in: .common)
             .autoconnect()
-            .scan(0) { _, _ in
-                return CGFloat.random(in: 0...1)
-            }
+            .map {_ in  return CGFloat.random(in: 0...1)}
             .assign(to: &$percent)
     }
 }

@@ -25,7 +25,7 @@ struct TrackCarrouselView: View {
                 }
             }
         }
-        .modifier(ReplaceByError(active: downloader.error != nil && downloader.error != .notAuthorized,
+        .modifier(ReplaceByError(active: downloader.placeholderTracks && downloader.error != nil && downloader.error != .notAuthorized,
                                  error: downloader.error,
                                  actionDescription: ", tap to retry.",
                                  action: {
