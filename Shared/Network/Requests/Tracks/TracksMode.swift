@@ -7,17 +7,16 @@
 
 import Foundation
 
-enum TracksMode {
+enum TracksMode: Hashable {
     
     case favorites, history, feed
     case popular(PopularMode)
+    case new(NewMode)
     
     var authNeeded: Bool {
         switch self {
-        case .favorites: return true
-        case .history: return true
-        case .feed: return true
-        case .popular: return false
+        case .favorites, .history, .feed: return true
+        case .popular, .new: return false
         }
     }
     
@@ -27,6 +26,7 @@ enum TracksMode {
         case .history: return "me/history"
         case .feed: return "me/feed"
         case .popular: return "popular"
+        case .new: return "tracks"
         }
     }
     
@@ -37,6 +37,7 @@ enum TracksMode {
         case .history: return "History"
         case .feed: return "Feed"
         case .popular(let popularMode): return popularMode.title
+        case .new(let newMode): return newMode.title
         }
     }
     
@@ -51,4 +52,34 @@ enum TracksMode {
         }
     }
     
+}
+
+enum NewMode: String {
+    case all, fresh, remix
+    case noRemix = "noremix"
+    
+    var title: String {
+        switch self {
+        case .all: return "Latest"
+        case .fresh: return "Freshest"
+        case .remix: return "Latest (remix only)"
+        case .noRemix: return "Latest (no remixes)"
+        }
+    }
+}
+
+enum PopularMode: String, Hashable {
+    case now = ""
+    case lastWeek = "lastweek"
+    case noRemix = "noremix"
+    case remix
+    
+    var title: String {
+        switch self {
+        case .now: return "Popular now"
+        case .lastWeek: return "Popular last week"
+        case .noRemix: return "No remix"
+        case .remix: return "Remix"
+        }
+    }
 }

@@ -34,5 +34,5 @@ extension ApiTrackListRequest {
 }
 
 enum TrackListResponseError: String {
-    case noMoreTracks = "Couldn't find tracks"
+    case noMoreTracks = "Couldn't find more tracks"
 }

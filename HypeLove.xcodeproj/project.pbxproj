@@ -93,8 +93,6 @@
 		1FEC8CAE24E68D9A004D34DD /* TrackListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CAC24E68D9A004D34DD /* TrackListRequest.swift */; };
 		1FEC8CB024E6924D004D34DD /* TracksMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CAF24E6924D004D34DD /* TracksMode.swift */; };
 		1FEC8CB124E6924D004D34DD /* TracksMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CAF24E6924D004D34DD /* TracksMode.swift */; };
-		1FEC8CB324E6928A004D34DD /* PopularMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CB224E6928A004D34DD /* PopularMode.swift */; };
-		1FEC8CB424E6928A004D34DD /* PopularMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CB224E6928A004D34DD /* PopularMode.swift */; };
 		1FEC8CB724E692D3004D34DD /* ApiTrackListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CB624E692D3004D34DD /* ApiTrackListRequest.swift */; };
 		1FEC8CB824E692D3004D34DD /* ApiTrackListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CB624E692D3004D34DD /* ApiTrackListRequest.swift */; };
 		1FEC8CBD24E6A42B004D34DD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CBC24E6A42B004D34DD /* MainView.swift */; };
@@ -175,7 +173,6 @@
 		1FEC8CA624E67788004D34DD /* ReplaceByErrorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceByErrorButton.swift; sourceTree = "<group>"; };
 		1FEC8CAC24E68D9A004D34DD /* TrackListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListRequest.swift; sourceTree = "<group>"; };
 		1FEC8CAF24E6924D004D34DD /* TracksMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksMode.swift; sourceTree = "<group>"; };
-		1FEC8CB224E6928A004D34DD /* PopularMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMode.swift; sourceTree = "<group>"; };
 		1FEC8CB624E692D3004D34DD /* ApiTrackListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTrackListRequest.swift; sourceTree = "<group>"; };
 		1FEC8CBC24E6A42B004D34DD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1FEC8CBF24E6BD3D004D34DD /* PlayerBlurBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBlurBar.swift; sourceTree = "<group>"; };
@@ -425,7 +422,6 @@
 				1FEC8CB624E692D3004D34DD /* ApiTrackListRequest.swift */,
 				1FEC8CAC24E68D9A004D34DD /* TrackListRequest.swift */,
 				1FEC8CAF24E6924D004D34DD /* TracksMode.swift */,
-				1FEC8CB224E6928A004D34DD /* PopularMode.swift */,
 			);
 			path = Tracks;
 			sourceTree = "<group>";
@@ -594,7 +590,6 @@
 				1FEC8CAD24E68D9A004D34DD /* TrackListRequest.swift in Sources */,
 				1F6F73BC24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1FF3C88E24F11F3A00204F4E /* ImageCache.swift in Sources */,
-				1FEC8CB324E6928A004D34DD /* PopularMode.swift in Sources */,
 				1F00DE6B24E3FF3A008A9843 /* PopularViewModel.swift in Sources */,
 				1FEC8CBD24E6A42B004D34DD /* MainView.swift in Sources */,
 				1FEC8CB024E6924D004D34DD /* TracksMode.swift in Sources */,
@@ -658,7 +653,6 @@
 				1FEC8CAE24E68D9A004D34DD /* TrackListRequest.swift in Sources */,
 				1F6F73BD24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1FF3C88F24F11F3A00204F4E /* ImageCache.swift in Sources */,
-				1FEC8CB424E6928A004D34DD /* PopularMode.swift in Sources */,
 				1F00DE6C24E3FF3A008A9843 /* PopularViewModel.swift in Sources */,
 				1FEC8CBE24E6A42B004D34DD /* MainView.swift in Sources */,
 				1FEC8CB124E6924D004D34DD /* TracksMode.swift in Sources */,

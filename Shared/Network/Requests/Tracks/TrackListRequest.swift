@@ -31,6 +31,8 @@ struct TrackListRequest: ApiTrackListRequest {
             if !mode.rawValue.isEmpty {
                 params["mode"] = mode.rawValue
             }
+        case .new(let mode):
+            params["mode"] = mode.rawValue
         default: break
         }
         

@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var userState: UserState
     @EnvironmentObject var store: TracksDataStore
+    @State var destination: TracksMode?
     
     var body: some View {
         
@@ -80,8 +81,10 @@ struct HomeView: View {
                     }
                 
                 VStack(spacing: 15) {
-                    Button("New") {
-                        print("New")
+                    NavigationLink(destination: SimpleTrackListView(tracksDownloader: store.new, mode: .new(.all)), tag: TracksMode.new(.all), selection: $destination) {
+                        Button("New") {
+                            destination = .new(.all)
+                        }
                     }
                     Button("Artists") {
                         print("Artists")
