@@ -11,19 +11,30 @@ struct FullPlayerView: View {
     
     @EnvironmentObject var player: Player
     @Namespace var volumeSlider
+    @StateObject var imageDownloader = ImageDownloader()
     
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
                 Spacer()
                 
-                Image("sample0")
+                (imageDownloader.image ?? Image("placeholder"))
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    
+                    .redacted(reason: imageDownloader.image == nil ? .placeholder : [])
                     .cornerRadius(30)
                     .shadow(radius: 20)
                     .padding()
+                    .onChange(of: player.currentTrack) { newTrack in
+                        if let url = newTrack?.imageURL {
+                            imageDownloader.download(url: url)
+                        }
+                    }
+                    .onAppear {
+                        if imageDownloader.image == nil, let url = player.currentTrack?.imageURL {
+                            imageDownloader.download(url: url)
+                        }
+                    }
                 
                 if let track = player.currentTrack {
                     VStack(alignment: .center) {

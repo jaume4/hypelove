@@ -12,7 +12,7 @@ import Combine
 final class ImageDownloader: ObservableObject {
 
     @Published var image: Image?
-    let url: URL
+    var url: URL?
     
     init(_ url: URL, placeholder: Bool) {
         self.url = url
@@ -21,10 +21,24 @@ final class ImageDownloader: ObservableObject {
         }
     }
     
+    init() {}
+    
     func download() {
+        
+        guard let url = url else { return }
         
         ImageCache.shared
             .image(from: url)
             .assign(to: &$image)
     }
+    
+    func download(url: URL) {
+        
+        image = nil
+        self.url = url
+        download()
+        
+    }
+    
+    
 }
