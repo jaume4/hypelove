@@ -17,7 +17,7 @@ struct TrackCarrouselView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHGrid(rows: [GridItem(.flexible())]) {
                 ForEach(viewModel.tracks.prefix(10)) { track in
-                    TrackCarrouselElementView(track: track)
+                    TrackCarrouselElementView(track: track, imageDownloader: ImageDownloader(track.imageURL, placeholder: viewModel.placeholder))
                         .redacted(reason: viewModel.placeholder ? .placeholder : [])
                         .modifier(MakeButton {
                             player.play(tracks: viewModel.tracks, startIndex: viewModel.tracks.firstIndex(of: track))

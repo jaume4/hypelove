@@ -7,15 +7,24 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 final class ImageDownloader: ObservableObject {
 
     @Published var image: Image?
+    let url: URL
     
-    func download(_ url: URL) {
-        let request = DownloadImageRequest(url: url)
-        NetworkClient.shared.send(request)
-            .replaceError(with: nil)
+    init(_ url: URL, placeholder: Bool) {
+        self.url = url
+        if !placeholder {
+            download()
+        }
+    }
+    
+    func download() {
+        
+        ImageCache.shared
+            .image(from: url)
             .assign(to: &$image)
     }
 }

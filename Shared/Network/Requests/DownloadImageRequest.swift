@@ -10,15 +10,15 @@ import SwiftUI
 
 struct DownloadImageRequest: NetworkRequest {
     
-    typealias Response = Image?
+    typealias Response = UIImage?
     
     let url: URL
     let method = HTTPMethod.get
     let allowCachedResponse = true
     
-    func transformResponse(data: Data, response: HTTPURLResponse) throws -> Image? {
+    func transformResponse(data: Data, response: HTTPURLResponse) throws -> UIImage? {
         guard let uiImage = UIImage(data: data) else { throw NetworkError<DownloadImageRequest.CustomError>.unknown }
-        return Image(uiImage: uiImage)
+        return uiImage
     }
     
 }

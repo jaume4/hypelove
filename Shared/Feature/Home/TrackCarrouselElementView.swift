@@ -10,10 +10,11 @@ import Combine
 
 struct TrackCarrouselElementView: View {
     
-    @State var track: TrackDetails?
-    @StateObject var imageDownloader = ImageDownloader()
+    @State var track: TrackDetails
+    @ObservedObject var imageDownloader: ImageDownloader
     @EnvironmentObject var player: Player
     @Environment(\.redactionReasons) var redactionReasons
+    let width =  UIScreen.main.bounds.width / 2
     
     var body: some View {
         VStack {
@@ -22,14 +23,15 @@ struct TrackCarrouselElementView: View {
                 //Album image
                 (imageDownloader.image ?? Image(decorative: "placeholder"))
                     .resizable()
-                    .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
-                    .frame(width: UIScreen.main.bounds.width / 2)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: width, height: width)
+                    
                     .cornerRadius(10)
                     .redacted(reason: imageDownloader.image == nil ? .placeholder : [])
                 
                 //Likes
                 HStack {
-                    Text(BigNumberFormatter.format(track?.lovedCount ?? Int.random(in: 10...1000)))
+                    Text(BigNumberFormatter.format(track.lovedCount))
                     Image(systemName: "heart.fill")
                         .unredacted()
                 }
@@ -42,37 +44,31 @@ struct TrackCarrouselElementView: View {
             //Title + artist
             HStack {
                 VStack(alignment: .leading) {
-                    Text(track?.title ?? String(repeating: "w", count: Int.random(in: 15...25)))
+                    Text(track.title)
                         .fontWeight(.bold)
-                    Text(track?.artist ?? String(repeating: "w", count: Int.random(in: 5...10)))
+                    Text(track.artist)
                         .fontWeight(.bold)
                         .foregroundColor(Color(.secondaryLabel))
                 }
                 Spacer(minLength: 0)
             }
-            .frame(width: UIScreen.main.bounds.width / 2)
+            .frame(width: width)
             
             Spacer(minLength: 0)
         }
         .padding([.leading, .trailing], 15)
-        .onAppear {
-            if redactionReasons.isEmpty, let url = track?.imageURL {
-                imageDownloader.download(url)
-            }
-        }
-        .onChange(of: track) { value in
-            if redactionReasons.isEmpty, imageDownloader.image == nil, let url = value?.imageURL {
-                imageDownloader.download(url)
-            }
-        }
+        
     }
 }
 
 struct TrackCarrouselElementView_Previews: PreviewProvider {
+    
+    static let track = TrackDetails.placeholderTracks.first!
+    
     static var previews: some View {
         HStack {
-            TrackCarrouselElementView(track: TrackDetails.placeholderTracks.first!)
-            TrackCarrouselElementView()
+            TrackCarrouselElementView(track: track, imageDownloader: ImageDownloader(track.imageURL, placeholder: false))
+            TrackCarrouselElementView(track: track, imageDownloader: ImageDownloader(track.imageURL, placeholder: false))
                 .redacted(reason: .placeholder)
         }
         .padding()

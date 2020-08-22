@@ -53,6 +53,8 @@
 		1F7811C624E7D718008672A5 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7811C424E7D718008672A5 /* AudioPlayer.swift */; };
 		1F78122C24E8803B008672A5 /* MetadataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78122B24E8803B008672A5 /* MetadataHandler.swift */; };
 		1F78122D24E8803B008672A5 /* MetadataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78122B24E8803B008672A5 /* MetadataHandler.swift */; };
+		1F78B19124F043B700607736 /* AVPlayer+TimePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78B19024F043B700607736 /* AVPlayer+TimePublisher.swift */; };
+		1F78B19224F043B700607736 /* AVPlayer+TimePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78B19024F043B700607736 /* AVPlayer+TimePublisher.swift */; };
 		1F83325424DC246E0054DD8D /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325324DC246E0054DD8D /* UserState.swift */; };
 		1F83325524DC246E0054DD8D /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325324DC246E0054DD8D /* UserState.swift */; };
 		1F83325724DC50F00054DD8D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F83325624DC50F00054DD8D /* LoginViewModel.swift */; };
@@ -113,6 +115,8 @@
 		1FEFE57824DFD15C002DEEB8 /* MinuteSecondSFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */; };
 		1FEFE57B24DFE426002DEEB8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57A24DFE426002DEEB8 /* HomeView.swift */; };
 		1FEFE57C24DFE426002DEEB8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE57A24DFE426002DEEB8 /* HomeView.swift */; };
+		1FF3C88E24F11F3A00204F4E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF3C88D24F11F3A00204F4E /* ImageCache.swift */; };
+		1FF3C88F24F11F3A00204F4E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF3C88D24F11F3A00204F4E /* ImageCache.swift */; };
 		1FFFE14424E4545C00A914A7 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE14324E4545C00A914A7 /* UISegmentedControl.swift */; };
 		1FFFE14524E4545C00A914A7 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE14324E4545C00A914A7 /* UISegmentedControl.swift */; };
 		1FFFE14824E46C4E00A914A7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE14724E46C4E00A914A7 /* SettingsView.swift */; };
@@ -152,6 +156,7 @@
 		1F72300224E2A64D00D3FFA5 /* ErrorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorButton.swift; sourceTree = "<group>"; };
 		1F7811C424E7D718008672A5 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		1F78122B24E8803B008672A5 /* MetadataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataHandler.swift; sourceTree = "<group>"; };
+		1F78B19024F043B700607736 /* AVPlayer+TimePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+TimePublisher.swift"; sourceTree = "<group>"; };
 		1F83325324DC246E0054DD8D /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		1F83325624DC50F00054DD8D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		1F8F39E524E97FC500ACF92E /* FullPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPlayerView.swift; sourceTree = "<group>"; };
@@ -183,6 +188,7 @@
 		1FEFE57224DF1B06002DEEB8 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 		1FEFE57624DFD15C002DEEB8 /* MinuteSecondSFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinuteSecondSFormatter.swift; sourceTree = "<group>"; };
 		1FEFE57A24DFE426002DEEB8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1FF3C88D24F11F3A00204F4E /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		1FFFE14324E4545C00A914A7 /* UISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControl.swift; sourceTree = "<group>"; };
 		1FFFE14724E46C4E00A914A7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1FFFE14A24E4836F00A914A7 /* AnimatableGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableGradient.swift; sourceTree = "<group>"; };
@@ -304,6 +310,7 @@
 		1F49747524DC1F350085F599 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				1FF3C88D24F11F3A00204F4E /* ImageCache.swift */,
 				1F49747624DC1F350085F599 /* NetworkClient.swift */,
 				1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */,
 				1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */,
@@ -400,6 +407,7 @@
 			children = (
 				1FC2F39024DD6246006C78A8 /* Color.swift */,
 				1FEC8CA324E66EC7004D34DD /* ParentGeometry.swift */,
+				1F78B19024F043B700607736 /* AVPlayer+TimePublisher.swift */,
 				1FEC8CA624E67788004D34DD /* ReplaceByErrorButton.swift */,
 				1FE8A87624E5B30100B0529C /* Publisher+WeakAssign.swift */,
 			);
@@ -476,6 +484,8 @@
 			dependencies = (
 			);
 			name = "HypeLove (iOS)";
+			packageProductDependencies = (
+			);
 			productName = "HypeLove (iOS)";
 			productReference = 1F49745324DC1EC10085F599 /* HypeLove.app */;
 			productType = "com.apple.product-type.application";
@@ -523,6 +533,8 @@
 				Base,
 			);
 			mainGroup = 1F49744624DC1EBF0085F599;
+			packageReferences = (
+			);
 			productRefGroup = 1F49745424DC1EC10085F599 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -585,6 +597,7 @@
 				1F49747224DC1F1F0085F599 /* KeychainService.swift in Sources */,
 				1FEC8CAD24E68D9A004D34DD /* TrackListRequest.swift in Sources */,
 				1F6F73BC24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
+				1FF3C88E24F11F3A00204F4E /* ImageCache.swift in Sources */,
 				1FEC8CB324E6928A004D34DD /* PopularMode.swift in Sources */,
 				1F00DE6B24E3FF3A008A9843 /* PopularViewModel.swift in Sources */,
 				1FEC8CBD24E6A42B004D34DD /* MainView.swift in Sources */,
@@ -605,6 +618,7 @@
 				1FE8A87724E5B30100B0529C /* Publisher+WeakAssign.swift in Sources */,
 				1FA51CBF24E1979D00DECA7A /* AppInfo.swift in Sources */,
 				1F00DE6224E3E958008A9843 /* ImageDownloader.swift in Sources */,
+				1F78B19124F043B700607736 /* AVPlayer+TimePublisher.swift in Sources */,
 				1FFFE14B24E4836F00A914A7 /* AnimatableGradient.swift in Sources */,
 				1F8F39E924E983A100ACF92E /* ModalPresenterView.swift in Sources */,
 				1F49747924DC1F350085F599 /* NetworkClient.swift in Sources */,
@@ -648,6 +662,7 @@
 				1F49747424DC1F260085F599 /* KeychainService.swift in Sources */,
 				1FEC8CAE24E68D9A004D34DD /* TrackListRequest.swift in Sources */,
 				1F6F73BD24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
+				1FF3C88F24F11F3A00204F4E /* ImageCache.swift in Sources */,
 				1FEC8CB424E6928A004D34DD /* PopularMode.swift in Sources */,
 				1F00DE6C24E3FF3A008A9843 /* PopularViewModel.swift in Sources */,
 				1FEC8CBE24E6A42B004D34DD /* MainView.swift in Sources */,
@@ -668,6 +683,7 @@
 				1FE8A87824E5B30100B0529C /* Publisher+WeakAssign.swift in Sources */,
 				1FA51CC024E1979D00DECA7A /* AppInfo.swift in Sources */,
 				1F00DE6324E3E958008A9843 /* ImageDownloader.swift in Sources */,
+				1F78B19224F043B700607736 /* AVPlayer+TimePublisher.swift in Sources */,
 				1FFFE14C24E4836F00A914A7 /* AnimatableGradient.swift in Sources */,
 				1F8F39EA24E983A100ACF92E /* ModalPresenterView.swift in Sources */,
 				1F49747A24DC1F350085F599 /* NetworkClient.swift in Sources */,
