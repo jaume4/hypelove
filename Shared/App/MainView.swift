@@ -41,7 +41,7 @@ struct MainView: View {
                 .tag(HomeTab.popular)
                 
                 NavigationView {
-                    SimpleTrackListView(viewModel: SimpleTrackListViewModel(store: tracksStore.favorites), mode: .favorites)
+                    SimpleTrackListView(tracksDownloader: tracksStore.favorites, mode: .favorites)
                         .modifier(PlayerBlurBar(currentAnchor: $currentAnchor, playerPosition: playerPosition))
                 }
                 .tabItem {
@@ -51,7 +51,7 @@ struct MainView: View {
                 .tag(HomeTab.favorites)
                 
                 NavigationView {
-                    SimpleTrackListView(viewModel: SimpleTrackListViewModel(store: tracksStore.history), mode: .history)
+                    SimpleTrackListView(tracksDownloader: tracksStore.history, mode: .history)
                         .modifier(PlayerBlurBar(currentAnchor: $currentAnchor, playerPosition: playerPosition))
                 }
                 .tabItem {

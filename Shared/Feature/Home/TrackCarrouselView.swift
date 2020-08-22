@@ -9,42 +9,47 @@ import SwiftUI
 
 struct TrackCarrouselView: View {
     
-    @ObservedObject var viewModel: PopularViewModel
-    @EnvironmentObject var dataStore: TracksDataStore
+    @EnvironmentObject var userState: UserState
+    @StateObject var downloader: TracksDownloader<TrackListRequest>
     @EnvironmentObject var player: Player
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHGrid(rows: [GridItem(.flexible())]) {
-                ForEach(viewModel.tracks.prefix(10)) { track in
-                    TrackCarrouselElementView(track: track, imageDownloader: ImageDownloader(track.imageURL, placeholder: viewModel.placeholder))
-                        .redacted(reason: viewModel.placeholder ? .placeholder : [])
+                ForEach(downloader.tracks.prefix(10)) { track in
+                    TrackCarrouselElementView(track: track, imageDownloader: ImageDownloader(track.imageURL, placeholder: downloader.placeholderTracks))
+                        .redacted(reason: downloader.placeholderTracks ? .placeholder : [])
                         .modifier(MakeButton {
-                            player.play(tracks: viewModel.tracks, startIndex: viewModel.tracks.firstIndex(of: track))
+                            player.play(tracks: downloader.tracks, startIndex: downloader.tracks.firstIndex(of: track))
                         })
                 }
             }
-            .modifier(ReplaceByError(active: viewModel.placeholder,
-                                     error: viewModel.error,
-                                     actionDescription: ", tap to retry.",
-                                     action: {
-                                        viewModel.resetError()
-                                        viewModel.requestTracks()
-                                     }
-            ))
         }
+        .modifier(ReplaceByError(active: downloader.error != nil && downloader.error != .notAuthorized,
+                                 error: downloader.error,
+                                 actionDescription: ", tap to retry.",
+                                 action: {
+                                    downloader.resetError()
+                                    downloader.requestTracks()
+                                 }
+        ))
+        .modifier(ReplaceByError(active: downloader.error == .notAuthorized,
+                                 error: downloader.error,
+                                 actionDescription: ", tap to open settings.",
+                                 action: userState.presentSettings)
+        )
     }
 }
 
 struct TrackCarrouselView_Previews: PreviewProvider {
-    
+
     static let store = TracksDataStore()
     static let userState = UserState()
-    
+
     static var previews: some View {
         VStack {
-            TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .now, bindModeChange: false))
-            TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .now, bindModeChange: false))
+            TrackCarrouselView(downloader: store.popular)
+            TrackCarrouselView(downloader: store.popular)
                 .redacted(reason: .placeholder)
         }
         .environmentObject(store)

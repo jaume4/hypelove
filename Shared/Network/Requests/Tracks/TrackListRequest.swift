@@ -12,7 +12,7 @@ struct TrackListRequest: ApiTrackListRequest {
     typealias Response = [TrackListResponseElement]
     typealias CustomError = TrackListResponseError
     
-    let endPointType: TracksEndPoint
+    let endPointType: TracksMode
     let method = HTTPMethod.get
     var endPoint: String {
         endPointType.endPoint
@@ -22,7 +22,7 @@ struct TrackListRequest: ApiTrackListRequest {
         return endPointType.authNeeded
     }
     
-    init(endPoint: TracksEndPoint, page: Int) {
+    init(endPoint: TracksMode, page: Int) {
         self.endPointType = endPoint
         var params = ["page": "\(page)"]
         

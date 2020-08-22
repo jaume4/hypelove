@@ -9,9 +9,6 @@
 import SwiftUI
 
 struct PopularView: View {
-    @EnvironmentObject var userState: UserState
-    @EnvironmentObject var player: Player
-    @EnvironmentObject var dataStore: TracksDataStore
     @StateObject var viewModel: PopularViewModel
     
     var body: some View {
@@ -30,20 +27,14 @@ struct PopularView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
                     
-                    TrackListView(tracks: $viewModel.tracks,
-                                  loading: $viewModel.loading,
-                                  placeHolderTracks: $viewModel.placeholder,
-                                  error: $viewModel.error,
-                                  requestTracks: viewModel.requestTracks,
-                                  resetError: viewModel.resetError)
+                    
+                    TrackListView(downloader: viewModel.trackStore)
                         .parentGeometry(proxy)
                 }
             }
             
         }
-        .onChange(of: viewModel.store.popularMode) { _ in
-            viewModel.requestTracksIfEmpty()
-        }
+        
         .navigationTitle(viewModel.store.popularMode.title)
         .navigationBarItems(trailing:
                                 HStack(spacing: 25) {

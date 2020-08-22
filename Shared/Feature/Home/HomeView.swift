@@ -34,9 +34,9 @@ struct HomeView: View {
                 })
                 
                 //Popular now carrousel
-                TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .now, bindModeChange: false))
+                TrackCarrouselView(downloader: store.popular)
                     .onAppear {
-                        store.store(for: .now).requestTracksIfEmpty()
+                        store.popular.requestTracksIfEmpty()
                     }
                 
                 //Popular last week title
@@ -57,9 +57,9 @@ struct HomeView: View {
                 })
                 
                 //Popular last week carrousel
-                TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .lastWeek, bindModeChange: false))
+                TrackCarrouselView(downloader: store.lastWeek)
                     .onAppear {
-                        store.store(for: .lastWeek).requestTracksIfEmpty()
+                        store.lastWeek.requestTracksIfEmpty()
                     }
                 
                 //Feed title
@@ -74,9 +74,9 @@ struct HomeView: View {
                 }
                 
                 //Feed carrousel
-                TrackCarrouselView(viewModel: PopularViewModel(store: store, mode: .remix, bindModeChange: false))
+                TrackCarrouselView(downloader: store.feed)
                     .onAppear {
-                        store.store(for: .remix).requestTracksIfEmpty()
+                        store.feed.requestTracksIfEmpty()
                     }
                 
                 VStack(spacing: 15) {

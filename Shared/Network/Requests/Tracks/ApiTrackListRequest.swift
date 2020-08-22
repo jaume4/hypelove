@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ApiTrackListRequest: ApiRequest & NetworkRequest {
-    init(endPoint: TracksEndPoint, page: Int)
+    init(endPoint: TracksMode, page: Int)
 }
 
 extension ApiTrackListRequest where Self.CustomError == TrackListResponseError {
@@ -26,7 +26,7 @@ extension ApiTrackListRequest where Self.CustomError == TrackListResponseError {
 
 extension ApiTrackListRequest {
     
-    static func requestMaker(endPoint: TracksEndPoint) -> ((Int) -> Self) {
+    static func requestMaker(endPoint: TracksMode) -> ((Int) -> Self) {
         return { page in
             Self.init(endPoint: endPoint, page: page)
         }

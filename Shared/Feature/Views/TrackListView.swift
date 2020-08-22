@@ -7,45 +7,39 @@
 
 import SwiftUI
 
-struct TrackListView<T: RawRepresentable>: View where T.RawValue == String {
+struct TrackListView: View {
     
     @EnvironmentObject var player: Player
-    @Binding var tracks: [TrackDetails]
-    @Binding var loading: Bool
-    @Binding var placeHolderTracks: Bool
-    @Binding var error: NetworkError<T>?
-    
-    let requestTracks: () -> ()
-    let resetError: () -> ()
+    @ObservedObject var downloader: TracksDownloader<TrackListRequest>
     
     var body: some View {
         //Tracks view. First tracks are populated with placeholder tracks, redacted if the downloader has marked them as placeholders
         LazyVGrid(columns: [GridItem(.flexible())]) {
-            ForEach(tracks) { track in
+            ForEach(downloader.tracks) { track in
                 TrackView(track: track, playing: track == player.currentTrack, showPlayingBackground: true)
                     .modifier(MakeButton {
-                        player.play(tracks: tracks, startIndex: tracks.firstIndex(of: track))
+                        player.play(tracks: downloader.tracks, startIndex: downloader.tracks.firstIndex(of: track))
                     })
                     //If this is the last track, request more tracks
                     .onAppear {
-                        if track == tracks.last {
-                            requestTracks()
+                        if track == downloader.tracks.last {
+                            downloader.requestTracks()
                         }
                     }
             }
         }
-        .redacted(reason: placeHolderTracks ? .placeholder : [])
-        .modifier(ReplaceByError(active: placeHolderTracks,
-                                 error: error,
+        .redacted(reason: downloader.placeholderTracks ? .placeholder : [])
+        .modifier(ReplaceByError(active: downloader.placeholderTracks,
+                                 error: downloader.error,
                                  actionDescription: ", tap to retry.",
                                  action: {
-                                    resetError()
-                                    requestTracks()
+                                    downloader.resetError()
+                                    downloader.requestTracks()
                                  }
         ))
         
         //Placeholder for loading tracks, only shown after initial loading on new tracks space
-        if !placeHolderTracks, loading {
+        if !downloader.placeholderTracks, downloader.loading {
             LazyVGrid(columns: [GridItem(.flexible())]) {
                 ForEach(TrackDetails.placeholderTracks.prefix(10)) { track in
                     TrackView(track: track, playing: track == player.currentTrack, showPlayingBackground: false)
@@ -55,10 +49,10 @@ struct TrackListView<T: RawRepresentable>: View where T.RawValue == String {
         }
         
         //Error button
-        if !placeHolderTracks {
-            ErrorButton(error: error, actionDescription: ", tap to retry.") {
-                resetError()
-                requestTracks()
+        if !downloader.placeholderTracks {
+            ErrorButton(error: downloader.error, actionDescription: ", tap to retry.") {
+                downloader.resetError()
+                downloader.requestTracks()
             }
             .parentGeometry(nil)
         }

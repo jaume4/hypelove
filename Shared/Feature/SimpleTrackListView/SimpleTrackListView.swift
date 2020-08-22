@@ -10,9 +10,8 @@ import SwiftUI
 struct SimpleTrackListView: View {
     @EnvironmentObject var userState: UserState
     @EnvironmentObject var player: Player
-    @EnvironmentObject var dataStore: TracksDataStore
-    @StateObject var viewModel: SimpleTrackListViewModel
-    let mode: TracksEndPoint
+    @StateObject var tracksDownloader: TracksDownloader<TrackListRequest>
+    let mode: TracksMode
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -21,16 +20,11 @@ struct SimpleTrackListView: View {
                 
                 ScrollView {
                     
-                    TrackListView(tracks: $viewModel.tracks,
-                                  loading: $viewModel.loading,
-                                  placeHolderTracks: $viewModel.placeholder,
-                                  error: $viewModel.error,
-                                  requestTracks: viewModel.requestTracks,
-                                  resetError: viewModel.resetError)
+                    TrackListView(downloader: tracksDownloader)
                         .padding([.top], 10)
                 }
-                .modifier(ReplaceByError(active: viewModel.error == .notAuthorized,
-                                         error: viewModel.error,
+                .modifier(ReplaceByError(active: tracksDownloader.error == .notAuthorized,
+                                         error: tracksDownloader.error,
                                          actionDescription: ", tap to open settings.",
                                          action: userState.presentSettings)
                 )
@@ -39,18 +33,8 @@ struct SimpleTrackListView: View {
         }
         
         .onChange(of: userState.selectedTab) { tab in
-            guard tab == .favorites else { return }
-            viewModel.requestTracksIfEmpty()
-        }
-        
-        .onChange(of: userState.validToken) { validToken in
-            if validToken, viewModel.error == .notAuthorized {
-                viewModel.resetError()
-                viewModel.requestTracks()
-            } else if !validToken {
-                viewModel.resetTracks()
-                viewModel.error = .notAuthorized
-            }
+            guard tab == mode else { return }
+            tracksDownloader.requestTracksIfEmpty()
         }
         
         .navigationTitle(mode.title)
@@ -76,7 +60,7 @@ struct FavoritesView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            SimpleTrackListView(viewModel: SimpleTrackListViewModel(store: store.favorites), mode: .history)
+            SimpleTrackListView(tracksDownloader: store.favorites, mode: .history)
         }
         .accentColor(.buttonMain)
         .environmentObject(userState)
@@ -84,7 +68,7 @@ struct FavoritesView_Previews: PreviewProvider {
         .environmentObject(TracksDataStore())
         
         NavigationView {
-            SimpleTrackListView(viewModel: SimpleTrackListViewModel(store: store.favorites), mode: .history)
+            SimpleTrackListView(tracksDownloader: store.favorites, mode: .history)
         }
         .redacted(reason: .placeholder)
         .accentColor(.buttonMain)

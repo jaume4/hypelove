@@ -12,13 +12,14 @@ final class TracksDownloader<Request: ApiTrackListRequest>: ObservableObject whe
     
     @Published private(set) var tracks: [TrackDetails] = Array(TrackDetails.placeholderTracks.prefix(10))
     @Published private(set) var error: NetworkError<Request.CustomError>?
-    @Published private(set) var tracksCancellable: AnyCancellable?
     @Published private(set) var placeholderTracks = true
+    @Published private(set) var loading = false
+    @Published private var tracksCancellable: AnyCancellable?
     
     private var currentPage = 0
     let makeRequest: (Int) -> Request
     
-    init(endPoint: TracksEndPoint) {
+    init(endPoint: TracksMode) {
         makeRequest = Request.requestMaker(endPoint: endPoint)
     }
     
@@ -31,9 +32,13 @@ final class TracksDownloader<Request: ApiTrackListRequest>: ObservableObject whe
         guard tracksCancellable == nil && error == nil else { return }
         let request = makeRequest(currentPage + 1)
         
+        loading = true
         tracksCancellable = NetworkClient.shared.send(request).sink(receiveCompletion: { completion in
             
-            defer { self.tracksCancellable = nil }
+            defer {
+                self.loading = false
+                self.tracksCancellable = nil
+            }
             
             switch completion {
             case .finished: return
@@ -60,5 +65,10 @@ final class TracksDownloader<Request: ApiTrackListRequest>: ObservableObject whe
     
     func resetError() {
         error = nil
+    }
+    
+    func setNotLogedInError() {
+        resetTracks()
+        error = .notAuthorized
     }
 }

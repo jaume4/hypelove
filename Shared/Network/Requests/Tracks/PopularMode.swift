@@ -10,7 +10,7 @@ import Foundation
 enum PopularMode: String, Hashable {
     case now = ""
     case lastWeek = "lastweek"
-    case noRemix = "noRemix"
+    case noRemix = "noremix"
     case remix
     
     var title: String {
