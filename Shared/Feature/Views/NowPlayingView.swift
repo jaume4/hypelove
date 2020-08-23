@@ -15,8 +15,6 @@ struct NowPlayingView: View {
     @EnvironmentObject var userState: UserState
     @EnvironmentObject var player: Player
     @Environment(\.colorScheme) var colorScheme
-    @State var transition = false
-    let playerPosition: Namespace.ID
     
     var drag: some Gesture {
         DragGesture(minimumDistance: 50)
@@ -56,20 +54,9 @@ struct NowPlayingView: View {
             .accentColor(.primary)
             
         }
-        .padding(.bottom, 5)
         .padding(.top, 10)
         
         .gesture(drag)
-        
-        .matchedGeometryEffect(id: PlayerStatus.shown, in: playerPosition, properties: .position, anchor: .top)
-        .matchedGeometryEffect(id: PlayerStatus.hidden, in: playerPosition, properties: .position, anchor: transition ? .bottom : .top, isSource: false)
-        
-        .transition(AnyTransition.move(edge: Edge.bottom).animation(Animation.easeInOut(duration: 0.2)).combined(with: .opacity))
-        .animation(.easeInOut(duration: 0.2))
-        
-        .onAppear {
-            transition = true
-        }
     }
 }
 
@@ -91,13 +78,13 @@ struct NowPlayingView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             Spacer()
-            NowPlayingView(playerPosition: nameSpace)
+            NowPlayingView()
                 .environmentObject(Player.songPaused)
         }
         .previewLayout(PreviewLayout.fixed(width: 400, height: 100))
         VStack {
             Spacer()
-            NowPlayingView(playerPosition: nameSpace)
+            NowPlayingView()
                 .environmentObject(Player.songPlaying)
         }
         .previewLayout(PreviewLayout.fixed(width: 400, height: 100))

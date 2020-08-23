@@ -82,9 +82,7 @@ struct HomeView: View {
                 
                 VStack(spacing: 15) {
                     NavigationLink(destination: SimpleTrackListView(tracksDownloader: store.new, mode: .new(.all)), tag: TracksMode.new(.all), selection: $destination) {
-                        Button("New") {
-                            destination = .new(.all)
-                        }
+                        Text("New")
                     }
                     Button("Artists") {
                         print("Artists")
@@ -110,6 +108,9 @@ struct HomeView: View {
                                     }
                                     .unredacted()
             )
+            .onChange(of: destination) { newDestination in
+                userState.hiddenTabBar = newDestination != nil
+            }
             
             Spacer(minLength: UIScreen.main.bounds.height / 5)
         }

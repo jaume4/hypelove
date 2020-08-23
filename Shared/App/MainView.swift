@@ -2,83 +2,85 @@
 //  MainView.swift
 //  HypeLove
 //
-//  Created by Jaume on 14/08/2020.
+//  Created by Jaume on 23/08/2020.
 //
 
 import Foundation
 import SwiftUI
 
+enum CurrentTab: String, Hashable, CaseIterable {
+    case home, popular, favorites, history
+}
+
 struct MainView: View {
+    
     @EnvironmentObject var userState: UserState
     @EnvironmentObject var player: Player
     @EnvironmentObject var tracksStore: TracksDataStore
-    @Namespace private var playerPosition
-    @State private var currentAnchor = PlayerStatus.hidden
+    @State var tab: CurrentTab = .home
     
-    var body: some View {
-        ZStack(alignment: .bottom) {
-            TabView(selection: $userState.selectedTab) {
-                
-                NavigationView {
-                    HomeView()
-                        .matchedGeometryEffect(id: PlayerStatus.hidden, in: playerPosition, properties: .position, anchor: .bottom, isSource: true)
-                        .modifier(PlayerBlurBar(currentAnchor: $currentAnchor, playerPosition: playerPosition))
-                }
-                .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("Home")
-                }
-                .tag(HomeTab.home)
-                
-                NavigationView {
-                    PopularView(viewModel: PopularViewModel(store: tracksStore, mode: .now, bindModeChange: true))
-                        .modifier(PlayerBlurBar(currentAnchor: $currentAnchor, playerPosition: playerPosition))
-                }
-                .tabItem {
-                    Image(systemName: "chart.bar.fill")
-                    Text("Popular")
-                }
-                .tag(HomeTab.popular)
-                
-                NavigationView {
-                    SimpleTrackListView(tracksDownloader: tracksStore.favorites, mode: .favorites)
-                        .modifier(PlayerBlurBar(currentAnchor: $currentAnchor, playerPosition: playerPosition))
-                }
-                .tabItem {
-                    Image(systemName: "heart.fill")
-                    Text("Favorites")
-                }
-                .tag(HomeTab.favorites)
-                
-                NavigationView {
-                    SimpleTrackListView(tracksDownloader: tracksStore.history, mode: .history)
-                        .modifier(PlayerBlurBar(currentAnchor: $currentAnchor, playerPosition: playerPosition))
-                }
-                .tabItem {
-                    Image(systemName: "clock.fill")
-                    Text("History")
-                }
-                .tag(HomeTab.history)
-                
-            }
-            
-            //Now Playing on top of ZStack
-            if player.currentTrack != nil {
-                VStack {
-                    Spacer()
-                    NowPlayingView(playerPosition: playerPosition)
-                }
-            }
-        }
+    @ViewBuilder
+    func content(tab: CurrentTab) -> some View {
         
-        .onChange(of: player.currentTrack, perform: { value in
-            currentAnchor = value != nil ? .shown : .hidden
-        })
-        
-        .sheet(isPresented: $userState.presentingModal) {
-            ModalPresenterView()
-            .environmentObject(userState)
-            .environmentObject(player)
+        switch tab {
+        case .home:
+            NavigationView {
+                HomeView()
+            }
+        case .popular:
+            NavigationView {
+                PopularView(viewModel: PopularViewModel(store: tracksStore, mode: .now, bindModeChange: true))
+            }
+        case .favorites:
+            NavigationView {
+                SimpleTrackListView(tracksDownloader: tracksStore.favorites, mode: .favorites)
+            }
+        case .history:
+            NavigationView {
+                SimpleTrackListView(tracksDownloader: tracksStore.history, mode: .history)
+            }
         }
     }
+    
+    @ViewBuilder
+    func button(tab: CurrentTab) -> some View {
+        VStack {
+            switch tab {
+            case .home:
+                Image(systemName: "house.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                Text("Home")
+            case .popular:
+                Image(systemName: "chart.bar.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                Text("Popular")
+            case .favorites:
+                Image(systemName: "heart.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                Text("Favorites")
+            case .history:
+                Image(systemName: "clock.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                Text("History")
+            }
+        }
+        
+        .font(Font.caption2)
+
+    }
+
+    
+    var body: some View {
+        MusicTabView($tab, hiddenTabBar: $userState.hiddenTabBar, content: content, tabs: button)
+            .sheet(isPresented: $userState.presentingModal) {
+                ModalPresenterView()
+                    .environmentObject(userState)
+                    .environmentObject(player)
+            }
+    }
+    
 }

@@ -95,10 +95,6 @@
 		1FEC8CB124E6924D004D34DD /* TracksMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CAF24E6924D004D34DD /* TracksMode.swift */; };
 		1FEC8CB724E692D3004D34DD /* ApiTrackListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CB624E692D3004D34DD /* ApiTrackListRequest.swift */; };
 		1FEC8CB824E692D3004D34DD /* ApiTrackListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CB624E692D3004D34DD /* ApiTrackListRequest.swift */; };
-		1FEC8CBD24E6A42B004D34DD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CBC24E6A42B004D34DD /* MainView.swift */; };
-		1FEC8CBE24E6A42B004D34DD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CBC24E6A42B004D34DD /* MainView.swift */; };
-		1FEC8CC024E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CBF24E6BD3D004D34DD /* PlayerBlurBar.swift */; };
-		1FEC8CC124E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CBF24E6BD3D004D34DD /* PlayerBlurBar.swift */; };
 		1FEC8CC324E6E64F004D34DD /* DownloadTrackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CC224E6E64F004D34DD /* DownloadTrackRequest.swift */; };
 		1FEC8CC424E6E64F004D34DD /* DownloadTrackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CC224E6E64F004D34DD /* DownloadTrackRequest.swift */; };
 		1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
@@ -115,6 +111,12 @@
 		1FF3C88F24F11F3A00204F4E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF3C88D24F11F3A00204F4E /* ImageCache.swift */; };
 		1FF3C8A424F16AFE00204F4E /* String+Chunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF3C8A324F16AFE00204F4E /* String+Chunk.swift */; };
 		1FF3C8A524F16AFE00204F4E /* String+Chunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF3C8A324F16AFE00204F4E /* String+Chunk.swift */; };
+		1FF3C8A724F184EA00204F4E /* MusicTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF3C8A624F184EA00204F4E /* MusicTabView.swift */; };
+		1FF3C8A824F184EA00204F4E /* MusicTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF3C8A624F184EA00204F4E /* MusicTabView.swift */; };
+		1FF3C8AA24F2662400204F4E /* View+if.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF3C8A924F2662400204F4E /* View+if.swift */; };
+		1FF3C8AB24F2662400204F4E /* View+if.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF3C8A924F2662400204F4E /* View+if.swift */; };
+		1FF3C8AD24F2741600204F4E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF3C8AC24F2741600204F4E /* MainView.swift */; };
+		1FF3C8AE24F2741600204F4E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF3C8AC24F2741600204F4E /* MainView.swift */; };
 		1FFFE14424E4545C00A914A7 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE14324E4545C00A914A7 /* UISegmentedControl.swift */; };
 		1FFFE14524E4545C00A914A7 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE14324E4545C00A914A7 /* UISegmentedControl.swift */; };
 		1FFFE14824E46C4E00A914A7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFE14724E46C4E00A914A7 /* SettingsView.swift */; };
@@ -176,8 +178,6 @@
 		1FEC8CAC24E68D9A004D34DD /* TrackListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListRequest.swift; sourceTree = "<group>"; };
 		1FEC8CAF24E6924D004D34DD /* TracksMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksMode.swift; sourceTree = "<group>"; };
 		1FEC8CB624E692D3004D34DD /* ApiTrackListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTrackListRequest.swift; sourceTree = "<group>"; };
-		1FEC8CBC24E6A42B004D34DD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		1FEC8CBF24E6BD3D004D34DD /* PlayerBlurBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBlurBar.swift; sourceTree = "<group>"; };
 		1FEC8CC224E6E64F004D34DD /* DownloadTrackRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTrackRequest.swift; sourceTree = "<group>"; };
 		1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
@@ -186,6 +186,9 @@
 		1FEFE57A24DFE426002DEEB8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1FF3C88D24F11F3A00204F4E /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		1FF3C8A324F16AFE00204F4E /* String+Chunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Chunk.swift"; sourceTree = "<group>"; };
+		1FF3C8A624F184EA00204F4E /* MusicTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTabView.swift; sourceTree = "<group>"; };
+		1FF3C8A924F2662400204F4E /* View+if.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+if.swift"; sourceTree = "<group>"; };
+		1FF3C8AC24F2741600204F4E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1FFFE14324E4545C00A914A7 /* UISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControl.swift; sourceTree = "<group>"; };
 		1FFFE14724E46C4E00A914A7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1FFFE14A24E4836F00A914A7 /* AnimatableGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableGradient.swift; sourceTree = "<group>"; };
@@ -215,6 +218,7 @@
 			children = (
 				1FA51CC724E1B1DC00DECA7A /* Representables */,
 				1F069A8424E04B270055BC3F /* Playingindicator.swift */,
+				1FF3C8A624F184EA00204F4E /* MusicTabView.swift */,
 				1FE8A86C24E5955D00B0529C /* TrackListView.swift */,
 				1F8F39E824E983A100ACF92E /* ModalPresenterView.swift */,
 				1FEFE57224DF1B06002DEEB8 /* TrackView.swift */,
@@ -299,7 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				1F49744C24DC1EBF0085F599 /* HypeLoveApp.swift */,
-				1FEC8CBC24E6A42B004D34DD /* MainView.swift */,
+				1FF3C8AC24F2741600204F4E /* MainView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -384,7 +388,6 @@
 				1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */,
 				1F6F73BB24DFEF0A00A9186A /* HypeButtons.swift */,
 				1FA51CCB24E1C26F00DECA7A /* MakeButton.swift */,
-				1FEC8CBF24E6BD3D004D34DD /* PlayerBlurBar.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				1FF3C8A324F16AFE00204F4E /* String+Chunk.swift */,
 				1FEC8CA624E67788004D34DD /* ReplaceByErrorButton.swift */,
 				1FE8A87624E5B30100B0529C /* Publisher+WeakAssign.swift */,
+				1FF3C8A924F2662400204F4E /* View+if.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -570,7 +574,6 @@
 				1FE8A86D24E5955D00B0529C /* TrackListView.swift in Sources */,
 				1FEC8CC324E6E64F004D34DD /* DownloadTrackRequest.swift in Sources */,
 				1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
-				1FEC8CC024E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */,
 				1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F00DE5F24E3DD31008A9843 /* TrackCarrouselElementView.swift in Sources */,
 				1F083D5D24E150F10033DA27 /* NowPlayingView.swift in Sources */,
@@ -578,10 +581,12 @@
 				1FA51CCC24E1C26F00DECA7A /* MakeButton.swift in Sources */,
 				1F83325424DC246E0054DD8D /* UserState.swift in Sources */,
 				1F00DE5C24E3361E008A9843 /* DownloadImageRequest.swift in Sources */,
+				1FF3C8AD24F2741600204F4E /* MainView.swift in Sources */,
 				1FC2F39124DD6246006C78A8 /* Color.swift in Sources */,
 				1F8F39EC24E9AC1B00ACF92E /* VolumeView.swift in Sources */,
 				1F70B9E524E432A600B67223 /* BigNumberFormatter.swift in Sources */,
 				1F49745F24DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
+				1FF3C8AA24F2662400204F4E /* View+if.swift in Sources */,
 				1FA51CC924E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */,
 				1F083D6424E153250033DA27 /* TrackDetails.swift in Sources */,
 				1F49747124DC1F1F0085F599 /* Keychain.swift in Sources */,
@@ -595,7 +600,6 @@
 				1F6F73BC24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1FF3C88E24F11F3A00204F4E /* ImageCache.swift in Sources */,
 				1F00DE6B24E3FF3A008A9843 /* PopularViewModel.swift in Sources */,
-				1FEC8CBD24E6A42B004D34DD /* MainView.swift in Sources */,
 				1FEC8CB024E6924D004D34DD /* TracksMode.swift in Sources */,
 				1F00DE6524E3EC20008A9843 /* TracksDownloader.swift in Sources */,
 				1FA1F6DA24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
@@ -614,6 +618,7 @@
 				1FA51CBF24E1979D00DECA7A /* AppInfo.swift in Sources */,
 				1F00DE6224E3E958008A9843 /* ImageDownloader.swift in Sources */,
 				1F78B19124F043B700607736 /* AVPlayer+TimePublisher.swift in Sources */,
+				1FF3C8A724F184EA00204F4E /* MusicTabView.swift in Sources */,
 				1FFFE14B24E4836F00A914A7 /* AnimatableGradient.swift in Sources */,
 				1F8F39E924E983A100ACF92E /* ModalPresenterView.swift in Sources */,
 				1F49747924DC1F350085F599 /* NetworkClient.swift in Sources */,
@@ -634,7 +639,6 @@
 				1FE8A86E24E5955D00B0529C /* TrackListView.swift in Sources */,
 				1FEC8CC424E6E64F004D34DD /* DownloadTrackRequest.swift in Sources */,
 				1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
-				1FEC8CC124E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */,
 				1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F00DE6024E3DD31008A9843 /* TrackCarrouselElementView.swift in Sources */,
 				1F083D5E24E150F10033DA27 /* NowPlayingView.swift in Sources */,
@@ -642,10 +646,12 @@
 				1FA51CCD24E1C26F00DECA7A /* MakeButton.swift in Sources */,
 				1F83325524DC246E0054DD8D /* UserState.swift in Sources */,
 				1F00DE5D24E3361E008A9843 /* DownloadImageRequest.swift in Sources */,
+				1FF3C8AE24F2741600204F4E /* MainView.swift in Sources */,
 				1FC2F39224DD6246006C78A8 /* Color.swift in Sources */,
 				1F8F39ED24E9AC1B00ACF92E /* VolumeView.swift in Sources */,
 				1F70B9E624E432A600B67223 /* BigNumberFormatter.swift in Sources */,
 				1F49746024DC1EC10085F599 /* HypeLoveApp.swift in Sources */,
+				1FF3C8AB24F2662400204F4E /* View+if.swift in Sources */,
 				1FA51CCA24E1B8F500DECA7A /* UITabBarAppareance.swift in Sources */,
 				1F083D6524E153250033DA27 /* TrackDetails.swift in Sources */,
 				1F49747324DC1F230085F599 /* Keychain.swift in Sources */,
@@ -659,7 +665,6 @@
 				1F6F73BD24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1FF3C88F24F11F3A00204F4E /* ImageCache.swift in Sources */,
 				1F00DE6C24E3FF3A008A9843 /* PopularViewModel.swift in Sources */,
-				1FEC8CBE24E6A42B004D34DD /* MainView.swift in Sources */,
 				1FEC8CB124E6924D004D34DD /* TracksMode.swift in Sources */,
 				1F00DE6624E3EC20008A9843 /* TracksDownloader.swift in Sources */,
 				1FA1F6DB24DC81A50095C0A2 /* HypeTexfield.swift in Sources */,
@@ -678,6 +683,7 @@
 				1FA51CC024E1979D00DECA7A /* AppInfo.swift in Sources */,
 				1F00DE6324E3E958008A9843 /* ImageDownloader.swift in Sources */,
 				1F78B19224F043B700607736 /* AVPlayer+TimePublisher.swift in Sources */,
+				1FF3C8A824F184EA00204F4E /* MusicTabView.swift in Sources */,
 				1FFFE14C24E4836F00A914A7 /* AnimatableGradient.swift in Sources */,
 				1F8F39EA24E983A100ACF92E /* ModalPresenterView.swift in Sources */,
 				1F49747A24DC1F350085F599 /* NetworkClient.swift in Sources */,

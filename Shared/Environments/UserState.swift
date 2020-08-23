@@ -20,6 +20,7 @@ final class UserState: ObservableObject {
     @Published var userName: String = ""
     @Published var selectedTab = HomeTab.home
     @Published var presentingModal = false
+    @Published var hiddenTabBar = false
     private(set) var modalToPresent: PresentedModal = .settings
     
     private var cancellables: Set<AnyCancellable> = []
