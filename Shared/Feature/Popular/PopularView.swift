@@ -10,12 +10,13 @@ import SwiftUI
 
 struct PopularView: View {
     @StateObject var viewModel: PopularViewModel
+    @EnvironmentObject var store: TracksDataStore
     
     var body: some View {
         ZStack(alignment: .bottom) {
             
-            GeometryReader { proxy in
-            
+            GeometryReader { geometry in
+                
                 ScrollView {
                     
                     Picker("", selection: $viewModel.store.popularMode) {
@@ -27,12 +28,11 @@ struct PopularView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
                     
-                    
                     TrackListView(downloader: viewModel.trackStore)
-                        .parentGeometry(proxy)
+                        .parentGeometry(geometry)
                 }
+                .id(store.popularMode)
             }
-            
         }
         
         .navigationTitle(viewModel.store.popularMode.title)
