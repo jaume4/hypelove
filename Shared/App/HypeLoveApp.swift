@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-enum HomeTab: Hashable {
-    case home, popular, favorites, history
-}
-
 @main
 struct HypeLoveApp: App {
     @StateObject private var userState = UserState()

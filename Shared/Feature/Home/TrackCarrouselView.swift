@@ -24,6 +24,9 @@ struct TrackCarrouselView: View {
                         })
                 }
             }
+            .onAppear {
+                downloader.requestTracksIfEmpty()
+            }
         }
         .modifier(ReplaceByError(active: downloader.placeholderTracks && downloader.error != nil && downloader.error != .notAuthorized,
                                  error: downloader.error,

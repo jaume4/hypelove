@@ -17,68 +17,29 @@ struct HomeView: View {
         ScrollView {
             LazyVStack {
                 
-                //Popular now title
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(PopularMode.now.title)
-                            .frame(alignment: .leading)
-                            .padding()
-                        Spacer(minLength: 0)
-                        Image(systemName: "chevron.right")
-                            .padding()
-                    }
-                    .font(Font.title2.bold())
-                }
-                .modifier(MakeButton {
+                //Popular now
+                HeaderView(title: TracksMode.popular(.now).title) {
                     store.popularMode = .now
                     userState.selectedTab = .popular
-                })
-                
-                //Popular now carrousel
-                TrackCarrouselView(downloader: store.popular)
-                    .onAppear {
-                        store.popular.requestTracksIfEmpty()
-                    }
-                
-                //Popular last week title
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(PopularMode.lastWeek.title)
-                            .frame(alignment: .leading)
-                            .padding()
-                        Spacer(minLength: 0)
-                        Image(systemName: "chevron.right")
-                            .padding()
-                    }
-                    .font(Font.title2.bold())
                 }
-                .modifier(MakeButton {
+                
+                TrackCarrouselView(downloader: store.popular)
+                
+                //Popular last week
+                HeaderView(title: TracksMode.popular(.lastWeek).title) {
                     store.popularMode = .lastWeek
                     userState.selectedTab = .popular
-                })
-                
-                //Popular last week carrousel
-                TrackCarrouselView(downloader: store.lastWeek)
-                    .onAppear {
-                        store.lastWeek.requestTracksIfEmpty()
-                    }
-                
-                //Feed title
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Feed")
-                            .font(Font.title2.bold())
-                            .frame(alignment: .leading)
-                            .padding()
-                        Spacer(minLength: 0)
-                    }
                 }
                 
-                //Feed carrousel
-                TrackCarrouselView(downloader: store.feed)
-                    .onAppear {
-                        store.feed.requestTracksIfEmpty()
-                    }
+                TrackCarrouselView(downloader: store.lastWeek)
+                
+                //New
+                HeaderView(title: TracksMode.new(.all).title) {
+                    store.popularMode = .lastWeek
+                    userState.selectedTab = .popular
+                }
+                
+                TrackCarrouselView(downloader: store.new)
                 
                 VStack(spacing: 15) {
                     NavigationLink(destination: SimpleTrackListView(tracksDownloader: store.new, mode: .new(.all)), tag: TracksMode.new(.all), selection: $destination) {

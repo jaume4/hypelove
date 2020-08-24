@@ -17,7 +17,6 @@ struct MainView: View {
     @EnvironmentObject var userState: UserState
     @EnvironmentObject var player: Player
     @EnvironmentObject var tracksStore: TracksDataStore
-    @State var tab: CurrentTab = .home
     
     @ViewBuilder
     func content(tab: CurrentTab) -> some View {
@@ -75,7 +74,7 @@ struct MainView: View {
 
     
     var body: some View {
-        MusicTabView($tab, hiddenTabBar: $userState.hiddenTabBar, content: content, tabs: button)
+        MusicTabView($userState.selectedTab, hiddenTabBar: $userState.hiddenTabBar, content: content, tabs: button)
             .sheet(isPresented: $userState.presentingModal) {
                 ModalPresenterView()
                     .environmentObject(userState)

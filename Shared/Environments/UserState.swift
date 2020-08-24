@@ -18,7 +18,7 @@ final class UserState: ObservableObject {
     @AppStorage("userName") private var savedUserName: String = ""
     @Published var validToken = false
     @Published var userName: String = ""
-    @Published var selectedTab = HomeTab.home
+    @Published var selectedTab = CurrentTab.home
     @Published var presentingModal = false
     @Published var hiddenTabBar = false
     private(set) var modalToPresent: PresentedModal = .settings

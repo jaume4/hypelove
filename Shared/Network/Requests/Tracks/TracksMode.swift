@@ -42,7 +42,7 @@ enum TracksMode: Hashable {
     }
     
     //User to compare track endpoint vs tab
-    static func == (lhs: HomeTab, rhs: TracksMode) -> Bool {
+    static func == (lhs: CurrentTab, rhs: TracksMode) -> Bool {
         switch (lhs, rhs) {
         case (.favorites, .favorites):
             return true
