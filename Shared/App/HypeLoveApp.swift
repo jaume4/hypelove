@@ -18,7 +18,6 @@ struct HypeLoveApp: App {
     @StateObject private var tracksStore = TracksDataStore()
     
     init() {
-        UITabBar.setBlurAppareance()
         UISegmentedControl.setAppareance()
     }
     

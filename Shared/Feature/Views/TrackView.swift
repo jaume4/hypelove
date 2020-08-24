@@ -19,6 +19,7 @@ struct TrackView: View {
         ZStack {
             if track == player.currentTrack, redactionReasons.isEmpty, showPlayingBackground {
                 Color(.secondarySystemFill).layoutPriority(-1)
+                    .padding([.top, .bottom], -3)
             }
             HStack {
                 Spacer(minLength: 5)
@@ -42,7 +43,7 @@ struct TrackView: View {
 
                 }
                 .aspectRatio(CGSize(width: 1, height: 1), contentMode: .fit)
-                .frame(maxHeight: 50)
+                .frame(maxHeight: showPlayingBackground ? 50 : 40)
                 .padding(5)
                 
                 VStack(alignment: .leading) {

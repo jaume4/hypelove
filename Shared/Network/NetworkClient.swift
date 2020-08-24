@@ -10,6 +10,30 @@ import Foundation
 import Combine
 import SwiftUI
 
+extension String: Error {}
+
+final class MockingURL: URLProtocol {
+    
+ 
+    
+    override func startLoading() {
+        client?.urlProtocol(self, didFailWithError: "")
+    }
+    
+    override func stopLoading() {
+
+    }
+    
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
+        return request
+    }
+
+    override class func canInit(with request: URLRequest) -> Bool {
+       return true
+    }
+    
+}
+
 typealias RequestPublisher<T: NetworkRequest> = AnyPublisher<T.Response, NetworkError<T.CustomError>>
 
 final class NetworkClient {
@@ -36,6 +60,7 @@ final class NetworkClient {
         let configuration = URLSessionConfiguration.default
         configuration.urlCache = .shared
         configuration.requestCachePolicy = .reloadRevalidatingCacheData
+//        configuration.protocolClasses = [MockingURL.self]
         configuration.timeoutIntervalForRequest = 30
         configuration.timeoutIntervalForResource = 120
         decoder.dateDecodingStrategy = .secondsSince1970
@@ -43,6 +68,7 @@ final class NetworkClient {
         
         let downloadConfiguration = URLSessionConfiguration.default
         downloadConfiguration.urlCache = .shared
+//        configuration.protocolClasses = [MockingURL.self]
         downloadConfiguration.requestCachePolicy = .returnCacheDataElseLoad
         downloadConfiguration.timeoutIntervalForRequest = 30
         downloadConfiguration.timeoutIntervalForResource = 120
@@ -111,7 +137,8 @@ final class NetworkClient {
             .receive(on: DispatchQueue.global())
             .subscribe(on: DispatchQueue.global())
             .tryMap { data, response in
-                try NetworkClient.process(data, response, for: request)
+                print(request.url)
+                return try NetworkClient.process(data, response, for: request)
             }
             .mapError { error -> NetworkError<T.CustomError> in
                 (error as? NetworkError<T.CustomError>) ?? NetworkError<T.CustomError>.noConnection

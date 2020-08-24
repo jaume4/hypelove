@@ -79,6 +79,8 @@
 		1FA51CCD24E1C26F00DECA7A /* MakeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CCB24E1C26F00DECA7A /* MakeButton.swift */; };
 		1FC2F39124DD6246006C78A8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Color.swift */; };
 		1FC2F39224DD6246006C78A8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC2F39024DD6246006C78A8 /* Color.swift */; };
+		1FC93A6624F42D8300050423 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC93A6524F42D8300050423 /* HeaderView.swift */; };
+		1FC93A6724F42D8300050423 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC93A6524F42D8300050423 /* HeaderView.swift */; };
 		1FE8A86D24E5955D00B0529C /* TrackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A86C24E5955D00B0529C /* TrackListView.swift */; };
 		1FE8A86E24E5955D00B0529C /* TrackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A86C24E5955D00B0529C /* TrackListView.swift */; };
 		1FE8A87124E59ED800B0529C /* SimpleTrackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE8A87024E59ED800B0529C /* SimpleTrackListView.swift */; };
@@ -97,8 +99,6 @@
 		1FEC8CB824E692D3004D34DD /* ApiTrackListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CB624E692D3004D34DD /* ApiTrackListRequest.swift */; };
 		1FEC8CBD24E6A42B004D34DD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CBC24E6A42B004D34DD /* MainView.swift */; };
 		1FEC8CBE24E6A42B004D34DD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CBC24E6A42B004D34DD /* MainView.swift */; };
-		1FEC8CC024E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CBF24E6BD3D004D34DD /* PlayerBlurBar.swift */; };
-		1FEC8CC124E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CBF24E6BD3D004D34DD /* PlayerBlurBar.swift */; };
 		1FEC8CC324E6E64F004D34DD /* DownloadTrackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CC224E6E64F004D34DD /* DownloadTrackRequest.swift */; };
 		1FEC8CC424E6E64F004D34DD /* DownloadTrackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC8CC224E6E64F004D34DD /* DownloadTrackRequest.swift */; };
 		1FEFE54124DE9DD6002DEEB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */; };
@@ -168,6 +168,7 @@
 		1FA51CC824E1B8F500DECA7A /* UITabBarAppareance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarAppareance.swift; sourceTree = "<group>"; };
 		1FA51CCB24E1C26F00DECA7A /* MakeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeButton.swift; sourceTree = "<group>"; };
 		1FC2F39024DD6246006C78A8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		1FC93A6524F42D8300050423 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		1FE8A86C24E5955D00B0529C /* TrackListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListView.swift; sourceTree = "<group>"; };
 		1FE8A87024E59ED800B0529C /* SimpleTrackListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTrackListView.swift; sourceTree = "<group>"; };
 		1FE8A87624E5B30100B0529C /* Publisher+WeakAssign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+WeakAssign.swift"; sourceTree = "<group>"; };
@@ -177,7 +178,6 @@
 		1FEC8CAF24E6924D004D34DD /* TracksMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksMode.swift; sourceTree = "<group>"; };
 		1FEC8CB624E692D3004D34DD /* ApiTrackListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTrackListRequest.swift; sourceTree = "<group>"; };
 		1FEC8CBC24E6A42B004D34DD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		1FEC8CBF24E6BD3D004D34DD /* PlayerBlurBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBlurBar.swift; sourceTree = "<group>"; };
 		1FEC8CC224E6E64F004D34DD /* DownloadTrackRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTrackRequest.swift; sourceTree = "<group>"; };
 		1FEFE54024DE9DD6002DEEB8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		1FEFE54324DE9E05002DEEB8 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
@@ -384,7 +384,6 @@
 				1FA1F6DC24DC81CE0095C0A2 /* OnTapDismissKeyboard.swift */,
 				1F6F73BB24DFEF0A00A9186A /* HypeButtons.swift */,
 				1FA51CCB24E1C26F00DECA7A /* MakeButton.swift */,
-				1FEC8CBF24E6BD3D004D34DD /* PlayerBlurBar.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -448,6 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				1FEFE57A24DFE426002DEEB8 /* HomeView.swift */,
+				1FC93A6524F42D8300050423 /* HeaderView.swift */,
 				1F00DE2724E305DD008A9843 /* TrackCarrouselView.swift */,
 				1F00DE5E24E3DD31008A9843 /* TrackCarrouselElementView.swift */,
 			);
@@ -570,7 +570,6 @@
 				1FE8A86D24E5955D00B0529C /* TrackListView.swift in Sources */,
 				1FEC8CC324E6E64F004D34DD /* DownloadTrackRequest.swift in Sources */,
 				1FEFE54424DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
-				1FEC8CC024E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */,
 				1F069A8524E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F00DE5F24E3DD31008A9843 /* TrackCarrouselElementView.swift in Sources */,
 				1F083D5D24E150F10033DA27 /* NowPlayingView.swift in Sources */,
@@ -591,6 +590,7 @@
 				1F8F39E624E97FC500ACF92E /* FullPlayerView.swift in Sources */,
 				1FEFE57324DF1B06002DEEB8 /* TrackView.swift in Sources */,
 				1F49747224DC1F1F0085F599 /* KeychainService.swift in Sources */,
+				1FC93A6624F42D8300050423 /* HeaderView.swift in Sources */,
 				1FEC8CAD24E68D9A004D34DD /* TrackListRequest.swift in Sources */,
 				1F6F73BC24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1FF3C88E24F11F3A00204F4E /* ImageCache.swift in Sources */,
@@ -634,7 +634,6 @@
 				1FE8A86E24E5955D00B0529C /* TrackListView.swift in Sources */,
 				1FEC8CC424E6E64F004D34DD /* DownloadTrackRequest.swift in Sources */,
 				1FEFE54524DE9E05002DEEB8 /* NetworkRequest.swift in Sources */,
-				1FEC8CC124E6BD3D004D34DD /* PlayerBlurBar.swift in Sources */,
 				1F069A8624E04B270055BC3F /* Playingindicator.swift in Sources */,
 				1F00DE6024E3DD31008A9843 /* TrackCarrouselElementView.swift in Sources */,
 				1F083D5E24E150F10033DA27 /* NowPlayingView.swift in Sources */,
@@ -655,6 +654,7 @@
 				1F8F39E724E97FC500ACF92E /* FullPlayerView.swift in Sources */,
 				1FEFE57424DF1B06002DEEB8 /* TrackView.swift in Sources */,
 				1F49747424DC1F260085F599 /* KeychainService.swift in Sources */,
+				1FC93A6724F42D8300050423 /* HeaderView.swift in Sources */,
 				1FEC8CAE24E68D9A004D34DD /* TrackListRequest.swift in Sources */,
 				1F6F73BD24DFEF0A00A9186A /* HypeButtons.swift in Sources */,
 				1FF3C88F24F11F3A00204F4E /* ImageCache.swift in Sources */,

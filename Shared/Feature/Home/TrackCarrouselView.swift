@@ -38,6 +38,9 @@ struct TrackCarrouselView: View {
                                  actionDescription: ", tap to open settings.",
                                  action: userState.presentSettings)
         )
+        .onAppear {
+            downloader.requestTracksIfEmpty()
+        }
     }
 }
 

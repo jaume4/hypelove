@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-enum PlayerStatus {
-    case hidden, shown
+enum NowPlaying {
+    case location
 }
 
 struct NowPlayingView: View {
@@ -31,6 +31,7 @@ struct NowPlayingView: View {
             if let track = player.currentTrack {
                 TrackView(track: track, playing: track == player.currentTrack, showPlayingBackground: false)
                     .modifier(MakeButton(action: { userState.presentPlayer() }))
+                    .font(.caption)
             }
             
             Button(action: {
@@ -61,8 +62,13 @@ struct NowPlayingView: View {
         
         .gesture(drag)
         
-        .matchedGeometryEffect(id: PlayerStatus.shown, in: playerPosition, properties: .position, anchor: .top)
-        .matchedGeometryEffect(id: PlayerStatus.hidden, in: playerPosition, properties: .position, anchor: transition ? .bottom : .top, isSource: false)
+        .background(VisualEffectBlur(blurStyle: .systemThickMaterial).ignoresSafeArea(.all, edges: .bottom)
+                        .clipShape(RoundedRectangleCustomCorners(cornerRadius: 20, roundedCorners: [.topLeft, .topRight]))
+                        .ignoresSafeArea(.all, edges: .all)
+        
+        )
+        
+        .matchedGeometryEffect(id: NowPlaying.location, in: playerPosition, properties: .position, anchor: transition ? .bottom : .top, isSource: false)
         
         .transition(AnyTransition.move(edge: Edge.bottom).animation(Animation.easeInOut(duration: 0.2)).combined(with: .opacity))
         .animation(.easeInOut(duration: 0.2))
